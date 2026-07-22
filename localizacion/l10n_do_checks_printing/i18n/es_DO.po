@@ -1,0 +1,352 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_do_checks_printing
+#
+# Translators:
+# Generated for Dominican Republic localization
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-10 00:00+0000\n"
+"PO-Revision-Date: 2026-01-10 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish (Dominican Republic)\n"
+"Language: es_DO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model,name:l10n_do_checks_printing.model_account_payment
+msgid "Account Payment"
+msgstr "Pago Contable"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_account_payment__amont_in_word
+msgid "Amount in Words"
+msgstr "En letras"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_account_payment__check_name
+msgid "Check Name"
+msgstr "A nombre de"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model,name:l10n_do_checks_printing.model_account_journal
+msgid "Account Journal"
+msgstr "Diario Contable"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_account_journal__check_layout
+msgid "Check Template"
+msgstr "Plantilla de cheque"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,help:l10n_do_checks_printing.field_account_journal__check_layout
+msgid "Select the format that corresponds to the paper on which you are going to print your checks. To disable the printing function, select 'None'."
+msgstr "Seleccione el formato que corresponde al papel en el que va a imprimir sus cheques en. Para desactivar la funcion de impresion, seleccione 'Ninguno'."
+
+#. module: l10n_do_checks_printing
+#: model:ir.model,name:l10n_do_checks_printing.model_check_report_config
+msgid "Check Report Configuration"
+msgstr "Configuracion de Reporte de Cheque"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_check_report_config__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_check_report_config__cheque_image
+msgid "Check Image"
+msgstr "Imagen"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_check_report_config__cheque_attribute_line_ids
+msgid "Attributes"
+msgstr "Atributos"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_check_report_config__cheque_height
+msgid "Height"
+msgstr "Altura"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_check_report_config__cheque_width
+msgid "Width"
+msgstr "Ancho"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_check_report_config__max_char_in_line1
+msgid "Maximum Characters"
+msgstr "Maximo de Letras"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,help:l10n_do_checks_printing.field_check_report_config__max_char_in_line1
+msgid "Maximum characters in 'Amount in words Line1' field. Applicable if Cheque attributes has both attributes(Amount In words Line1 & Amount In words Line2)"
+msgstr "Maximo de caracteres en el campo 'Monto en letras Linea1'. Aplica si los atributos del cheque tienen ambos atributos (Monto en letras Linea1 y Monto en letras Linea2)"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_check_report_config__cheque_measure_unit
+msgid "Unit of Measure"
+msgstr "Unidad de Medidas"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__check_report_config__cheque_measure_unit__cm
+msgid "CM"
+msgstr "CM"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__check_report_config__cheque_measure_unit__in
+msgid "Inches"
+msgstr "Pulgadas"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__check_report_config__cheque_measure_unit__mm
+msgid "MM"
+msgstr "MM"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model,name:l10n_do_checks_printing.model_bank_cheque_attribute
+msgid "Cheque Attributes"
+msgstr "Atributos de Cheques"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__cheque_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__pay_line1
+msgid "Pay To"
+msgstr "Pagar a"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__pay_line2
+msgid "Pay To 2"
+msgstr "Pagar a 2"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__amount_line_1
+msgid "Amount 1 (In Words)"
+msgstr "Monto 1 (En Palabras)"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__amount_line_2
+msgid "Amount 2 (In Words)"
+msgstr "Monto 2 (En Palabras)"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__amount_box
+msgid "Amount"
+msgstr "Monto"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__account_number
+msgid "Account Number"
+msgstr "Numero de Cuenta"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__ref
+msgid "Reference"
+msgstr "Concepto"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields.selection,name:l10n_do_checks_printing.selection__bank_cheque_attribute__attribute__ac_pay
+msgid "Paid Label"
+msgstr "Etiqueta de Pagado"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute__demo_data
+msgid "Demo Data For Preview"
+msgstr "Datos de Prueba para Vista Previa"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute__demo_data_date
+msgid "Demo Date For Preview"
+msgstr "Fecha de Prueba para Vista Previa"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute__date_format
+msgid "Date Format"
+msgstr "Formato de Fecha"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model,name:l10n_do_checks_printing.model_bank_cheque_attribute_line
+msgid "Cheque Attribute Line"
+msgstr "Linea de Atributo de Cheque"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute_line__font_size
+msgid "Font Size"
+msgstr "Tamano de Letras"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute_line__font_family
+msgid "Font Family"
+msgstr "Tipo de Letras"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute_line__letter_spacing
+msgid "Letter Spacing"
+msgstr "Espacios Letras"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute_line__top_displacement
+msgid "Top"
+msgstr "Arriba"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute_line__left_displacement
+msgid "Left"
+msgstr "Izquierda"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute_line__bottom_displacement
+msgid "Bottom"
+msgstr "Debajo"
+
+#. module: l10n_do_checks_printing
+#: model:ir.model.fields,field_description:l10n_do_checks_printing.field_bank_cheque_attribute_line__right_displacement
+msgid "Right"
+msgstr "Derecha"
+
+#. module: l10n_do_checks_printing
+#: model:ir.actions.act_window,name:l10n_do_checks_printing.l10n_do_checks_printing_check_report_config_action
+msgid "Check Templates"
+msgstr "Plantilla de cheques"
+
+#. module: l10n_do_checks_printing
+#: model:ir.ui.menu,name:l10n_do_checks_printing.l10n_do_checks_printing_menu
+msgid "Check Templates and Attributes"
+msgstr "Plantillas de cheques y Atributos"
+
+#. module: l10n_do_checks_printing
+#: model:ir.ui.menu,name:l10n_do_checks_printing.l10n_do_checks_printing_check_report_config_menu
+msgid "Check Templates"
+msgstr "Plantillas de cheques"
+
+#. module: l10n_do_checks_printing
+#: model:ir.actions.act_window,name:l10n_do_checks_printing.bank_cheque_attribute_action
+msgid "Bank Cheque Attributes"
+msgstr "Atributos de Cheques Bancarios"
+
+#. module: l10n_do_checks_printing
+#: model:ir.ui.menu,name:l10n_do_checks_printing.bank_cheque_attribute_menu
+msgid "Cheque Attributes"
+msgstr "Cheque Atributos"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.bank_cheque_attribute_view_tree
+msgid "Bank Cheque Attributes"
+msgstr "Atributos de Cheques Bancarios"
+
+#. module: l10n_do_checks_printing
+#: model:ir.actions.report,name:l10n_do_checks_printing.printing_check_report_action
+msgid "Checks"
+msgstr "Cheques"
+
+#. module: l10n_do_checks_printing
+#: model:report.paperformat,name:l10n_do_checks_printing.bank_cheque_paperformat
+msgid "Bank Cheque Print Paper Format"
+msgstr "Formato de Papel de Impresion de Cheque Bancario"
+
+#. module: l10n_do_checks_printing
+#: model:ir.actions.report,name:l10n_do_checks_printing.bank_cheque_print_report
+msgid "Cheque Preview"
+msgstr "Vista Previa de Cheque"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.check_report_config_view
+msgid "Size"
+msgstr "Tamano"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.check_report_config_view
+msgid "Configure"
+msgstr "Configurar"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.check_report_config_view
+msgid "Reset"
+msgstr "Resetear"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.check_report_config_view
+msgid "CSS"
+msgstr "CSS"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Upload a Copy of the Check"
+msgstr "Subir un Copia del Cheque"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Select the check attribute one by one, then drag the box on the Check image to complete all the parameters automatically and then click the update button."
+msgstr "Seleccione el atributo de Cheque uno por uno, luego arrastre el cuadro en la imagen de Cheque para completar todos los parametros automaticamente y luego haga clic en el boton de actualizar."
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Select Attribute"
+msgstr "Seleccionar Atributo"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Attributes"
+msgstr "Atributos"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Coordinates"
+msgstr "Coordenas"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Update"
+msgstr "Actualizar"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Check Attributes"
+msgstr "Atributos de Cheque"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Test Print"
+msgstr "Impresion de Prueba"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Attribute Name"
+msgstr "Nombre de Atributo"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.website_template_view
+msgid "Superior"
+msgstr "Superior"
+
+#. module: l10n_do_checks_printing
+#: code:addons/l10n_do_checks_printing/models/account_payment.py:0
+#, python-format
+msgid "This check number: %s was used. These are the references: %s."
+msgstr "Este numero de cheque: %s, fue usado. Estos son los conceptos: %s."
+
+#. module: l10n_do_checks_printing
+#: code:addons/l10n_do_checks_printing/models/check_report_config.py:0
+#, python-format
+msgid "First you have to set bank cheque attributes. Then you will be able to configure attribute(s) values"
+msgstr "Primero tiene que configurar los atributos de cheque bancario. Luego podra configurar los valores de los atributos"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.bank_cheque_priview
+msgid "Bank Cheque Preview"
+msgstr "Vista Previa de Cheque Bancario"
+
+#. module: l10n_do_checks_printing
+#: model_terms:ir.ui.view,arch_db:l10n_do_checks_printing.bank_cheque_management_template
+msgid "Check Configuration & Visualization"
+msgstr "Configuracion de Cheques y Visualizacion"

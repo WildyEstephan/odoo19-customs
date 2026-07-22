@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="ecf_settings_comp_rule" model="ir.rule">
+        <field name="name">ECF Settings Company Rule</field>
+        <field name="model_id" ref="model_ecf_settings"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="ecf_document_comp_rule" model="ir.rule">
+        <field name="name">ECF Document Company Rule</field>
+        <field name="model_id" ref="model_ecf_document"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

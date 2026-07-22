@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="dgii_report_form_view" model="ir.ui.view">
+        <field name="name">dgii.reports.form.view</field>
+        <field name="model">dgii.reports</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="generate_report" string="Generar Declaraciones" type="object"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="generate_report" string="Regenerar Declaraciones" type="object"
+                            invisible="state != 'generated'"/>
+                    <button name="state_sent" string="Marcar como Enviado" type="object"
+                            class="oe_highlight" invisible="state != 'generated'"/>
+                    <button name="action_reconfigure_taxes" string="Reconfigurar Impuestos" type="object"
+                            class="btn-secondary" invisible="state == 'sent'"
+                            confirm="Esto reconfigurará los tipos de impuestos DGII. ¿Continuar?"/>
+                    <button name="action_configure_account_fiscal_types" string="Configurar Tipos Fiscales Cuentas" type="object"
+                            class="btn-secondary" invisible="state == 'sent'"
+                            confirm="Esto configurará account_fiscal_type en cuentas contables. ¿Continuar?"/>
+                    <button name="action_recompute_invoice_fields" string="Recomputar Campos" type="object"
+                            class="btn-secondary" invisible="state == 'sent'"
+                            confirm="Esto recomputará todos los campos DGII de las facturas del período. ¿Continuar?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,generated,sent"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group id="header_left_group">
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="company_id" readonly="1"/>
+                                </h1>
+                            </div>
+                        </group>
+                        <field name="previous_report_pending" invisible="1"/>
+                        <div  invisible="not previous_report_pending">
+                            <div class="alert alert-warning info_icon" role="alert">
+                                <span class="fa fa-lightbulb-o fa-lg" title="Info" aria-label="Info"/>
+                                <p>The previous report is still not marked as sent.</p>
+                                <p>Not setting a report as sent may throw inconsistencies
+                                    regarding invoices withholding dates.
+                                </p>
+                            </div>
+                        </div>
+                    </group>
+                    <notebook>
+                        <page name="statements" string="Statements">
+                            <group>
+                                <group>
+                                    <field name="name" placeholder="MM/YYYY"
+                                           readonly="state != 'draft'"/>
+                                    <field name="previous_balance" readonly="1"/>
+                                </group>
+                            </group>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="object" name="get_606_tree_view" class="bs-callout-info-h2">
+                                        <h2>606</h2>
+                                    </button>
+                                    <group name="606" col="2" class="bs-callout-info">
+
+                                        <field name="purchase_records" readonly="1"/>
+                                        <field name="purchase_invoiced_amount" readonly="1"/>
+                                        <field name="service_total_amount" readonly="1"/>
+                                        <field name="good_total_amount" readonly="1"/>
+                                        <separator colspan="2"/>
+                                        <field name="purchase_invoiced_itbis" readonly="1"/>
+                                        <field name="purchase_withholded_itbis" readonly="1"/>
+                                        <field name="cost_itbis" readonly="1"/>
+                                        <field name="advance_itbis" readonly="1"/>
+                                        <separator colspan="2"/>
+                                        <field name="income_withholding" readonly="1"/>
+                                        <separator colspan="2"/>
+                                        <field name="purchase_selective_tax" readonly="1"/>
+                                        <field name="purchase_other_taxes" readonly="1"/>
+                                        <field name="purchase_legal_tip" readonly="1"/>
+                                    </group>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="object" name="get_607_tree_view" class="bs-callout-success-h2">
+                                        <h2>607</h2>
+                                    </button>
+                                    <group name="607" class="bs-callout-success">
+                                        <field name="sale_records" readonly="1"/>
+                                        <field name="sale_invoiced_amount" readonly="1"/>
+                                        <separator colspan="2"/>
+                                        <field name="sale_invoiced_itbis" readonly="1"/>
+                                        <field name="sale_withholded_itbis" readonly="1"/>
+                                        <separator colspan="2"/>
+                                        <field name="sale_withholded_isr" readonly="1"/>
+                                        <separator colspan="2"/>
+                                        <field name="sale_selective_tax" readonly="1"/>
+                                        <field name="sale_other_taxes" readonly="1"/>
+                                        <field name="sale_legal_tip" readonly="1"/>
+                                    </group>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="object" name="get_608_tree_view" class="bs-callout-warning-h2">
+                                        <h2>608</h2>
+                                    </button>
+                                    <group name="608" class="bs-callout-warning">
+                                        <field name="cancel_records" readonly="1"/>
+                                    </group>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="object" name="get_609_tree_view" class="bs-callout-danger-h2">
+                                        <h2>609</h2>
+                                    </button>
+                                    <group name="609" class="bs-callout-danger">
+                                        <field name="exterior_records" readonly="1"/>
+                                        <field name="exterior_invoiced_amount" readonly="1"/>
+                                        <separator colspan="2"/>
+                                        <field name="presumed_income" readonly="1"/>
+                                        <field name="exterior_withholded_isr" readonly="1"/>
+                                    </group>
+                                </div>
+                            </div>
+                        </page>
+                        <page name="files" string="Archivos de Exportación">
+                            <group>
+                                <group string="Archivos TXT">
+                                    <field name="purchase_binary" filename="purchase_filename" readonly="1"/>
+                                    <field name="purchase_filename" invisible="1"/>
+                                    <field name="sale_binary" filename="sale_filename" readonly="1"/>
+                                    <field name="sale_filename" invisible="1"/>
+                                    <field name="cancel_binary" filename="cancel_filename" readonly="1"/>
+                                    <field name="cancel_filename" invisible="1"/>
+                                    <field name="exterior_binary" filename="exterior_filename" readonly="1"/>
+                                    <field name="exterior_filename" invisible="1"/>
+                                </group>
+                                <group string="Archivos Excel (XLSX)">
+                                    <field name="purchase_xlsx_binary" filename="purchase_xlsx_filename" readonly="1"/>
+                                    <field name="purchase_xlsx_filename" invisible="1"/>
+                                    <field name="sale_xlsx_binary" filename="sale_xlsx_filename" readonly="1"/>
+                                    <field name="sale_xlsx_filename" invisible="1"/>
+                                    <field name="cancel_xlsx_binary" filename="cancel_xlsx_filename" readonly="1"/>
+                                    <field name="cancel_xlsx_filename" invisible="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="it1" string="IT-1">
+                            <br/>
+                            <div>
+                                <field name="ncf_sale_summary_ids" nolabel="1" readonly="1">
+                                    <!-- Autor: Arturo Diaz Lora - 2026-01-10 - Simplificado para Odoo 19 -->
+                                    <list>
+                                        <field name="sequence" string="II." />
+                                        <field name="name" string="OPERACIONES REPORTADAS EN EL 607 / LIBRO DE VENTAS POR TIPO DE NCF" />
+                                        <field name="qty" string="CANTIDAD DE NCF" />
+                                        <field name="amount" string="MONTO" />
+                                        <field name="currency_id" invisible="1" />
+                                        <field name="dgii_report_id" invisible="1" />
+                                    </list>
+                                </field>
+                            </div>
+                            <br/>
+ 
+                             <div>
+                                <table class="o_list_view table table-sm table-hover table-striped o_list_view_ungrouped">
+                                    <thead>
+                                        <tr>
+                                            <th class="" style="text-align: right;">III.</th>
+                                            <th class="">OPERACIONES REPORTADAS EN EL 607 / LIBRO DE VENTAS POR TIPO DE VENTA (MONTO TOTAL INCLUYE IMPUESTOS)</th>
+                                            <th class="" style="text-align: right;">MONTO BRUTO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">12</td>
+                                            <td class="o_data_cell">EFECTIVO</td>
+                                            <td class="o_data_cell o_list_number"><field name="cash" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">13</td>
+                                            <td>CHEQUE / TRANSFERENCIA</td>
+                                            <td class="o_data_cell o_list_number"><field name="bank" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">14</td>
+                                            <td class="o_data_cell">TARJETA DÉBITO / CRÉDITO</td>
+                                            <td class="o_data_cell o_list_number"><field name="card" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">15</td>
+                                            <td class="o_data_cell">A CRÉDITO</td>
+                                            <td class="o_data_cell o_list_number"><field name="credit" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">16</td>
+                                            <td class="o_data_cell">BONOS O CERTIFICADO DE REGALO</td>
+                                            <td class="o_data_cell o_list_number"><field name="bond" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">17</td>
+                                            <td class="o_data_cell">PERMUTAS</td>
+                                            <td class="o_data_cell o_list_number"><field name="swap" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">18</td>
+                                            <td class="o_data_cell">OTRAS FORMAS DE VENTA</td>
+                                            <td class="o_data_cell o_list_number"><field name="others" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row text-success_dgii text-bf">
+                                            <td class="o_data_cell o_list_number">19</td>
+                                            <td class="o_data_cell">TOTAL OPERACIONES POR TIPO DE VENTA (Sumar casillas 12+13+14+15+16+17+18)</td>
+                                            <td class="o_data_cell o_list_number"><field name="sale_type_total" readonly="1"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br/>
+                            <div>
+                                <table class="o_list_view table table-sm table-hover table-striped o_list_view_ungrouped">
+                                    <thead>
+                                        <tr>
+                                            <th class="" style="text-align: right;">IV.</th>
+                                            <th class="">OPERACIONES REPORTADAS EN EL 607/LIBRO DE VENTAS POR TIPO DE INGRESO</th>
+                                            <th class="" style="text-align: right;">MONTO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">20</td>
+                                            <td class="o_data_cell">INGRESOS POR OPERACIONES (NO FINANCIEROS)</td>
+                                            <td class="o_data_cell o_list_number"><field name="opr_income" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">21</td>
+                                            <td>INGRESOS FINANCIEROS</td>
+                                            <td class="o_data_cell o_list_number"><field name="fin_income" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">22</td>
+                                            <td class="o_data_cell">INGRESOS EXTRAORDINARIOS</td>
+                                            <td class="o_data_cell o_list_number"><field name="ext_income" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">23</td>
+                                            <td class="o_data_cell">INGRESOS POR ARRENDAMIENTOS</td>
+                                            <td class="o_data_cell o_list_number"><field name="lea_income" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">24</td>
+                                            <td class="o_data_cell">INGRESOS POR VENTAS DE ACTIVOS DEPRECIABLES</td>
+                                            <td class="o_data_cell o_list_number"><field name="ast_income" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell o_list_number">25</td>
+                                            <td class="o_data_cell">OTROS INGRESOS</td>
+                                            <td class="o_data_cell o_list_number"><field name="otr_income" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row text-success_dgii text-bf">
+                                            <td class="o_data_cell o_list_number">26</td>
+                                            <td class="o_data_cell">TOTAL POR TIPO DE INGRESO (Sumar casillas 20+21+22+23+24+25)</td>
+                                            <td class="o_data_cell o_list_number"><field name="income_type_total" readonly="1"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br/>
+
+                        </page>
+                        <page string="IR-17" name="ir17" invisible="0">
+                            <span class="bs-callout-success">
+                                <button type="object" name="get_ir17_tree_view">
+                                            <h2>IR17</h2>
+                                        </button>
+                            </span>
+                            <group name="IR17">
+                              
+                                        <field name="ir7_records" readonly="1"/>
+                            </group>
+                            <table class="o_list_view table table-sm table-hover table-striped o_list_view_ungrouped">
+                                <thead>
+                                    <tr >
+                                        <th class="">No.</th>
+                                        <th class="text-success text-bf">OTRAS RETENCIONES</th>
+                                        <th class="text-success text-bf">MONTO IMPONIBLE</th>
+                                        <th class="text-success text-bf">TASA%</th>
+                                        <th class="text-success text-bf">IMPUESTO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="o_data_row">
+                                        <td>1</td>
+                                        <td>
+                                            <label for="ret_rent" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_rent_base" readonly="1"/>
+                                        </td>
+                                        <td>10%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_rent" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>2</td>
+                                        <td>
+                                            <label for="ret_service_honoraries" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_service_honoraries_base" readonly="1"/>
+                                        </td>
+                                        <td>10%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_service_honoraries" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>3</td>
+                                        <td>
+                                            <label for="ret_award" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_award_base" readonly="1"/>
+                                        </td>
+                                        <td>25%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_award" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>4</td>
+                                        <td>
+                                            <label for="ret_title_transfer" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_title_transfer_base" readonly="1"/>
+                                        </td>
+                                        <td>2%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_title_transfer" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>5</td>
+                                        <td>
+                                            <label for="ret_dividends" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_dividends_base" readonly="1"/>
+                                        </td>
+                                        <td>10%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_dividends" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>6</td>
+                                        <td>
+                                            <label for="ret_legal_person10" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_legal_person10_base" readonly="1"/>
+                                        </td>
+                                        <td>10%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_legal_person10" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>7</td>
+                                        <td>
+                                            <label for="ret_legal_person5" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_legal_person5_base" readonly="1"/>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_legal_person5" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>8</td>
+                                        <td>
+                                            <label for="ret_physical_person10" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_physical_person10_base" readonly="1"/>
+                                        </td>
+                                        <td>10%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_physical_person10" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>9</td>
+                                        <td>
+                                            <label for="ret_physical_person5" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_physical_person5_base" readonly="1"/>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_physical_person5" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>10</td>
+                                        <td>
+                                            <label for="ret_remittances" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_remittances_base" readonly="1"/>
+                                        </td>
+                                        <td>2.7%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_remittances" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>11</td>
+                                        <td>
+                                            <label for="ret_special_remittances" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_special_remittances_base" readonly="1"/>
+                                        </td>
+                                        <td>2.7%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_special_remittances" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>12</td>
+                                        <td>
+                                            <label for="ret_local_supplier" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_local_supplier_base" readonly="1"/>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_local_supplier" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>13</td>
+                                        <td>
+                                            <label for="ret_phone_set" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_phone_set_base" readonly="1"/>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_phone_set" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>14</td>
+                                        <td>
+                                            <label for="ret_capital_earning" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_capital_earning_base" readonly="1"/>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_capital_earning" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>15</td>
+                                        <td>
+                                            <label for="ret_internet_games" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_internet_games_base" readonly="1"/>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_internet_games" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>16</td>
+                                        <td>
+                                            <label for="ret_others_rent10" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_others_rent10_base" readonly="1"/>
+                                        </td>
+                                        <td>10%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_others_rent10" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>17</td>
+                                        <td>
+                                            <label for="ret_others_rent2" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_others_rent2_base" readonly="1"/>
+                                        </td>
+                                        <td>2%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_others_rent2" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>18</td>
+                                        <td>
+                                            <label for="ret_others_ret" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_others_ret_base" readonly="1"/>
+                                        </td>
+                                        <td>2%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_others_ret" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>19</td>
+                                        <td>
+                                            <label for="ret_finance_entity_legal" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_finance_entity_legal_base" readonly="1"/>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_finance_entity_legal" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row">
+                                        <td>20</td>
+                                        <td>
+                                            <label for="ret_finance_entity_physical" style="text-transform: uppercase;"/>
+                                        </td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_finance_entity_physical_base" readonly="1"/>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_finance_entity_physical" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="o_data_row text-success_dgii text-bf">
+                                        <td>21</td>
+                                        <td>TOTAL OTRAS RETENCIONES</td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_total_base" readonly="1"/>
+                                        </td>
+                                        <td></td>
+                                        <td class="o_data_cell o_list_number">
+                                            <field name="ret_total" readonly="1"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </page>
+                        <page name="consumer" string="Consumer Invoices Summary">
+
+                         <table class="o_list_view table table-sm table-hover table-striped o_list_view_ungrouped">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="">RESUMEN GENERAL DE FACTURAS DE CONSUMO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="o_data_row">
+                                           
+                                            <td class="o_data_cell">CANTIDAD NCFS EMITIDOS DE F.C.</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_ncf_qty" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+
+                                            <td>TOTAL MONTO FACTURADO:</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_ncf_total_amount" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                          
+                                            <td class="o_data_cell">TOTAL ITBIS FACTURADO:</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_ncf_total_itbis" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell">IMPUESTO SELECTIVO AL CONSUMO:</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_ncf_total_isc" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell">TOTAL OTROS IMPUESTOS/TASAS:</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_ncf_total_othr" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell">TOTAL MONTO PROPINA LEGAL:</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_ncf_total_lgl_tip" readonly="1"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                   <table class="o_list_view table table-sm table-hover table-striped o_list_view_ungrouped">
+                                    <thead>
+                                        <tr >
+                                            <th class="text-success text-bf">TIPO DE VENTA</th>
+                                            <th class="text-success text-bf" style="text-align: right;">MONTO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="o_data_row">
+                                           
+                                            <td class="o_data_cell">EFECTIVO</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_cash" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+
+                                            <td>CHEQUE/TRANSFERENCIA/DEPOSITO</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_bank" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                          
+                                            <td class="o_data_cell">TARJETA DEBITO / CREDITO</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_card" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell"> VENTA A CREDITO</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_credit" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell">BONOS O CERTIFICADOS DE REGALO</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_bond" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell">PERMUTA</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_swap" readonly="1"/></td>
+                                        </tr>
+                                        <tr class="o_data_row">
+                                            <td class="o_data_cell">OTRAS FORMAS DE VENTAS</td>
+                                            <td class="o_data_cell o_list_number"><field name="csmr_others" readonly="1"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                       
+                        
+                        </page>
+
+
+                    </notebook>
+      
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="dgii_report_tree_view" model="ir.ui.view">
+        <field name="name">dgii.reports.list.view</field>
+        <field name="model">dgii.reports</field>
+        <field name="arch" type="xml">
+            <list string="Statements">
+                <field name="name"/>
+                <field name="state"/>
+                <field name="create_date"/>
+                <field name="create_uid"/>
+                <field name="write_date"/>
+                <field name="write_uid"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="dgii_report_search_view" model="ir.ui.view">
+        <field name="name">dgii.reports.search.view</field>
+        <field name="model">dgii.reports</field>
+        <field name="arch" type="xml">
+            <search string="Statements">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="dgii_report_action" model="ir.actions.act_window">
+        <field name="name">Reports</field>
+        <field name="res_model">dgii.reports</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="dgii_report_search_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create"></p>
+            <p>You can create your DGII Tax Statements here.</p>
+        </field>
+    </record>
+
+    <menuitem id="account_dgii_menu" name="DGII"
+              parent="account.menu_finance_reports"
+              sequence="5"/>
+
+    <menuitem action="dgii_report_action" id="dgii_report_menu" name="Reportes Fiscales"
+              parent="account_dgii_menu"
+              sequence="14"/>
+
+    <!--606-->
+    <record id="dgii_report_purchase_line_tree" model="ir.ui.view">
+        <field name="name">dgii.reports.purchase.line.list</field>
+        <field name="model">dgii.reports.purchase.line</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false">
+                <field name="dgii_report_id" invisible="1"/>
+                <field name="line"/>
+                <field name="rnc_cedula"/>
+                <field name="invoice_partner_id"/>
+                <field name="identification_type"/>
+                <field name="expense_type"/>
+                <field name="fiscal_invoice_number"/>
+                <field name="modified_invoice_number"/>
+                <field name="invoice_date"/>
+                <field name="payment_date"/>
+                <field name="service_total_amount" sum="Total"/>
+                <field name="good_total_amount" sum="Total"/>
+                <field name="invoiced_amount" sum="Total"/>
+                <field name="invoiced_itbis" sum="Total"/>
+                <field name="withholded_itbis" sum="Total"/>
+                <field name="proportionality_tax" sum="Total"/>
+                <field name="cost_itbis" sum="Total"/>
+                <field name="advance_itbis" sum="Total"/>
+                <field name="purchase_perceived_itbis" sum="Total"/>
+                <field name="isr_withholding_type"/>
+                <field name="income_withholding" sum="Total"/>
+                <field name="purchase_perceived_isr" sum="Total"/>
+                <field name="selective_tax" sum="Total"/>
+                <field name="other_taxes" sum="Total"/>
+                <field name="legal_tip" sum="Total"/>
+                <field name="payment_type"/>
+            </list>
+        </field>
+    </record>
+
+    <!--607-->
+    <record id="dgii_report_sale_line_tree" model="ir.ui.view">
+        <field name="name">dgii.reports.sale.line.list</field>
+        <field name="model">dgii.reports.sale.line</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false">
+                <field name="dgii_report_id" invisible="1"/>
+                <field name="line"/>
+                <field name="rnc_cedula"/>
+                <field name="invoice_partner_id"/>
+                <field name="identification_type"/>
+                <field name="fiscal_invoice_number"/>
+                <field name="modified_invoice_number"/>
+                <field name="income_type"/>
+                <field name="invoice_date"/>
+                <field name="withholding_date"/>
+                <field name="invoiced_amount" sum="Total"/>
+                <field name="invoiced_itbis" sum="Total"/>
+                <field name="third_withheld_itbis" sum="Total"/>
+                <field name="third_income_withholding" sum="Total"/>
+                <field name="perceived_isr" sum="Total"/>
+                <field name="selective_tax" sum="Total"/>
+                <field name="other_taxes" sum="Total"/>
+                <field name="legal_tip" sum="Total"/>
+                <field name="cash" sum="Total"/>
+                <field name="bank" sum="Total"/>
+                <field name="card" sum="Total"/>
+                <field name="credit" sum="Total"/>
+                <field name="bond" sum="Total"/>
+                <field name="swap" sum="Total"/>
+                <field name="others" sum="Total"/>
+            </list>
+        </field>
+    </record>
+
+    <!--608-->
+    <record id="dgii_cancel_report_line_tree" model="ir.ui.view">
+        <field name="name">dgii.reports.cancel.line.list</field>
+        <field name="model">dgii.reports.cancel.line</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false">
+                <field name="dgii_report_id" invisible="1"/>
+                <field name="line"/>
+                <field name="invoice_partner_id"/>
+                <field name="fiscal_invoice_number"/>
+                <field name="invoice_date"/>
+                <field name="anulation_type"/>
+            </list>
+        </field>
+    </record>
+
+    <!--609-->
+    <record id="dgii_exterior_report_line_tree" model="ir.ui.view">
+        <field name="name">dgii.exterior.cancel.line.list</field>
+        <field name="model">dgii.reports.exterior.line</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false">
+                <field name="dgii_report_id" invisible="1"/>
+                <field name="line"/>
+                <field name="legal_name"/>
+                <field name="tax_id_type"/>
+                <field name="tax_id"/>
+                <field name="country_code"/>
+                <field name="purchased_service_type"/>
+                <field name="service_type_detail"/>
+                <field name="related_part"/>
+                <field name="doc_number"/>
+                <field name="doc_date"/>
+                <field name="invoiced_amount" sum="Total"/>
+                <field name="isr_withholding_date" sum="Total"/>
+                <field name="presumed_income" sum="Total"/>
+                <field name="withholded_isr" sum="Total"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Search views -->
+
+    <record id="dgii_report_purchase_line_search" model="ir.ui.view">
+        <field name="name">dgii.report.purchase.line.search</field>
+        <field name="model">dgii.reports.purchase.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Purchase Line">
+                <!-- Search fields -->
+                <field name="invoice_partner_id"/>
+                <field name="rnc_cedula"/>
+                <field name="fiscal_invoice_number"/>
+                <field name="modified_invoice_number"/>
+                <!-- Filters -->
+                <filter string="Physical person" name="identification_type" domain="[('identification_type','=', '2')]"/>
+                <filter string="Legal person" name="identification_type" domain="[('identification_type','=', '1')]"/>
+                <separator/>
+                <filter string="Paid" name="paid" domain="[('invoice_id.state','=','paid')]"/>
+                <filter string="Open" name="open" domain="[('invoice_id.state','!=','paid')]"/>
+                <filter string="ITBIS withholding" name="withholding" domain="[('withholded_itbis', '!=', 0)]"/>
+                <filter string="ISR withholding" name="withholding" domain="[('income_withholding', '!=', 0)]"/>
+                <!-- Groups -->
+                <group>
+                    <filter string="Contact" name="invoice_partner_id" domain="[]"
+                            context="{'group_by':'invoice_partner_id'}"/>
+                    <filter string="Identification type" name="identification_type" domain="[]"
+                            context="{'group_by':'identification_type'}"/>
+                    <filter string="Expense type" name="expense_type" domain="[]"
+                            context="{'group_by':'expense_type'}"/>
+                    <filter string="Withholding type" name="isr_withholding_type" domain="[]"
+                            context="{'group_by':'isr_withholding_type'}"/>
+                    <filter string="Payment type" name="payment_type" domain="[]"
+                            context="{'group_by':'payment_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="dgii_report_sale_line_search" model="ir.ui.view">
+        <field name="name">dgii.report.sale.line.search</field>
+        <field name="model">dgii.reports.sale.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Sale Line">
+                <!-- Search fields -->
+                <field name="invoice_partner_id"/>
+                <field name="rnc_cedula"/>
+                <field name="fiscal_invoice_number"/>
+                <field name="modified_invoice_number"/>
+                <!-- Filters -->
+                <filter string="Physical person" name="identification_type" domain="[('identification_type','=', '2')]"/>
+                <filter string="Legal person" name="identification_type" domain="[('identification_type','=', '1')]"/>
+                <separator/>
+                <filter string="Paid" name="paid" domain="[('invoice_id.state','=','paid')]"/>
+                <filter string="Open" name="open" domain="[('invoice_id.state','!=','paid')]"/>
+                <filter string="ITBIS withholding" name="withholding" domain="[('third_withheld_itbis', '!=', 0)]"/>
+                <filter string="ISR withholding" name="withholding" domain="[('third_income_withholding', '!=', 0)]"/>
+                <!-- Groups -->
+                <group>
+                    <filter string="Contact" name="invoice_partner_id" domain="[]"
+                            context="{'group_by':'invoice_partner_id'}"/>
+                    <filter string="Identification type" name="identification_type" domain="[]"
+                            context="{'group_by':'identification_type'}"/>
+                    <filter string="Income type" name="income_type" domain="[]"
+                            context="{'group_by':'income_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="dgii_report_cancel_line_search" model="ir.ui.view">
+        <field name="name">dgii.report.cancel.line.search</field>
+        <field name="model">dgii.reports.cancel.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Cancel Line">
+                <!-- Search fields -->
+                <field name="invoice_partner_id"/>
+                <field name="fiscal_invoice_number"/>
+                <!-- Groups -->
+                <group>
+                    <filter string="Contact" name="invoice_partner_id" domain="[]"
+                            context="{'group_by':'invoice_partner_id'}"/>
+                    <filter string="Anulation type" name="anulation_type" domain="[]"
+                            context="{'group_by':'anulation_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="dgii_report_exterior_line_search" model="ir.ui.view">
+        <field name="name">dgii.report.exterior.line.search</field>
+        <field name="model">dgii.reports.exterior.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Sale Line">
+                <!-- Search fields -->
+                <field name="legal_name"/>
+                <field name="tax_id"/>
+                <field name="doc_number"/>
+                <!-- Filters -->
+                <filter string="Paid" name="paid" domain="[('invoice_id.state','=','paid')]"/>
+                <filter string="Open" name="open" domain="[('invoice_id.state','!=','paid')]"/>
+                <filter string="Withholded ISR" name="withholding" domain="[('withholded_isr', '!=', 0)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!--ir17-->
+    <record id="dgii_reports_ir17_line_tree" model="ir.ui.view">
+        <field name="name">dgii.reports.ir17.line.list</field>
+        <field name="model">dgii.reports.ir17.line</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false">
+                <field name="dgii_report_id" invisible="1"/>
+                <field name="line"/>
+                <field name="invoice_id" readonly="1"/>
+                <field name="invoice_partner_id"/>
+                <field name="invoice_partner_id_vat"/>
+                <field name="invoice_date"/>
+                <field name="invoice_paid"/>
+                <field name="tax_type"/>
+                <field name="base_amount"/>
+                <field name="tax_porcent"/>
+                <field name="taxed_amount"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="dgii_reports_ir17_line_search" model="ir.ui.view">
+        <field name="name">dgii.reports.ir17.line.search</field>
+        <field name="model">dgii.reports.ir17.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Ir17">
+                <!-- Search fields -->
+                <field name="invoice_partner_id"/>
+                <field name="invoice_partner_id_vat"/>
+                <field name="tax_type"/>
+                <!-- Groups -->
+                <group>
+                    <filter string="Contact" name="invoice_partner_id" domain="[]"
+                            context="{'group_by':'invoice_partner_id'}"/>
+                    <filter string="Tipo Retencion" name="tax_type" domain="[]"
+                            context="{'group_by':'tax_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>

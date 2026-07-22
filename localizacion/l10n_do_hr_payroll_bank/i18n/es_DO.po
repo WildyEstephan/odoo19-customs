@@ -1,0 +1,550 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_do_hr_payroll_bank
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-18 23:56+0000\n"
+"PO-Revision-Date: 2026-03-18 23:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_account_setup_bank_manual_config__account_type
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_partner_bank__account_type
+msgid "Account Type"
+msgstr "Tipo de Cuenta"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__amount
+msgid "Amount"
+msgstr "Monto"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__res_partner_bank__electronic_payroll_type__bhd
+msgid "Banco BHD"
+msgstr "Banco BHD"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__res_partner_bank__electronic_payroll_type__bc
+msgid "Banco Caribe"
+msgstr "Banco Caribe"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__res_partner_bank__electronic_payroll_type__bhl
+msgid "Banco Lopez de Haro"
+msgstr "Banco Lopez de Haro"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__res_partner_bank__electronic_payroll_type__bpd
+msgid "Banco Popular"
+msgstr "Banco Popular"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__res_partner_bank__electronic_payroll_type__bdr
+msgid "Banco Reservas"
+msgstr "Banco Reservas"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model,name:l10n_do_hr_payroll_bank.model_res_bank
+msgid "Bank"
+msgstr "Banco"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_account_setup_bank_manual_config__electronic_payroll_bank_account_id
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_partner_bank__electronic_payroll_bank_account_id
+msgid "Bank Account"
+msgstr "Cuenta Bancaria"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model,name:l10n_do_hr_payroll_bank.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Cuentas bancarias"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_account_setup_bank_manual_config__electronic_payroll_bank_code
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_bank__bank_code
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_partner_bank__electronic_payroll_bank_code
+msgid "Bank Code"
+msgstr "Codigo del Banco"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_bank__bank_digi
+msgid "Bank Digi"
+msgstr "Digito del Banco"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__binary
+msgid "Binary"
+msgstr "Binario"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__binary_name
+msgid "Binary Name"
+msgstr "Nombre Binario"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__electronic_payroll__binary_ext__csv
+msgid "CSV"
+msgstr "CSV"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__hr_employee__pay_form__cheque
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.electronic_payroll_form
+msgid "Cheque"
+msgstr "Cheque"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__total_cheque
+msgid "Cheque a Pagar"
+msgstr "Cheque a Pagar"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__company_id
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__company_id
+msgid "Company"
+msgstr "Compania"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model,name:l10n_do_hr_payroll_bank.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+
+#. module: l10n_do_hr_payroll_bank
+#. odoo-python
+#: code:addons/l10n_do_hr_payroll_bank/model/electronic_payroll.py:0
+msgid ""
+"Configuración de Nómina Electrónica Incompleta\n"
+"\n"
+"El diario '%s' no tiene una cuenta bancaria asociada.\n"
+"\n"
+"SOLUCIÓN:\n"
+"1. Vaya a: Contabilidad > Configuración > Diarios\n"
+"2. Abra el diario: %s\n"
+"3. En la pestaña 'Configuración Avanzada', complete el campo 'Número de Cuenta'\n"
+"4. Seleccione o cree una cuenta bancaria de la empresa\n"
+"5. Asegúrese de que la cuenta bancaria tenga configurado el 'Tipo de Nómina Electrónica'"
+msgstr ""
+"Configuracion de Nomina Electronica Incompleta\n"
+"\n"
+"El diario '%s' no tiene una cuenta bancaria asociada.\n"
+"\n"
+"SOLUCION:\n"
+"1. Vaya a: Contabilidad > Configuracion > Diarios\n"
+"2. Abra el diario: %s\n"
+"3. En la pestana 'Configuracion Avanzada', complete el campo 'Numero de Cuenta'\n"
+"4. Seleccione o cree una cuenta bancaria de la empresa\n"
+"5. Asegurese de que la cuenta bancaria tenga configurado el 'Tipo de Nomina Electronica'"
+
+
+#. module: l10n_do_hr_payroll_bank
+#. odoo-python
+#: code:addons/l10n_do_hr_payroll_bank/model/electronic_payroll.py:0
+msgid ""
+"Configuración de Nómina Electrónica Incompleta\n"
+"\n"
+"La cuenta bancaria '%s' del diario '%s' no tiene configurado el Tipo de Nómina Electrónica.\n"
+"\n"
+"SOLUCIÓN:\n"
+"1. Vaya a: Contabilidad > Configuración > Cuentas Bancarias\n"
+"2. Abra la cuenta bancaria: %s\n"
+"3. Complete el campo 'Tipo de Nómina Electrónica' seleccionando su banco:\n"
+"   • Banco BHD\n"
+"   • Banco Popular\n"
+"   • Banco Lopez de Haro\n"
+"   • Banco Reservas\n"
+"   • Banco Caribe\n"
+"4. Guarde los cambios e intente generar el archivo nuevamente"
+msgstr ""
+"Configuracion de Nomina Electronica Incompleta\n"
+"\n"
+"La cuenta bancaria '%s' del diario '%s' no tiene configurado el Tipo de Nomina Electronica.\n"
+"\n"
+"SOLUCION:\n"
+"1. Vaya a: Contabilidad > Configuracion > Cuentas Bancarias\n"
+"2. Abra la cuenta bancaria: %s\n"
+"3. Complete el campo 'Tipo de Nomina Electronica' seleccionando su banco:\n"
+"   - Banco BHD\n"
+"   - Banco Popular\n"
+"   - Banco Lopez de Haro\n"
+"   - Banco Reservas\n"
+"   - Banco Caribe\n"
+"4. Guarde los cambios e intente generar el archivo nuevamente"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__create_uid
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__create_date
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__bank_account_id
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_hr_employee__bank_account_id
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.hr_employee_inherit_form_view
+msgid "Cuenta Bancaria"
+msgstr "Cuenta Bancaria"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__res_partner_bank__account_type__cc
+msgid "Cuenta Corriente"
+msgstr "Cuenta Corriente"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__res_partner_bank__account_type__ca
+msgid "Cuenta de Ahorro"
+msgstr "Cuenta de Ahorro"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__description
+msgid "Description"
+msgstr "Descripcion"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,help:l10n_do_hr_payroll_bank.field_hr_employee__payment_journal_id
+msgid ""
+"Diario bancario que se utilizará para generar los pagos de cheques o "
+"efectivo"
+msgstr ""
+"Diario bancario que se utilizara para generar los pagos de cheques o "
+"efectivo"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_hr_employee__payment_journal_id
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.hr_employee_inherit_form_view
+msgid "Diario de Pago"
+msgstr "Diario de Pago"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__display_name
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__display_name
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_bank__display_name
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_partner_bank__display_name
+msgid "Display Name"
+msgstr "Nombre en pantalla"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__effective_date
+msgid "Efective Date"
+msgstr "Fecha Efectiva"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__hr_employee__pay_form__cash
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.electronic_payroll_form
+msgid "Efectivo"
+msgstr "Efectivo"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__total_cash
+msgid "Efectivo a Pagar"
+msgstr "Efectivo a Pagar"
+
+
+#. module: l10n_do_hr_payroll_bank
+#. odoo-python
+#: code:addons/l10n_do_hr_payroll_bank/model/hr_employee.py:0
+msgid ""
+"El empleado %s tiene forma de pago \"%s\" pero no tiene configurado un Diario de Pago.\n"
+"\n"
+"Por favor, seleccione un diario bancario en el campo \"Diario de Pago\"."
+msgstr ""
+"El empleado %s tiene forma de pago \"%s\" pero no tiene configurado un Diario de Pago.\n"
+"\n"
+"Por favor, seleccione un diario bancario en el campo \"Diario de Pago\"."
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__electronic_id
+msgid "Electonic Payroll"
+msgstr "Nomina Electronica"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_account_setup_bank_manual_config__electronic_payroll_type
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_partner_bank__electronic_payroll_type
+msgid "Electroni Payroll"
+msgstr "Nomina Electronica"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model,name:l10n_do_hr_payroll_bank.model_electronic_payroll
+msgid "Electronic Payroll"
+msgstr "Nomina Electronica"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_config_settings__electronic_payroll_bank_account_id
+msgid "Electronic Payroll Bank Account"
+msgstr "Cuenta Bancaria de Nómina Electrónica"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_config_settings__electronic_payroll_bank_code
+msgid "Electronic Payroll Bank Code"
+msgstr "Código Bancario de Nómina Electrónica"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_config_settings__electronic_payroll_email
+msgid "Electronic Payroll Email"
+msgstr "Correo de Nómina Electrónica"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model,name:l10n_do_hr_payroll_bank.model_electronic_payroll_line
+msgid "Electronic Payroll Line"
+msgstr "Linea de Nomina Electronica"
+
+
+#. module: l10n_do_hr_payroll_bank
+#. odoo-python
+#: code:addons/l10n_do_hr_payroll_bank/model/electronic_payroll.py:0
+msgid "Electronic Payroll: %s"
+msgstr "Nomina Electronica: %s"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_account_setup_bank_manual_config__electronic_payroll_email
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_partner_bank__electronic_payroll_email
+msgid "Email Payroll"
+msgstr "Email de Nomina"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model,name:l10n_do_hr_payroll_bank.model_hr_employee
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_account_setup_bank_manual_config__allow_out_payment
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_partner_bank__allow_out_payment
+msgid "Enviar Dinero"
+msgstr "Enviar dinero"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,help:l10n_do_hr_payroll_bank.field_account_setup_bank_manual_config__allow_out_payment
+#: model:ir.model.fields,help:l10n_do_hr_payroll_bank.field_res_partner_bank__allow_out_payment
+msgid "Esta cuenta puede ser utilizada para pagos salientes"
+msgstr ""
+"Con frecuencia se reciben correos que contienen facturas falsas con números "
+"de cuenta fraudulentos, a esta práctica se le llama phishing. Es importante "
+"verificar los nuevos números de cuenta y la mejor manera de hacerlo es "
+"llamar al proveedor, lo cual es esencial porque si se encuentra en esta "
+"situación, quiere decir que el correo del proveedor está en peligro. Una vez"
+" que haya comprobado que la información es correcta, puede activar la "
+"función de enviar dinero."
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__binary_ext
+msgid "Extension"
+msgstr "Extension"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__pay_form
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_hr_employee__pay_form
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.hr_employee_inherit_form_view
+msgid "Forma de Pago"
+msgstr "Forma de Pago"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__no_file
+msgid "Fuera de Archivo"
+msgstr "Fuera de Archivo"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.electronic_payroll_form
+msgid "General"
+msgstr "General"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.electronic_payroll_form
+msgid "Generate File"
+msgstr "Generar Archivo"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__id
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__id
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_hr_employee__id
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_bank__id
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_config_settings__id
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_res_partner_bank__id
+msgid "ID"
+msgstr "ID"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__write_uid
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__write_uid
+msgid "Last Updated by"
+msgstr "Último Actualizado por"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__write_date
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll_line__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización en"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__line_ids
+msgid "Line"
+msgstr "Línea"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__line_cash_ids
+msgid "Line Cash"
+msgstr "Línea Efectivo"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__line_cheque_ids
+msgid "Line Cheque"
+msgstr "Line Cheque"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__line_tran_ids
+msgid "Line Tran"
+msgstr "Línea Transferencia"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.electronic_payroll_form
+msgid "Load Lines"
+msgstr "Cargar Lineas"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__journal_id
+msgid "Medio de Pago"
+msgstr "Medio de Pago"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__name
+msgid "Name"
+msgstr "Nombre"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.actions.act_window,name:l10n_do_hr_payroll_bank.electronice_payroll_action_window
+#: model:ir.ui.menu,name:l10n_do_hr_payroll_bank.electronic_payroll_menu
+msgid "Nómina Electrónica"
+msgstr "Nomina Electronica"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__payslip_run_id
+msgid "Payslip Run"
+msgstr "Lote de Nomina"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__electronic_payroll__binary_ext__txt
+msgid "TXT"
+msgstr "TXT"
+
+
+#. module: l10n_do_hr_payroll_bank
+#. odoo-python
+#: code:addons/l10n_do_hr_payroll_bank/model/electronic_payroll.py:0
+msgid "There are no lines to generate the file."
+msgstr "No hay lineas para generar el archivo."
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__total
+msgid "Total"
+msgstr "Total"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.electronic_payroll_form
+msgid "Total a Pagar"
+msgstr "Total a Pagar"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model_terms:ir.ui.view,arch_db:l10n_do_hr_payroll_bank.electronic_payroll_form
+msgid "Transferencia"
+msgstr "Transferencia"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields.selection,name:l10n_do_hr_payroll_bank.selection__hr_employee__pay_form__trans
+msgid "Transferencia Bancaria"
+msgstr "Transferencia Bancaria"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__total_valid
+msgid "Transferencia Valida"
+msgstr "Transferencia Valida"
+
+
+#. module: l10n_do_hr_payroll_bank
+#: model:ir.model.fields,field_description:l10n_do_hr_payroll_bank.field_electronic_payroll__total_trans
+msgid "Transferencia a Pagar"
+msgstr "Transferencia a Pagar"

@@ -1,0 +1,378 @@
+/* =================================================================
+   l10n_do_pos - Estilos CSS para Recibo POS Dominicano v18
+   Migrado y mejorado desde v16, compatible con clases estándar Odoo v18
+   ================================================================= */
+
+/* --- Estilos específicos para recibos dominicanos --- */
+
+/* Contenedor principal del recibo - compatible con Odoo v18 */
+.pos-receipt.dominican-receipt {
+    font-family: 'Inconsolata', 'Courier New', monospace;
+    font-size: 85%;
+    line-height: 1.3;
+}
+
+/* Bordes punteados para títulos - migrado de v16 */
+.dotted_ticket_title {
+    border: 1px dashed black;
+    border-left: none;
+    border-right: none;
+    padding: .5em 0;
+    margin: .9em 0 0 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Header de tabla con borde punteado - migrado de v16 */
+.dotted_ticket_table_header {
+    border-bottom: 1px dashed black;
+    height: 2em;
+    font-weight: bold;
+}
+
+/* Estilos específicos para información fiscal */
+.fiscal-info {
+    margin: 10px 0;
+    padding: 5px 0;
+    border-top: 2px dashed black;
+    border-bottom: 2px dashed black;
+}
+
+.fiscal-info .fiscal-title {
+    font-size: 115%;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.fiscal-info .ncf-info {
+    font-size: 105%;
+    font-weight: bold;
+    margin: 3px 0;
+}
+
+/* Estilos para productos en tabla */
+.orderlines table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.orderlines th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    padding: 5px 3px;
+    border-bottom: 2px dashed black;
+}
+
+.orderlines td {
+    padding: 3px;
+    vertical-align: top;
+    border-bottom: 1px dashed #ccc;
+}
+
+.orderlines .product-name {
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.orderlines .discount-info {
+    color: #666;
+    font-size: 80%;
+    font-style: italic;
+}
+
+.orderlines .customer-note {
+    color: #555;
+    font-size: 80%;
+    font-style: italic;
+}
+
+/* Estilos para totales */
+.receipt-totals table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px 0;
+}
+
+.receipt-totals td {
+    padding: 3px 5px;
+    border-bottom: 1px dotted #ddd;
+}
+
+.receipt-totals .total-row {
+    border-bottom: 2px dashed black !important;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+.receipt-totals .total-row td {
+    padding: 8px 5px;
+}
+
+/* Estilos para métodos de pago */
+.payment-methods {
+    margin: 10px 0;
+    padding: 5px 0;
+}
+
+.payment-methods .payment-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.payment-methods table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-methods td {
+    padding: 2px 5px;
+}
+
+/* Estilos para información ECF */
+.ecf-info {
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px 0;
+    border-top: 1px dashed black;
+    font-size: 90%;
+}
+
+.ecf-info .qr-code {
+    margin: 10px auto;
+    display: block;
+}
+
+.ecf-info .security-code {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.ecf-info .sign-date {
+    margin: 3px 0;
+    color: #555;
+}
+
+/* Indicadores especiales */
+.copy-indicator {
+    border-top: 1px dashed black;
+    padding: 10px 0;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f9f9f9;
+    margin: 10px 0;
+}
+
+/* Código de barras */
+.barcode-section {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.barcode-section img {
+    margin: 5px auto;
+    display: block;
+}
+
+/* Footer mejorado */
+.receipt-footer {
+    text-align: center;
+    margin: 15px 0;
+    white-space: pre-line;
+    font-size: 90%;
+}
+
+.receipt-thanks {
+    text-align: center;
+    margin: 20px 0;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Separadores visuales */
+.dashed-separator {
+    border-bottom: 1px dashed black;
+    margin: 8px 0;
+    width: 100%;
+    height: 1px;
+}
+
+.thick-dashed-separator {
+    border-bottom: 2px dashed black;
+    margin: 10px 0;
+    width: 100%;
+    height: 2px;
+}
+
+/* Compatibilidad con responsive design de Odoo v18 */
+@media screen and (max-width: 768px) {
+    .pos-receipt.dominican-receipt {
+        font-size: 80%;
+    }
+    
+    .orderlines table {
+        font-size: 90%;
+    }
+    
+    .orderlines th,
+    .orderlines td {
+        padding: 2px;
+    }
+}
+
+/* Compatibilidad para impresión - alineado con core de Odoo */
+@media print {
+    /* Respetar las reglas de Odoo core para .pos-receipt-print */
+    .pos-receipt.dominican-receipt {
+        /* NO sobrescribir width y font-size - Odoo core los maneja */
+        background-color: transparent;
+        margin: 0;
+        border: none;
+        color: black;
+    }
+    
+    /* Ajustar solo elementos específicos dominicanos */
+    .pos-receipt.dominican-receipt .ecf-info .qr-code,
+    .pos-receipt.dominican-receipt .pos-receipt-qrcode {
+        width: 60px !important;
+        height: 60px !important;
+        max-width: 60px !important;
+        max-height: 60px !important;
+    }
+    
+    .pos-receipt.dominican-receipt .barcode-section img {
+        width: 50px !important;
+        height: 50px !important;
+        max-width: 50px !important;
+        max-height: 50px !important;
+    }
+    
+    /* Asegurar que el logo mantenga proporción apropiada */
+    .pos-receipt.dominican-receipt .pos-receipt-logo {
+        max-width: 30% !important;
+        max-height: 40px !important;
+    }
+    
+    /* Ajustar espaciado para impresión */
+    .pos-receipt.dominican-receipt .orderlines table {
+        font-size: 90%;
+    }
+    
+    .pos-receipt.dominican-receipt .orderlines th,
+    .pos-receipt.dominican-receipt .orderlines td {
+        padding: 2px;
+    }
+}
+
+/* Estilos para debug de datos de empresa */
+.company-debug {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 5px;
+    margin: 5px 0;
+    font-size: 80%;
+    color: #856404;
+}
+
+/* Integración con clases estándar de Odoo v18 */
+.pos-receipt.dominican-receipt .pos-receipt-contact {
+    font-size: 85%;
+}
+
+.pos-receipt.dominican-receipt .pos-receipt-title {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.pos-receipt.dominican-receipt .pos-receipt-header {
+    font-size: 105%;
+    font-weight: bold;
+}
+
+.pos-receipt.dominican-receipt .pos-receipt-order-data {
+    font-size: 85%;
+}
+
+.pos-receipt.dominican-receipt .pos-receipt-amount {
+    font-size: 100%;
+}
+
+/* Ajustes para logo de empresa */
+.pos-receipt.dominican-receipt .pos-receipt-logo {
+    max-width: 40%;
+    max-height: 60px;
+    margin: 5px auto;
+    display: block;
+}
+
+/* ====================================================================
+   REGLAS ESPECÍFICAS PARA CLASE pos-receipt-print
+   Esta clase se aplica cuando Odoo genera la imagen del recibo
+   para impresión o envío por email. Debe coincidir con previsualización.
+   ==================================================================== */
+.pos-receipt-print.dominican-receipt {
+    /* Usar familia de fuente más compatible para impresión */
+    font-family: 'Inconsolata', 'Courier New', monospace;
+    
+    /* Mantener el tamaño relativo establecido por Odoo core */
+    /* Odoo core establece font-size: 27px para .pos-receipt-print */
+    line-height: 1.3;
+    
+    /* Asegurar fondo blanco para impresión */
+    background-color: white;
+    color: black;
+}
+
+/* Ajustar elementos específicos dentro de pos-receipt-print */
+.pos-receipt-print.dominican-receipt .pos-receipt-contact {
+    font-size: 75%; /* Más pequeño para impresión */
+}
+
+.pos-receipt-print.dominican-receipt .pos-receipt-title {
+    font-size: 100%; /* Ajustado para impresión */
+    font-weight: bold;
+}
+
+.pos-receipt-print.dominican-receipt .pos-receipt-header {
+    font-size: 95%; /* Ajustado para impresión */
+    font-weight: bold;
+}
+
+.pos-receipt-print.dominican-receipt .pos-receipt-order-data {
+    font-size: 75%; /* Más pequeño para impresión */
+}
+
+.pos-receipt-print.dominican-receipt .pos-receipt-amount {
+    font-size: 90%; /* Ajustado para impresión */
+}
+
+.pos-receipt-print.dominican-receipt .pos-receipt-logo {
+    max-width: 35%;
+    max-height: 50px;
+    margin: 3px auto;
+    display: block;
+}
+
+.pos-receipt-print.dominican-receipt .orderlines table {
+    font-size: 85%;
+}
+
+.pos-receipt-print.dominican-receipt .orderlines th,
+.pos-receipt-print.dominican-receipt .orderlines td {
+    padding: 2px;
+}
+
+.pos-receipt-print.dominican-receipt .ecf-info .qr-code,
+.pos-receipt-print.dominican-receipt .pos-receipt-qrcode {
+    width: 60px;
+    height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+}
+
+.pos-receipt-print.dominican-receipt .barcode-section img {
+    width: 50px;
+    height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+}

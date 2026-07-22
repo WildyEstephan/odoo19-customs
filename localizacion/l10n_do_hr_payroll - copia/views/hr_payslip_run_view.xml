@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Form View to Modify it for Dominican Republic Payroll -->
+    <record id="hr_payslip_run_form_view_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.run.form.view.inherit.do</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+
+            <!-- MODIFICADO: Arturo Diaz Lora - 2026-04-03 -->
+            <!-- Razón: Agregar header con botones de acción en vista formulario -->
+            <xpath expr="//form/group[1]" position="before">
+                <header>
+                    <!-- Botón Crear Reporte de Pago - Solo visible cuando estado = Done -->
+                    <button name="action_payment_report" type="object"
+                            string="Crear Reporte de Pago"
+                            class="btn btn-secondary"
+                            invisible="state != '02_close'"
+                            help="Generar reporte CSV con información de pago bancario"/>
+                    <!-- Botón Marcar como Pagado -->
+                    <button name="action_paid" type="object"
+                            string="Marcar como Pagado"
+                            class="btn btn-primary"
+                            invisible="state != '02_close'"
+                            help="Marcar todas las nóminas del lote como pagadas"/>
+                    <!-- Botón Revertir a Borrador -->
+                    <button name="action_draft" type="object"
+                            string="Volver a Borrador"
+                            class="btn btn-secondary"
+                            invisible="state != '02_close'"
+                            help="Revertir el lote a estado borrador"/>
+                    <!-- Campo de estado -->
+                    <field name="state" widget="statusbar" statusbar_visible="01_ready,02_close,03_paid"/>
+                </header>
+            </xpath>
+
+            <!-- Add Dominican Republic specific fields after schedule_pay -->
+            <xpath expr="//field[@name='schedule_pay']" position="after">
+                <field name="is_christmas_salary"/>
+                <field name="payroll_structure_type_id" string="Tipo de Estructura Salarial"
+                       required="1"
+                       help="Seleccionar el tipo de estructura salarial para generar el nombre del lote dinámicamente"/>
+                <field name="contract_reference" readonly="1"/>
+                <field name="use_batch_analytic"
+                       help="Si está activo, la cuenta analítica se configura a nivel de lote y no a nivel de empleado."/>
+                <field name="analytic_account_id"
+                       invisible="not use_batch_analytic"
+                       options="{'no_create': True}"
+                       help="Cuenta analítica para todas las nóminas de este lote."/>
+                <field name="payroll_xlsx_binary" filename="payroll_xlsx_file_name" readonly="1"
+                       invisible="not payroll_xlsx_binary"/>
+                <field name="payroll_xlsx_file_name" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Inherit Kanban View to add custom buttons -->
+    <record id="hr_payslip_run_kanban_view_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.run.kanban.view.inherit.do</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_view_kanban"/>
+        <field name="arch" type="xml">
+            <!-- Add fields needed for DO functionality -->
+            <xpath expr="//field[@name='color']" position="after">
+                <field name="is_christmas_salary"/>
+                <field name="payroll_structure_type_id"/>
+            </xpath>
+
+            <!-- MODIFICADO: Arturo Diaz Lora - 2026-04-03 -->
+            <!-- Razón: Renombrar botón base Payment Report a español -->
+            <xpath expr="//button[@name='action_payment_report']" position="attributes">
+                <attribute name="string">Crear Reporte de Pago</attribute>
+            </xpath>
+
+            <!-- MODIFICADO: Arturo Diaz Lora - 2026-04-03 -->
+            <!-- Razón: Agregar todos los botones DO al menú kanban para compatibilidad con OWL PayRunCard -->
+            <xpath expr="//button[@name='action_draft']" position="after">
+                <button name="action_generate_check_payments" type="object"
+                        class="btn btn-secondary" string="Generar Cheques"
+                        invisible="state != '02_close'"
+                        help="Generar pagos por lote de cheques para empleados con forma de pago 'Cheque'"/>
+                <button name="action_payslip_batch_send" type="object"
+                        class="btn btn-secondary" string="Enviar Nominas por Email"
+                        invisible="state != '02_close'"
+                        help="Enviar todas las nóminas del lote por correo electrónico"/>
+                <button name="assign_worked_hours" type="object"
+                        class="btn btn-secondary" string="Asignar Horas"
+                        invisible="state != '01_ready'"/>
+                <button name="compute_all_payslips" type="object"
+                        class="btn btn-secondary" string="Calcular Todos"
+                        invisible="state != '01_ready'"/>
+                <button name="confirm_all_payslips" type="object"
+                        class="btn btn-secondary" string="Confirmar Todos"
+                        invisible="state != '01_ready'"
+                        help="Confirmar todas las nóminas calculadas del lote"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

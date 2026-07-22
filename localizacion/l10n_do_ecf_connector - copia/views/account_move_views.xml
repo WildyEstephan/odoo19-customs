@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_invoice_tree_inherit" model="ir.ui.view">
+        <field name="name">view.invoice.list.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="status_in_payment" position="after">
+                <field name="l10n_do_ecf_send_state" widget="badge"
+                       decoration-danger="l10n_do_ecf_send_state in ('invalid', 'delivered_refused')"
+                       decoration-warning="l10n_do_ecf_send_state in ('contingency', 'delivered_pending', 'delivered_pending', 'not_sent', 'service_unreachable', 'signed_pending')"
+                       decoration-success="l10n_do_ecf_send_state in ('delivered_accepted', 'conditionally_accepted')"
+                       decoration-info="l10n_do_ecf_send_state == 'to_send'"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_move_form_inherit" model="ir.ui.view">
+        <field name="name">view.move.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <div class="alert alert-danger" role="alert" invisible="not netvux_warning_message">
+                    <field name="netvux_warning_message" style="width:auto !important;"/>
+                    <button name="action_recreate_xml" type="object" string="Retry" class="oe_link oe_inline"
+                                invisible="l10n_do_ecf_send_state not in ['to_send'] or not xml_file"
+                                groups="account.group_account_invoice"/>
+                </div>
+                <div class="alert alert-info mb-0" role="alert"
+                    invisible="l10n_do_ecf_send_state not in ['to_send'] or not xml_file">
+                    El comprobante aun no ha sido enviado
+                    <button class="btn btn-link p-0" type="object" name="action_send_to_netvux"
+                            style="padding: 0; vertical-align: baseline;">Enviar a NETVUX ahora</button>.
+                </div>
+                <div class="alert alert-info mb-0" role="alert"
+                    invisible="l10n_do_ecf_send_state not in ['delivered_pending', 'signed_pending'] or state != 'posted'">
+                    El comprobante aun no ha sido validado <button class="btn btn-link p-0" type="object"
+                                                                   name="action_request_state_to_netvux"
+                                                                   style="padding: 0; vertical-align: baseline;">
+                    Consultar estado a NETVUX ahora</button>.
+                </div>
+            </xpath>
+            <xpath expr="//group[@id='header_right_group']" position="inside">
+                <field name="xml_file" invisible="1"/>
+                <field name="is_rfce" invisible="1"/>
+                <label for="ecf_id" invisible="not ecf_id"/>
+                <div>
+                    <field name="ecf_id" invisible="not ecf_id"/>
+                    <div class="text-muted" invisible="not is_rfce">
+                        Resumen Factura de Consumo Electrónica (RD$250,000) (RFCE)
+                    </div>
+                </div>
+                <field name="l10n_do_ecf_send_state" invisible="not ecf_id"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page id="dgii_ecf_documents" string="DGII - eCF" invisible="not ecf_id">
+                    <group>
+                        <group invisible="l10n_do_ecf_send_state not in ['delivered_accepted', 'conditionally_accepted']">
+                            <field name="qr_code" widget="image" nolabel="1" options="{'size': [120, 120]}"/>
+                        </group>
+                        <group invisible="l10n_do_ecf_send_state not in ['delivered_accepted', 'conditionally_accepted']">
+                            <field name="l10n_do_ecf_security_code" invisible="1"/>
+                            <field name="l10n_do_ecf_sign_date" invisible="1"/>
+                            <field name="l10n_do_electronic_stamp" widget="CopyClipboardText"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_account_invoice_filter_inherit" model="ir.ui.view">
+        <field name="name">view.account.invoice.filter.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/group/filter[@name='status']" position="after">
+                <filter string="DGII State" name="dgii_state" context="{'group_by': 'l10n_do_ecf_send_state'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

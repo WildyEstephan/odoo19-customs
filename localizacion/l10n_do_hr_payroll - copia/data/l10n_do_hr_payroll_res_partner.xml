@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tss" model="res.partner">
+            <field name="name">TESORERIA DE LA SEGURIDAD SOCIAL</field>
+            <field name="vat">401517078</field>
+        </record>
+        <record id="infotep" model="res.partner">
+            <field name="name">INSTITUTO NACIONAL DE FORMACION TECNICO PROFESIONAL</field>
+            <field name="vat">401051788</field>
+        </record>
+        <record id="dgii" model="res.partner">
+            <field name="name">DIRECCION GENERAL DE IMPUESTOS INTERNOS</field>
+            <field name="vat">401506254</field>
+        </record>
+    </data>
+</odoo>

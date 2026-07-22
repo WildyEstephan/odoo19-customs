@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!--
+            Archivo: l10n_do_hr_payroll_journal_config.xml
+            Autor: Arturo Diaz Lora
+            Fecha: 2024-11-26 14:50:00 UTC
+            MODIFICADO: Arturo Diaz Lora - 2026-04-09 10:00
+            Razón: La configuración vía XML <record> NO funciona porque el diario
+                   hr_payroll_account_journal tiene noupdate=true en ir_model_data
+                   (establecido por hr_payroll_account al crearlo).
+                   Odoo respeta el noupdate del registro original, ignorando el noupdate="0" del XML.
+
+                   La configuración real se hace ahora mediante:
+                   - post_init_hook en __init__.py (instalaciones nuevas)
+                   - migrations/19.0.1.0.1/post-migrate.py (instalaciones existentes)
+
+                   Ambos asignan la cuenta 61010100 (Sueldos y Salarios) como default_account_id
+                   del diario Salarios para TODAS las compañías.
+
+            Propósito original: Configurar cuenta predeterminada para el diario de Salarios
+            Cuenta 61010100 - Sueldos y Salarios
+        -->
+    </data>
+</odoo>

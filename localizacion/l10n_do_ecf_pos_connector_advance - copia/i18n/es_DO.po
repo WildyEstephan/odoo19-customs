@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_do_ecf_pos_connector_advance
+#
+# Translators:
+# Generated for Dominican Republic localization
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-10 00:00+0000\n"
+"PO-Revision-Date: 2026-01-10 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish (Dominican Republic)\n"
+"Language: es_DO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model:ir.model,name:l10n_do_ecf_pos_connector_advance.model_pos_order
+msgid "POS Order"
+msgstr "Orden de POS"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model:ir.model.fields,field_description:l10n_do_ecf_pos_connector_advance.field_pos_order__ecf_id
+msgid "ECF Document"
+msgstr "Documento ECF"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model:ir.model.fields,field_description:l10n_do_ecf_pos_connector_advance.field_pos_order__l10n_do_ecf_send_state
+msgid "DGII State"
+msgstr "Estado DGII"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model:ir.model.fields,field_description:l10n_do_ecf_pos_connector_advance.field_pos_order__l10n_do_ecf_security_code
+msgid "e-CF Security Code"
+msgstr "Codigo de Seguridad e-CF"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model:ir.model.fields,field_description:l10n_do_ecf_pos_connector_advance.field_pos_order__l10n_do_ecf_sign_date
+msgid "e-CF Sign Date"
+msgstr "Fecha de Firma e-CF"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model:ir.model.fields,field_description:l10n_do_ecf_pos_connector_advance.field_pos_order__l10n_do_electronic_stamp
+msgid "Electronic Stamp"
+msgstr "Sello Electronico"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model:ir.model.fields,field_description:l10n_do_ecf_pos_connector_advance.field_pos_order__QR_code
+msgid "QR Code"
+msgstr "Codigo QR"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_pos_connector_advance.view_pos_pos_form_inherit
+msgid "DGII"
+msgstr "DGII"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model:ir.model.fields,field_description:l10n_do_ecf_pos_connector_advance.field_pos_order__l10n_latam_document_number
+msgid "Document Number"
+msgstr "Numero de Documento"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_pos_connector_advance.OrderReceipt
+msgid "PROVISIONAL RECEIPT"
+msgstr "COMPROBANTE PROVISIONAL"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_pos_connector_advance.OrderReceipt
+msgid "Security Code:"
+msgstr "Codigo de Seguridad:"
+
+#. module: l10n_do_ecf_pos_connector_advance
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_pos_connector_advance.OrderReceipt
+msgid "Digital Signature Date:"
+msgstr "Fecha Firma Digital:"

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="l10n_do_checks_printing_check_report_config_form" model="ir.ui.view">
+        <field name="name">Plantilla de Cheques</field>
+        <field name="model">check.report.config</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                        <div class="oe_title">
+                            <h1 class="mt0">
+                                <field name="name" placeholder="BANCO CENTRAL"/>
+                            </h1>
+
+                        </div>
+                    <group>
+                        <group name="bank_cheque" string="Size">
+                            <field name="cheque_measure_unit"/>
+                            <field name="cheque_height"/>
+                            <field name="cheque_width"/>
+                            <field name="max_char_in_line1"/>
+                        </group>
+                        <group name="cheque_image">
+                            <div class="">
+                                <div class="">
+                                    <label for="cheque_image" style="font-weight: bold;"/>
+                                </div>
+                                <field name="cheque_image" widget='image' class="" nolabel="1"/>
+                            </div>
+                        </group>
+                       
+                        <button name="redirect_to_bank_cheque_page" type="object" string="Configurar" style="float:right" icon="fa-cog fa-spin" class="oe_highlight"/>
+                        <br/>
+                         
+                    </group>
+                    <label for="cheque_attribute_line_ids" style="font-weight: bold;"/>
+                    <field name="cheque_attribute_line_ids">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="font_size"/>
+                            <field name="letter_spacing"/>
+                            <field name="top_displacement"/>
+                            <field name="left_displacement"/>
+                            <field name="height"/>
+                            <field name="width"/>
+                            <button name="reset_values" string="Resetear" class="fa fa-undo" type="object"/>
+                        </list>
+                        <form>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group col="4" string="CSS">
+                                <field name="font_size"/>
+                                <field name="letter_spacing"/>
+                                <field name="top_displacement"/>
+                                <field name="left_displacement"/>
+                                <field name="bottom_displacement"/>
+                                <field name="right_displacement"/>
+                                <field name="height"/>
+                                <field name="width"/>
+                            </group>
+                            <button name="reset_values" string="Reset" icon="fa-undo" class="oe_highlight" type="object" title="Reset Values"/>
+                        </form>
+                    </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="l10n_do_checks_printing_check_report_config_tree" model="ir.ui.view">
+            <field name="name">Plantillas de cheques</field>
+            <field name="model">check.report.config</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+        <record id="l10n_do_checks_printing_check_report_config_action" model="ir.actions.act_window">
+            <field name="name">Plantilla de cheques</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">check.report.config</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="l10n_do_checks_printing_menu" name="Plantillas de cheques y Atributos"
+              parent="account.account_account_menu"
+              sequence="10"/>
+        <menuitem id="l10n_do_checks_printing_check_report_config_menu" name="Plantillas de cheques"
+              parent="l10n_do_checks_printing.l10n_do_checks_printing_menu" action="l10n_do_checks_printing_check_report_config_action"
+              sequence="1"/>
+    </odoo>

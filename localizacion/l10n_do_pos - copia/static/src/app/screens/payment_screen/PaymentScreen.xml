@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="l10n_do_pos.PaymentScreen" t-inherit="point_of_sale.PaymentScreenButtons" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('partner-button')]" position="replace">
+            <button class="button partner-button btn btn-light py-3 text-start rounded-0 border-bottom"
+                t-att-class="{ 'highlight text-bg-primary': currentOrder.getPartner() }"
+                t-on-click="() => this.pos.selectPartner()">
+                <t t-set="partner" t-value="currentOrder.getPartner()"/>
+                <div style="font-size: 10px;" t-if="partner and partner.l10n_do_dgii_tax_payer_type and pos.payer_types_selection">
+                    <t t-esc="pos.payer_types_selection[partner.l10n_do_dgii_tax_payer_type]"/>
+                </div>
+
+                <span class="partner-name" t-esc="currentOrder.getPartner()?.name or 'Customer'" />
+            </button>
+        </xpath>
+        <xpath expr="//div[hasclass('payment-buttons')]" position="inside">
+            <MoveReversal t-if="pos.toRefundLines and Object.keys(pos.toRefundLines).length" toggle.bind="pillClicked"/>
+        </xpath>
+    </t>
+
+    <t t-name="l10n_do_pos.PaymentScreenMethods" t-inherit="point_of_sale.PaymentScreenMethods" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('paymentmethod')]" position="replace">
+            <t t-if="paymentMethod.type == 'credit_note'">
+                <div class="button paymentmethod btn btn-light rounded-0 border-bottom"
+                    t-on-click="() => this.validateCreditNote(paymentMethod)">
+                    <div class="payment-method-display d-flex align-items-center flex-grow-1">
+                        <div>
+                            <img class="payment-method-icon" t-att-src="paymentMethodImage(paymentMethod.id)" />
+                        </div>
+                        <span class="payment-name" t-esc="paymentMethod.name" />
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="button paymentmethod btn btn-light rounded-0 border-bottom" t-on-click="() => this.addNewPaymentLine(paymentMethod)">
+                    <div class="payment-method-display d-flex align-items-center flex-grow-1">
+                        <div>
+                            <img class="payment-method-icon" t-att-src="paymentMethodImage(paymentMethod.id)" />
+                        </div>
+                        <span class="payment-name" t-esc="paymentMethod.name" />
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

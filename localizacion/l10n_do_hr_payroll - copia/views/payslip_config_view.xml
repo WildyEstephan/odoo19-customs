@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="hr_payslip_config_form" model="ir.ui.view">
+        <field name="name">hr.payslip.config.form</field>
+        <field name="model">hr.payslip.config</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                    <sheet>
+                        <notebook>
+                            <page string="Pago de Nómina">
+                                <group>
+                                    <group>
+                                        <field name="last_payroll_day" string="Día última nómina"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Escala de Retención">
+                                <field name="retention_scale_ids">
+                                    <list editable="bottom" delete="true">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="code" string="Código"/>
+                                        <field name="name" string="Escala anual" required="1"/>
+                                        <field name="exempt" string="Exento"/>
+                                        <field name="percent" string="Porcentaje" readonly="exempt"/>
+                                        <field name="base_amount" string="Monto base" readonly="exempt"/>
+                                        <field name="top_amount" string="Monto tope" readonly="exempt"/>
+                                        <field name="extra_amount" string="Monto Extra" readonly="exempt"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Cálculo de cotizaciones">
+                                <field name="quotation_calculation_ids">
+                                    <list editable="bottom" delete="true">
+                                        <field name="code" string="Código"/>
+                                        <field name="name" string="Concepto" required="1"/>
+                                        <field name="value" string="Tope"/>
+                                        <field name="contrib" string="Contribución %"/>
+                                        <field name="retention" string="Retención %"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            
+
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="parametro_de_nomina_action">
+        <field name="name">Parámetros de procesamiento de nómina</field>
+        <field name="res_model">hr.payslip.config</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="res_id" ref="l10n_do_hr_payroll.hr_payslip_config_1"/>
+    </record>
+    
+
+    <!-- Top menu item --> 
+    <menuitem 
+        name="Parámetros de nómina" 
+        parent="hr_work_entry_enterprise.menu_hr_payroll_configuration"
+        id="parametro_de_nomina_menu" 
+        action="parametro_de_nomina_action"
+        sequence="100"
+    />
+</odoo>

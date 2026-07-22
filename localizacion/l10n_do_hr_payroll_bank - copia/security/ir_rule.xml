@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MODIFICADO: Arturo Diaz Lora - 2026-03-14 10:00 -->
+<!-- Razón: Agregar regla multi-company para electronic.payroll.line -->
+<odoo>
+    <record id="electronic_payroll_comp_rule" model="ir.rule">
+        <field name="name">Electronic Payroll Company Rule</field>
+        <field name="model_id" ref="model_electronic_payroll"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="electronic_payroll_line_comp_rule" model="ir.rule">
+        <field name="name">Electronic Payroll Line Company Rule</field>
+        <field name="model_id" ref="model_electronic_payroll_line"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

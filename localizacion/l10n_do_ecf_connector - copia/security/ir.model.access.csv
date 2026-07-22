@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+l10n_do_ecf_connector.access_do_ce_version,access_do_ce_version,l10n_do_ecf_connector.model_ecf_settings_version,base.group_user,1,1,1,0
+l10n_do_ecf_connector.access_do_ce_document,access_do_ce_document,l10n_do_ecf_connector.model_ecf_document,base.group_user,1,1,1,1
+l10n_do_ecf_connector.access_do_ce_settings,access_do_ce_settings,l10n_do_ecf_connector.model_ecf_settings,base.group_user,1,1,1,1
+access_res_municipality_group_user,res_municipality_group_user,l10n_do_ecf_connector.model_res_municipality,,1,1,1,1
+access_res_municipality_group_all,res_municipality_group_user_all,l10n_do_ecf_connector.model_res_municipality,,1,1,1,1

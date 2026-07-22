@@ -1,0 +1,12 @@
+simplejson
+zeep
+python-stdnum>=1.19
+pycountry
+numpy-financial
+
+lxml
+cryptography>=42.0.0
+pyOpenSSL
+pyqrcode
+pypng
+xmltodict

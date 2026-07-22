@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_pos_pos_form_inherit" model="ir.ui.view">
+        <field name="name">view.pos.pos.form.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='order_fields']" position="inside">
+                <field name="l10n_latam_document_number"/>
+                <field name="l10n_latam_document_type_id"/>
+                <field name="ncf" invisible="1"/>
+                <field name="l10n_do_ecf_modification_code" readonly="1" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- Autor: Arturo Diaz Lora -->
+    <!-- Fecha: 2025-11-22 -->
+    <!-- Agregada columna NCF en vista de lista de órdenes POS con etiqueta explícita -->
+    <record id="view_pos_order_tree_inherit" model="ir.ui.view">
+        <field name="name">pos.order.tree.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="l10n_latam_document_number" string="NCF" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_pos_order_filter_inherit" model="ir.ui.view">
+        <field name="name">view.pos.order.filter.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pos_reference']" position="replace">
+                <field name="display_name"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

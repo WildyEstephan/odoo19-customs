@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="printing_check_report_action" model="ir.actions.report">
+            <field name="name">Cheques</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_do_checks_printing.check_print_report</field>
+            <field name="report_file">l10n_do_checks_printing.check_print_report</field>
+            <field name="paperformat_id" ref="l10n_do_checks_printing.paper_format_check"/>
+           <field name="binding_model_id" ref="model_account_payment"/>
+            <field name="binding_type">report</field>
+    </record>
+</odoo>

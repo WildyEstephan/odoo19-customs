@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Actualizar UOMs existentes con código ECF -->
+    <data>
+        <record id="uom.product_uom_unit" model="uom.uom" forcecreate="False">
+            <field name="ecf_code">43</field>
+        </record>
+        <record id="uom.product_uom_day" model="uom.uom" forcecreate="False">
+            <field name="ecf_code">12</field>
+        </record>
+        <record id="uom.product_uom_dozen" model="uom.uom" forcecreate="False">
+            <field name="ecf_code">13</field>
+        </record>
+        <record id="uom.product_uom_hour" model="uom.uom" forcecreate="False">
+            <field name="ecf_code">19</field>
+        </record>
+        <record id="uom.product_uom_kgm" model="uom.uom" forcecreate="False">
+            <field name="ecf_code">21</field>
+        </record>
+        <record id="uom.product_uom_meter" model="uom.uom" forcecreate="False">
+            <field name="ecf_code">26</field>
+        </record>
+        <record id="uom.product_uom_square_meter" model="uom.uom" forcecreate="False">
+            <field name="ecf_code">27</field>
+        </record>
+        <record id="uom.product_uom_cubic_meter" model="uom.uom" forcecreate="False">
+            <field name="ecf_code">28</field>
+        </record>
+    </data>
+
+    <!-- Crear UOMs personalizadas para RD con estructura Odoo 19 -->
+    <data noupdate="1">
+        <record id="product_uom_barr" model="uom.uom">
+            <field name="name">Barril</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">1</field>
+        </record>
+        <record id="product_uom_bol" model="uom.uom">
+            <field name="name">Bolsa</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">2</field>
+        </record>
+        <record id="product_uom_bot" model="uom.uom">
+            <field name="name">Bote</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">3</field>
+        </record>
+        <record id="product_uom_bulto" model="uom.uom">
+            <field name="name">Bultos</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">4</field>
+        </record>
+        <record id="product_uom_botella" model="uom.uom">
+            <field name="name">Botella</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">5</field>
+        </record>
+        <record id="product_uom_CAJ" model="uom.uom">
+            <field name="name">Caja/Cajon</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">6</field>
+        </record>
+        <record id="product_uom_CAJETILLA" model="uom.uom">
+            <field name="name">Cajetilla</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">7</field>
+        </record>
+        <record id="product_uom_cm" model="uom.uom">
+            <field name="name">Centimetro</field>
+            <field name="relative_factor" eval="0.01"/>
+            <field name="relative_uom_id" ref="uom.product_uom_meter"/>
+            <field name="ecf_code">8</field>
+        </record>
+        <record id="product_uom_CIL" model="uom.uom">
+            <field name="name">Cilindro</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">9</field>
+        </record>
+        <record id="product_uom_CONJ" model="uom.uom">
+            <field name="name">Conjunto</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">10</field>
+        </record>
+        <record id="product_uom_CONT" model="uom.uom">
+            <field name="name">Contenedor</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">11</field>
+        </record>
+        <record id="product_uom_FARD" model="uom.uom">
+            <field name="name">Fardo</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">14</field>
+        </record>
+        <record id="product_uom_gal" model="uom.uom">
+            <field name="name">Galon</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">15</field>
+        </record>
+        <record id="product_uom_GRAD" model="uom.uom">
+            <field name="name">Grado</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">16</field>
+        </record>
+        <record id="product_uom_GR" model="uom.uom">
+            <field name="name">Gramo</field>
+            <field name="relative_factor" eval="0.001"/>
+            <field name="relative_uom_id" ref="uom.product_uom_kgm"/>
+            <field name="ecf_code">17</field>
+        </record>
+        <record id="product_uom_GRAN" model="uom.uom">
+            <field name="name">Granel</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">18</field>
+        </record>
+        <record id="product_uom_HUAC" model="uom.uom">
+            <field name="name">Huacal</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">20</field>
+        </record>
+        <record id="product_uom_kWh" model="uom.uom">
+            <field name="name">Kilovatio Hora</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">22</field>
+        </record>
+        <record id="product_uom_lb" model="uom.uom">
+            <field name="name">Libra</field>
+            <field name="relative_factor" eval="0.453592"/>
+            <field name="relative_uom_id" ref="uom.product_uom_kgm"/>
+            <field name="ecf_code">23</field>
+        </record>
+        <record id="product_uom_LITRO" model="uom.uom">
+            <field name="name">Litro</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">24</field>
+        </record>
+        <record id="product_uom_LOT" model="uom.uom">
+            <field name="name">Lote</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">25</field>
+        </record>
+        <record id="product_uom_MMBTU" model="uom.uom">
+            <field name="name">Millones de Unidades Termicas</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">29</field>
+        </record>
+        <record id="product_uom_mile" model="uom.uom">
+            <field name="name">Milla</field>
+            <field name="relative_factor" eval="1609.34"/>
+            <field name="relative_uom_id" ref="uom.product_uom_meter"/>
+            <field name="ecf_code">30</field>
+        </record>
+        <record id="product_uom_PAQ" model="uom.uom">
+            <field name="name">Paquete</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">31</field>
+        </record>
+        <record id="product_uom_PAR" model="uom.uom">
+            <field name="name">Par</field>
+            <field name="relative_factor" eval="2.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">32</field>
+        </record>
+        <record id="product_uom_PIE" model="uom.uom">
+            <field name="name">Pie</field>
+            <field name="relative_factor" eval="0.3048"/>
+            <field name="relative_uom_id" ref="uom.product_uom_meter"/>
+            <field name="ecf_code">33</field>
+        </record>
+        <record id="product_uom_PZA" model="uom.uom">
+            <field name="name">Pieza</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">34</field>
+        </record>
+        <record id="product_uom_ROL" model="uom.uom">
+            <field name="name">Rollo</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">35</field>
+        </record>
+        <record id="product_uom_SOBR" model="uom.uom">
+            <field name="name">Sobre</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">36</field>
+        </record>
+        <record id="product_uom_SEG" model="uom.uom">
+            <field name="name">Segundo</field>
+            <field name="relative_factor" eval="0.000277778"/>
+            <field name="relative_uom_id" ref="uom.product_uom_hour"/>
+            <field name="ecf_code">37</field>
+        </record>
+        <record id="product_uom_TANQUE" model="uom.uom">
+            <field name="name">Tanque</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">38</field>
+        </record>
+        <record id="product_uom_TONE" model="uom.uom">
+            <field name="name">Tonelada</field>
+            <field name="relative_factor" eval="1000"/>
+            <field name="relative_uom_id" ref="uom.product_uom_kgm"/>
+            <field name="ecf_code">39</field>
+        </record>
+        <record id="product_uom_TUB" model="uom.uom">
+            <field name="name">Tubo</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">40</field>
+        </record>
+        <record id="product_uom_YD" model="uom.uom">
+            <field name="name">Yarda</field>
+            <field name="relative_factor" eval="0.9144"/>
+            <field name="relative_uom_id" ref="uom.product_uom_meter"/>
+            <field name="ecf_code">41</field>
+        </record>
+        <record id="product_uom_SQUARE_YD" model="uom.uom">
+            <field name="name">Yarda cuadrada</field>
+            <field name="relative_factor" eval="0.836127"/>
+            <field name="relative_uom_id" ref="uom.product_uom_square_meter"/>
+            <field name="ecf_code">42</field>
+        </record>
+        <record id="product_uom_EA" model="uom.uom">
+            <field name="name">Elemento</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">44</field>
+        </record>
+        <record id="product_uom_MILLAR" model="uom.uom">
+            <field name="name">Millar</field>
+            <field name="relative_factor" eval="1000"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">45</field>
+        </record>
+        <record id="product_uom_SAC" model="uom.uom">
+            <field name="name">Saco</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">46</field>
+        </record>
+        <record id="product_uom_LAT" model="uom.uom">
+            <field name="name">Lata</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">47</field>
+        </record>
+        <record id="product_uom_RAC" model="uom.uom">
+            <field name="name">Racion</field>
+            <field name="relative_factor" eval="1.0"/>
+            <field name="relative_uom_id" ref="uom.product_uom_unit"/>
+            <field name="ecf_code">50</field>
+        </record>
+        <record id="product_uom_Q" model="uom.uom">
+            <field name="name">Quintal</field>
+            <field name="relative_factor" eval="100"/>
+            <field name="relative_uom_id" ref="uom.product_uom_kgm"/>
+            <field name="ecf_code">51</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_clear_enterprise"
+              name="Limpiar Licencia Enterprise"
+              parent="base.menu_administration"
+              action="action_clear_enterprise_wizard"
+              sequence="100"
+              groups="base.group_system,base.group_erp_manager"/>
+</odoo>

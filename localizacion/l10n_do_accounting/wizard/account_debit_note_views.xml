@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_debit_note_inherited" model="ir.ui.view">
+        <field name="name">view.account.debit.note.inherited</field>
+        <field name="model">account.debit.note</field>
+        <field name="inherit_id" ref="account_debit_note.view_account_debit_note"/>
+        <field name="arch" type="xml">
+            <!-- Hide the copy_lines field from the standard view for Dominican Republic -->
+            <xpath expr="//field[@name='copy_lines']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+            <xpath expr="//form" position="inside">
+                <group string="Tipo de débito y aplicación">
+                    <group>
+                        <field name="l10n_do_debit_type" widget="radio" options="{'horizontal': true}" string="Tipo de débito"/>
+                        <field name="l10n_do_debit_action" widget="radio" string="Acción" invisible="l10n_do_debit_type == 'apply_debit'"/>
+                    </group>
+                    <group invisible="l10n_do_debit_type != 'apply_debit'">
+                        <div invisible="l10n_do_debit_action != 'draft_debit'" class="oe_grey" colspan="4">
+                            Podrá editar y validar esta nota de débito directamente o mantenerla en borrador.
+                        </div>
+                        <div invisible="l10n_do_debit_action != 'apply_debit'" class="oe_grey" colspan="4">
+                            Use esta opción si desea aplicar completamente la nota de débito. La nota de débito se creará, validará y reconciliará con la factura. No podrá modificar la nota de débito.
+                        </div>
+                    </group>
+                </group>
+                <group string="Importe de la Nota de Débito">
+                    <field name="l10n_do_percentage" string="Porcentaje" invisible="l10n_do_debit_type != 'percentage'" required="l10n_do_debit_type == 'percentage'"/>
+                    <field name="l10n_do_amount" string="Monto fijo" invisible="l10n_do_debit_type != 'fixed_amount'" required="l10n_do_debit_type == 'fixed_amount'"/>
+                    <field name="l10n_do_account_id" string="Cuenta" groups="account.group_account_user" options="{'no_open': True, 'no_create': True}" invisible="l10n_do_debit_type == 'apply_debit'" required="l10n_do_debit_type != 'apply_debit'"/>
+                </group>
+                <group string="Opciones de líneas" invisible="1">
+                    <field name="copy_lines" string="Copiar líneas de productos"/>
+                    <field name="custom_description" 
+                           string="Descripción personalizada"
+                           invisible="copy_lines == True"
+                           required="copy_lines == False"
+                           placeholder="Ingrese una descripción para la nota de débito"/>
+                </group>
+                <group string="Comprobante fiscal">
+                    <field name="l10n_latam_country_code" invisible="1"/>
+                    <field name="is_ecf_invoice" invisible="1"/>
+                    <field name="l10n_latam_use_documents" invisible="1"/>
+                    <field name="l10n_latam_manual_document_number" invisible="1"/>
+                    <field name="l10n_latam_available_document_type_ids" invisible="1"/>
+                    <field name="show_vendor_document_number" invisible="1"/>
+                    <field name="l10n_latam_document_type_id"
+                           invisible="l10n_latam_country_code != 'DO'"
+                           required="l10n_latam_country_code == 'DO'"
+                           options="{'no_open': True, 'no_create': True}"
+                           readonly="False"
+                           string="Tipo de Comprobante"/>
+                    <field name="l10n_latam_document_number" 
+                           string="Número de Comprobante" 
+                           invisible="not show_vendor_document_number"
+                           required="show_vendor_document_number"
+                           placeholder="B03000000001 o E33000000000001"
+                           help="Formato NCF: B + 2 dígitos (03) + 8 dígitos = 11 caracteres (Físicos)&#10;Formato e-NCF: E + 2 dígitos (33) + 11 dígitos = 14 caracteres (Electrónicos)&#10;NOTA: Para notas de débito de cliente, el número se genera automáticamente al confirmar la factura"/>
+                    <!-- NCF modificado se establece automáticamente en notas de débito - no se requiere entrada manual en el wizard -->
+                    <field name="l10n_do_origin_ncf" 
+                           string="NCF modificado" 
+                           invisible="1" 
+                           placeholder="NCF de la factura original que se modifica"/>
+                    <field name="l10n_do_ecf_modification_code" string="Código de Modificación e-CF" invisible="l10n_latam_country_code != 'DO' or not is_ecf_invoice" required="l10n_latam_country_code == 'DO' and is_ecf_invoice"/>
+                    <field name="l10n_do_ncf_expiration_date"
+                           string="Válida hasta"
+                           invisible="l10n_latam_country_code != 'DO'"
+                           required="show_vendor_document_number"
+                           readonly="0"
+                           help="Fecha de vencimiento del NCF"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action for Debit Note Wizard -->
+    <record id="action_account_debit_note" model="ir.actions.act_window">
+        <field name="name">Create Debit Note</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.debit.note</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">form</field>
+    </record>
+</odoo>

@@ -1,0 +1,38 @@
+{
+    "name": "Facturacion en linea República Dominicana ECF - NETVUX",
+    "version": "19.0.1.0.0",
+    "category": "DGII",
+    "summary": """
+        Comprobantes Electrónicos en linea para República Dominicana - NETVUX.
+     """,
+    'author': "Adel Networks S.R.L",
+    "website": "https://adelnetworks.com.do",
+    "depends": ["contacts", "uom", "l10n_do_accounting", "l10n_do_edi"],
+    "data": [
+        "data/ecf_data.xml",
+        "data/ecf_cron.xml",
+        'data/res_country_state_data.xml',
+        'data/res.municipality.csv',
+        'data/uom_data.xml',
+        "security/ir.model.access.csv",
+        "security/ir_rule.xml",
+        "views/ecf_document_views.xml",
+        "views/ecf_settings_views.xml",
+        "views/account_move_views.xml",
+        "views/res_company_views.xml",
+        "views/report_invoice.xml",
+        'views/res_partner_views.xml',
+        'views/product_uom_views.xml',
+        'views/account_tax_views.xml',
+    ],
+    "python": [
+        'lxml',
+        'pyOpenSSL',
+        'pyqrcode',
+        'pypng',
+    ],
+    "license": "LGPL-3",
+    "application": True,
+    "pre_init_hook": "_pre_init_ecf_settings_company",
+    "post_init_hook": "_l10n_do_edi_post_init",
+}

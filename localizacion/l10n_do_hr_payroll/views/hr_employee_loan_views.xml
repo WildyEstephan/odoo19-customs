@@ -1,0 +1,137 @@
+<odoo>
+    <!-- Loan Views -->
+    <record id="hr_employee_loan_tree" model="ir.ui.view">
+        <field name="name">hr.employee.loan.list</field>
+        <field name="model">hr.employee.loan</field>
+        <field name="arch" type="xml">
+            <list string="Loans">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="rate_id"/>
+                <field name="start_date"/>
+                <field name="amount"/>
+                <field name="next_fee"/>
+                <field name="fee_count"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hr_employee_loan_form" model="ir.ui.view">
+        <field name="name">hr.employee.loan.form</field>
+        <field name="model">hr.employee.loan</field>
+        <field name="arch" type="xml">
+            <form string="Préstamo">
+                <header>
+                    <button name="compute_fees" type="object" string="Calcular Cuotas" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="approve_loan" type="object" string="Aprobar" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="cancel_loan" type="object" string="Cancelar" class="btn-default"
+                            invisible="state != 'approved'"/>
+                    <button name="set_loan_to_draft" type="object" string="Establecer en borrador"
+                            invisible="state != 'cancel'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <h3>
+                        <field name="name"/>
+                    </h3>
+                    <group>
+                        <group string="Datos del préstamo">
+                            <field name="employee_id" required="1" options='{"no_open": True, "no_create": True}'/>
+                            <field name="financial_partner_id" options='{"no_open": True, "no_create": True}' required="1"/>
+                            <field name="rate_id" options='{"no_open": True, "no_create": True}' required="1"/>
+                            <field name="amount" required="1"/>
+                            <field name="start_date" required="1"/>
+                        </group>
+                        <group string="Cuotas">
+                            <field name="next_fee" readonly="1"/>
+                            <field name="fee_count" required="1"/>
+                            <field name="fee_amount" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Tabla de amortización" id="items">
+                            <field name="loan_line_ids" readonly="1">
+                                <list>
+                                    <field name="number"/>
+                                    <field name="date"/>
+                                    <field name="rate"/>
+                                    <field name="dues" sum="Cuotas"/>
+                                    <field name="payment" sum="Abono"/>
+                                    <field name="interest" sum="Intereses"/>
+                                    <field name="total"/>
+                                    <field name="paid"/>
+                                    <field name="payslip_id"/>
+                                    <field name="date_paid"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter -->
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Loan Rate Views -->
+    <record id="hr_employee_loan_rate_tree" model="ir.ui.view">
+        <field name="name">hr.employee.loan.rate.list</field>
+        <field name="model">hr.employee.loan.rate</field>
+        <field name="arch" type="xml">
+            <list string="Rates">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="rate"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hr_employee_loan_rate_form" model="ir.ui.view">
+        <field name="name">hr.employee.loan.rate.form</field>
+        <field name="model">hr.employee.loan.rate</field>
+        <field name="arch" type="xml">
+            <form string="Rates">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="type"/>
+                        <field name="rate"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Loan action -->
+    <record id="action_hr_employee_loan" model="ir.actions.act_window">
+        <field name="name">Préstamos/Descuento</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee.loan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Cree su primer préstamo / descuento!</p>
+        </field>
+    </record>
+
+    <!-- Rate action -->
+    <record id="action_hr_employee_loan_rate" model="ir.actions.act_window">
+        <field name="name">Tasa de préstamos/descuento</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee.loan.rate</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Cree su primera Tasa!</p>
+        </field>
+    </record>
+
+    <!-- Menús -->
+    <menuitem id="menu_hr_employee_loan_root" name="Préstamos/Descuento" sequence="5"
+              parent="hr.menu_human_resources_configuration" groups="hr_payroll.group_hr_payroll_manager"/>
+    <menuitem id="menu_hr_employee_loan" name="Préstamos/Descuento" sequence="1" parent="menu_hr_employee_loan_root"
+              action="action_hr_employee_loan" groups="hr_payroll.group_hr_payroll_manager"/>
+    <menuitem id="menu_hr_employee_loan_rate" name="Tasas" sequence="2" parent="menu_hr_employee_loan_root"
+              action="action_hr_employee_loan_rate" groups="hr_payroll.group_hr_payroll_manager"/>
+</odoo>

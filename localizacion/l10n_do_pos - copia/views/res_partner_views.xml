@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Acción específica para POS -->
+    <record id="res_partner_action_edit_pos_dgii" model="ir.actions.act_window">
+        <field name="name">Edit Customer (POS)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'default_is_company': False,
+            'default_supplier_rank': 0,
+            'default_customer_rank': 1,
+        }</field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_dgii_edi_simple" model="ir.ui.view">
+        <field name="name">account.move.form.dgii.edi.simple</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="country_code" invisible="1"/>
+                <button name="action_send_dgii" 
+                    type="object" 
+                    class="btn-primary" 
+                    string="📤 ENVIAR DGII TEST"
+                    />
+                <button name="debug_dgii_button_conditions" 
+                    type="object" 
+                    class="btn-secondary" 
+                    string="🔍 DEBUG TEST"
+                    />
+            </xpath>
+        </field>
+    </record>
+</odoo>

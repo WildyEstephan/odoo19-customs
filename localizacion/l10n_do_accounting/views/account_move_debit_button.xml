@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Agregar botón de Nota de Débito en facturas de cliente -->
+    <record id="view_move_form_add_debit_button" model="ir.ui.view">
+        <field name="name">account.move.form.add.debit.button</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Agregar botón de Nota de Débito después del botón de Nota de Crédito -->
+            <xpath expr="//button[@name='action_reverse']" position="after">
+                <button name="%(account_debit_note.action_view_account_move_debit)d" 
+                        string='Nota de Débito'
+                        type='action' 
+                        groups="account.group_account_invoice"
+                        invisible="move_type not in ('out_invoice', 'in_invoice', 'out_refund', 'in_refund') or state != 'posted'"
+                        context="{'default_move_type': context.get('move_type')}"
+                        />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Asegurar que la acción de Nota de Débito esté disponible en la vista de lista -->
+    <record id="account_invoice_tree_add_debit_action" model="ir.ui.view">
+        <field name="name">account.invoice.tree.add.debit.action</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="multi_edit">1</attribute>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Agregar la acción de Nota de Débito al menú de acciones -->
+    <record id="action_account_debit_note" model="ir.actions.act_window">
+        <field name="name">Crear Nota de Débito</field>
+        <field name="res_model">account.debit.note</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account_debit_note.view_account_debit_note"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+    </record>
+</odoo>

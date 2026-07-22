@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MODIFICADO: Arturo Diaz Lora - 2026-03-14 10:00 -->
+<!-- Razón: Reglas multi-company para todos los modelos de nómina DR -->
+<odoo>
+
+    <record id="hr_employee_loan_comp_rule" model="ir.rule">
+        <field name="name">HR Employee Loan Company Rule</field>
+        <field name="model_id" ref="model_hr_employee_loan"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_employee_loan_line_comp_rule" model="ir.rule">
+        <field name="name">HR Employee Loan Line Company Rule</field>
+        <field name="model_id" ref="model_hr_employee_loan_line"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_employee_loan_rate_comp_rule" model="ir.rule">
+        <field name="name">HR Employee Loan Rate Company Rule</field>
+        <field name="model_id" ref="model_hr_employee_loan_rate"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_payslip_config_comp_rule" model="ir.rule">
+        <field name="name">HR Payslip Config Company Rule</field>
+        <field name="model_id" ref="model_hr_payslip_config"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_quotation_calculation_comp_rule" model="ir.rule">
+        <field name="name">HR Quotation Calculation Company Rule</field>
+        <field name="model_id" ref="model_hr_quotation_calculation"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_retention_scale_comp_rule" model="ir.rule">
+        <field name="name">HR Retention Scale Company Rule</field>
+        <field name="model_id" ref="model_hr_retention_scale"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_emergency_contact_comp_rule" model="ir.rule">
+        <field name="name">HR Emergency Contact Company Rule</field>
+        <field name="model_id" ref="model_hr_employee_emergency_contact"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_employee_family_comp_rule" model="ir.rule">
+        <field name="name">HR Employee Family Company Rule</field>
+        <field name="model_id" ref="model_hr_employee_family"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="hr_contract_payrolltype_comp_rule" model="ir.rule">
+        <field name="name">HR Contract Payroll Type Company Rule</field>
+        <field name="model_id" ref="model_hr_contract_payrolltype"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="payroll_discount_config_comp_rule" model="ir.rule">
+        <field name="name">Payroll Discount Config Company Rule</field>
+        <field name="model_id" ref="model_payroll_discount_config"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="payroll_discount_import_comp_rule" model="ir.rule">
+        <field name="name">Payroll Discount Import Company Rule</field>
+        <field name="model_id" ref="model_payroll_discount_import"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="working_hours_import_comp_rule" model="ir.rule">
+        <field name="name">Working Hours Import Company Rule</field>
+        <field name="model_id" ref="model_working_hours_import"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>

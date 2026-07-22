@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MODIFICADO: Arturo Diaz Lora - 2026-03-19 01:15 -->
+<!-- Razón: Reescritura completa del reporte de Certificación de Retención DGII -->
+<!-- Cambios principales: -->
+<!--   - Agregado web.external_layout para membrete de empresa -->
+<!--   - Columna "Base Imponible" ahora muestra amount_untaxed (antes mostraba amount_total) -->
+<!--   - Protección contra división por cero en cálculo de porcentajes -->
+<!--   - Agregada fila de totales en la tabla -->
+<!--   - Agregados datos de empresa retenedora (RNC, dirección) -->
+<!--   - Agregada columna "Retención ITBIS" separada de "ITBIS Facturado" -->
+<!--   - Texto legal actualizado: referencias a Norma 02-2005 y Norma 07-2007 -->
+<!--   - Sección de firma mejorada con datos del representante legal -->
+<!--   - Correcciones ortográficas: "reteneción" → "retención" -->
+<odoo>
+    <record id="withholding_certification_report" model="ir.actions.report">
+        <field name="name">Certificación de Retención DGII</field>
+        <field name="model">withholding.certification.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_do_withholding_certification.l10n_do_withholding_certification_document</field>
+        <field name="report_file">l10n_do_withholding_certification.l10n_do_withholding_certification_document</field>
+        <field name="binding_model_id" ref="l10n_do_withholding_certification.model_withholding_certification_wizard"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="base.paperformat_us"/>
+    </record>
+
+    <template id="l10n_do_withholding_certification_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 13px;">
+
+                        <!-- Fecha de emisión -->
+                        <div class="text-end mb-3">
+                            <span t-esc="o.now_date"/>
+                        </div>
+
+                        <!-- Destinatario -->
+                        <p>Señores,</p>
+                        <p>
+                            <strong class="text-uppercase">Dirección General de Impuestos Internos (DGII)</strong>
+                        </p>
+                        <p>Su Despacho.-</p>
+
+                        <br/>
+
+                        <!-- Título -->
+                        <h4 class="text-center mb-4">
+                            <strong>CERTIFICACIÓN DE RETENCIÓN</strong>
+                        </h4>
+
+                        <br/>
+
+                        <p>Distinguidos Señores:</p>
+
+                        <!-- Cuerpo del documento -->
+                        <p class="text-justify" style="line-height: 1.8;">
+                            La empresa <strong><span t-esc="o.env.company.name"/></strong>,
+                            con RNC <strong><span t-esc="o.env.company.vat"/></strong>,
+                            en cumplimiento de las disposiciones fiscales
+
+                            <!-- Determinar referencia legal según tipo de retención -->
+                            <t t-set="has_itbis_ret" t-value="sum(o.invoice_ids.mapped('withholded_itbis')) > 0"/>
+                            <t t-set="has_isr_ret" t-value="sum(o.invoice_ids.mapped('income_withholding')) > 0"/>
+
+                            <t t-if="has_itbis_ret and has_isr_ret">
+                                establecidas en la Norma General No. 02-2005 sobre Retención del ITBIS
+                                y la Norma General No. 07-2007 sobre Retención del Impuesto Sobre la Renta,
+                            </t>
+                            <t t-elif="has_itbis_ret">
+                                establecidas en la Norma General No. 02-2005 sobre Retención del ITBIS,
+                                en sus artículos 3 y 5,
+                            </t>
+                            <t t-elif="has_isr_ret">
+                                establecidas en la Norma General No. 07-2007 sobre Retención del
+                                Impuesto Sobre la Renta, y de acuerdo al Código Tributario
+                                (Ley 11-92 y sus modificaciones),
+                            </t>
+
+                            y a solicitud de la empresa
+                            <strong><span t-esc="o.partner_id.name"/></strong>,
+                            con RNC/Cédula <strong><span t-esc="o.partner_id.vat or 'N/D'"/></strong>,
+                            tiene a bien expedir la presente <strong>CERTIFICACIÓN</strong>
+                            por concepto de retenciones
+
+                            <!-- Detallar tipo de retención con protección de división por cero -->
+                            <t t-if="has_isr_ret">
+                                <t t-set="first_inv" t-value="o.invoice_ids[0]"/>
+                                <t t-if="first_inv.amount_untaxed > 0">
+                                    del <span t-esc="round(abs(first_inv.income_withholding) / first_inv.amount_untaxed * 100)"/>% ISR
+                                </t>
+                                <t t-else="">
+                                    de ISR
+                                </t>
+                            </t>
+                            <t t-if="has_itbis_ret and has_isr_ret"> y </t>
+                            <t t-if="has_itbis_ret">
+                                <t t-set="first_inv" t-value="o.invoice_ids[0]"/>
+                                <t t-if="first_inv.invoiced_itbis > 0">
+                                    del <span t-esc="round(first_inv.withholded_itbis / first_inv.invoiced_itbis * 100)"/>% de ITBIS
+                                </t>
+                                <t t-else="">
+                                    de ITBIS
+                                </t>
+                            </t>
+                            realizadas en sus facturas por servicios prestados
+                            durante el período de
+                            <strong><span t-esc="o.month"/></strong> de
+                            <strong><span t-esc="o.year"/></strong>,
+                            cuyos valores fueron declarados y pagados al fisco tal como lo establece
+                            la legislación vigente.
+                        </p>
+
+                        <br/>
+
+                        <!-- Tabla de detalle de facturas -->
+                        <table class="table table-sm table-bordered" style="font-size: 12px;">
+                            <thead>
+                                <tr class="table-active">
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">NCF</th>
+                                    <th class="text-end">Base Imponible</th>
+                                    <th class="text-end">ITBIS Facturado</th>
+                                    <th class="text-end">ITBIS Retenido</th>
+                                    <th class="text-end">ISR Retenido</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.invoice_ids" t-as="inv">
+                                    <td class="text-center">
+                                        <span t-field="inv.invoice_date"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-field="inv.l10n_latam_document_number"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="inv.amount_untaxed"
+                                              t-options="{'widget': 'monetary', 'display_currency': inv.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="inv.invoiced_itbis"
+                                              t-options="{'widget': 'monetary', 'display_currency': inv.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="inv.withholded_itbis"
+                                              t-options="{'widget': 'monetary', 'display_currency': inv.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="inv.income_withholding"
+                                              t-options="{'widget': 'monetary', 'display_currency': inv.currency_id}"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <!-- Fila de totales -->
+                            <tfoot>
+                                <tr class="table-active" style="font-weight: bold;">
+                                    <td colspan="2" class="text-end">
+                                        <strong>TOTALES:</strong>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="o.total_base"
+                                              t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <t t-set="total_itbis_facturado" t-value="sum(o.invoice_ids.mapped('invoiced_itbis'))"/>
+                                        <span t-esc="'RD$ {:,.2f}'.format(total_itbis_facturado)"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="o.total_itbis_retenido"
+                                              t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="o.total_isr_retenido"
+                                              t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <br/>
+
+                        <!-- Nota legal -->
+                        <p class="text-justify" style="line-height: 1.6;">
+                            La presente certificación se expide a solicitud de la parte interesada,
+                            para los fines que estime conveniente.
+                        </p>
+
+                        <p>Sin otro particular, le saludamos.</p>
+
+                        <p>Atentamente,</p>
+
+                        <!-- Firma -->
+                        <div style="margin-top: 60px;">
+                            <hr style="border-top: solid 1px black; width: 35%; margin-left: 0;"/>
+                            <p style="margin-top: 5px; font-size: 13px;">
+                                <strong><span t-esc="o.env.company.name"/></strong><br/>
+                                <t t-if="o.env.company.vat">
+                                    RNC: <span t-esc="o.env.company.vat"/><br/>
+                                </t>
+                                <t t-if="o.env.company.street">
+                                    <span t-esc="o.env.company.street"/>
+                                    <t t-if="o.env.company.city">, <span t-esc="o.env.company.city"/></t>
+                                    <br/>
+                                </t>
+                                <t t-if="o.env.company.phone">
+                                    Tel: <span t-esc="o.env.company.phone"/>
+                                </t>
+                            </p>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

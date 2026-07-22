@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>						
+<odoo>
+    <data>
+    <record id="hr_calendar_monthly" model="resource.calendar">
+        <field name="name">Standard 44h + Sabados</field>
+        <field name="company_id" eval="False"/>
+        <field name="hours_per_day">8</field>
+         <field name="full_time_required_hours">44</field>
+        <field name="attendance_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'name': 'Lunes Mañana', 'dayofweek': '0', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                (0, 0, {'name': 'Lunes Tarde', 'dayofweek': '0', 'hour_from': 14, 'hour_to': 18, 'day_period': 'afternoon'}),
+                (0, 0, {'name': 'Martes Mañana', 'dayofweek': '1', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                (0, 0, {'name': 'Martes Tarde', 'dayofweek': '1', 'hour_from': 14, 'hour_to': 18, 'day_period': 'afternoon'}),
+                (0, 0, {'name': 'Miercoles Mañana', 'dayofweek': '2', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                (0, 0, {'name': 'Miercoles Tarde', 'dayofweek': '2', 'hour_from': 14, 'hour_to': 18, 'day_period': 'afternoon'}),
+                (0, 0, {'name': 'Jueves Mañana', 'dayofweek': '3', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                (0, 0, {'name': 'Thursday Tarde', 'dayofweek': '3', 'hour_from': 14, 'hour_to': 18, 'day_period': 'afternoon'}),
+                (0, 0, {'name': 'Friday Mañana', 'dayofweek': '4', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                (0, 0, {'name': 'Friday Tarde', 'dayofweek': '4', 'hour_from': 14, 'hour_to': 18, 'day_period': 'afternoon'}),
+                (0, 0, {'name': 'Sabado Mañana', 'dayofweek': '5', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'})
+            ]"
+        />
+    </record>
+    </data>
+</odoo>

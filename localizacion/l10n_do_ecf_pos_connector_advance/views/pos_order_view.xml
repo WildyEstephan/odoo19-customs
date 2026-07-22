@@ -1,0 +1,44 @@
+<odoo>
+    <record id="view_pos_pos_form_inherit" model="ir.ui.view">
+        <field name="name">view.pos.pos.form.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='order_fields']" position="inside">
+                <field name="ecf_id"/>
+                <field name="l10n_do_ecf_send_state"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page id="dgii_documents" string="DGII" groups="base.group_no_one">
+                    <group>
+                        <group invisible="l10n_do_ecf_send_state not in ['delivered_accepted', 'conditionally_accepted']">
+                            <field name="QR_code" widget="image" nolabel="1" options="{'size': [120, 120]}"/>
+                        </group>
+                        <group invisible="l10n_do_ecf_send_state not in ['delivered_accepted', 'conditionally_accepted']">
+                            <field name="l10n_do_ecf_security_code" invisible="1"/>
+                            <field name="l10n_do_ecf_sign_date" invisible="1"/>
+                            <field name="l10n_do_electronic_stamp" widget="CopyClipboardText"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_pos_order_tree_inherit" model="ir.ui.view">
+        <field name="name">pos.order.list.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="l10n_latam_document_number"/>
+            </xpath>
+            <field name="state" position="after">
+                <field name="l10n_do_ecf_send_state" widget="badge"
+                       decoration-danger="l10n_do_ecf_send_state in ('invalid', 'delivered_refused')"
+                       decoration-warning="l10n_do_ecf_send_state in ('contingency', 'delivered_pending', 'delivered_pending', 'not_sent', 'service_unreachable', 'signed_pending')"
+                       decoration-success="l10n_do_ecf_send_state in ('delivered_accepted', 'conditionally_accepted')"
+                       decoration-info="l10n_do_ecf_send_state == 'to_send'"/>
+            </field>
+        </field>
+    </record>
+</odoo>

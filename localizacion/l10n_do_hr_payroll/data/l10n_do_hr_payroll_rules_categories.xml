@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>						
+<odoo>
+    <data>
+         <!-- Rule Category -->
+        <record id="hr_payroll.BASIC" model="hr.salary.rule.category">
+            <field name="name">Básico</field>
+            <field name="code">BASE</field>
+        </record>
+
+
+        <record id="hr_payroll.ALW" model="hr.salary.rule.category">
+            <field name="name">Prima</field>
+            <field name="code">ALW</field>
+        </record>
+
+        <record id="hr_payroll.GROSS" model="hr.salary.rule.category">
+            <field name="name">Bruto</field>
+            <field name="code">BRUTO</field>
+        </record>
+
+        <record id="hr_payroll.DED" model="hr.salary.rule.category">
+            <field name="name">Deducciones</field>
+            <field name="code">DED</field>
+        </record>
+
+        <record id="hr_payroll.NET" model="hr.salary.rule.category">
+            <field name="name">Neto</field>
+            <field name="code">NET</field>
+        </record>
+
+        <record id="hr_payroll.COMP" model="hr.salary.rule.category">
+            <field name="name">Contribución De La Compañía</field>
+            <field name="code">COMP</field>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_calculated_amount" model="hr.salary.rule.category">
+            <field name="name">Cálculos</field>
+            <field name="code">CALC</field>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_trading_salary" model="hr.salary.rule.category">
+            <field name="name">Salarios Cotizables</field>
+            <field name="code">COT</field>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_withholdings" model="hr.salary.rule.category">
+            <field name="name">Retenciones</field>
+            <field name="code">RET</field>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_salary_deduction" model="hr.salary.rule.category">
+            <field name="name">Deducciones del Salario</field>
+            <field name="code">DDS</field>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_extra" model="hr.salary.rule.category">
+            <field name="name">Horas No Regulares</field>
+            <field name="code">HE</field>
+            <field name="note">HORAS EXTRAS: AL 15% - AL 35% - AL 50% - AL 100%</field>
+        </record>
+
+
+        <record id="l10n_do_hr_payroll.NOAN" model="hr.salary.rule.category">
+            <field name="name">Novedades anteriores</field>
+            <field name="code">NOAN</field>
+        </record>
+
+        <!-- Childrens -->
+        <record id="l10n_do_hr_payroll.hr_payroll_commisions_alw" model="hr.salary.rule.category">
+            <field name="name">Comisiones</field>
+            <field name="code">COMM</field>
+            <field name="note">Comisiones por Venta, Cobro u otras</field>
+            <field name="parent_id" ref="hr_payroll.ALW"/>
+        </record>
+
+
+
+        <record id="l10n_do_hr_payroll.hr_payroll_taxable_alw" model="hr.salary.rule.category">
+            <field name="name">Otras Remuneraciones</field>
+            <field name="note">Incentivos, Bonificaciones, Horas Extras, Vacaciones, Combustible, Almuerzo</field>
+            <field name="code">OREM</field>
+            <field name="parent_id" ref="hr_payroll.ALW"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_exempt_alw" model="hr.salary.rule.category">
+            <field name="name">Ingresos Exentos</field>
+            <field name="note">Ingresos Exento de ISR: Regalía Pascual, Preaviso y Cesantía</field>
+            <field name="code">INEX</field>
+            <field name="parent_id" ref="hr_payroll.ALW"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_complementary_alw" model="hr.salary.rule.category">
+            <field name="name">Retribuciones Complementarias</field>
+            <field name="note">Dietas, Gasolina, Transporte, Estudios</field>
+            <field name="code">RETC</field>
+            <field name="parent_id" ref="hr_payroll.ALW"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_adjustments" model="hr.salary.rule.category">
+            <field name="name">Credito por Ajustes</field>
+            <field name="code">CREDAJUS</field>
+            <field name="parent_id" ref="hr_payroll.ALW"/>
+        </record>
+        
+        <record id="l10n_do_hr_payroll.hr_payroll_income_deduction" model="hr.salary.rule.category">
+            <field name="name">Retenciones - ISR</field>
+            <field name="code">ISRE</field>
+            <field name="parent_id" ref="l10n_do_hr_payroll.hr_payroll_withholdings"/>
+        </record>
+        
+        <record id="l10n_do_hr_payroll.hr_payroll_ss_deduction" model="hr.salary.rule.category">
+            <field name="name">Retenciones - TSS</field>
+            <field name="code">TSSE</field>
+            <field name="parent_id" ref="l10n_do_hr_payroll.hr_payroll_withholdings"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_infotep_deduction" model="hr.salary.rule.category">
+            <field name="name">Retenciones - INFOTEP</field>
+            <field name="code">INFE</field>
+            <field name="parent_id" ref="l10n_do_hr_payroll.hr_payroll_withholdings"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_insurance_deduction" model="hr.salary.rule.category">
+            <field name="name">Costos de Seguro</field>
+            <field name="code">COSS</field>
+            <field name="parent_id" ref="hr_payroll.DED"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_loan_deduction" model="hr.salary.rule.category">
+            <field name="name">Préstamos</field>
+            <field name="code">PRE</field>
+            <field name="parent_id" ref="hr_payroll.DED"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_other_deduction" model="hr.salary.rule.category">
+            <field name="name">Otras Deducciones</field>
+            <field name="code">ODED</field>
+            <field name="parent_id" ref="hr_payroll.DED"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_income_contribution" model="hr.salary.rule.category">
+            <field name="name">Contribuciones - ISR</field>
+            <field name="code">ISRC</field>
+            <field name="parent_id" ref="hr_payroll.COMP"/>
+        </record>
+        
+        <record id="l10n_do_hr_payroll.hr_payroll_ss_contribution" model="hr.salary.rule.category">
+            <field name="name">Contribuciones - TSS</field>
+            <field name="code">TSSC</field>
+            <field name="parent_id" ref="hr_payroll.COMP"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_infotep_contribution" model="hr.salary.rule.category">
+            <field name="name">Contribuciones - INFOTEP</field>
+            <field name="code">INFC</field>
+            <field name="parent_id" ref="hr_payroll.COMP"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_ordinary_salary" model="hr.salary.rule.category">
+            <field name="name">Salario Ordinario</field>
+            <field name="code">SALARIO</field>
+            <field name="note">Remuneraciones que forman parte del Salario</field>
+            <field name="parent_id" ref="hr_payroll.ALW"/>
+        </record>
+
+        <record id="l10n_do_hr_payroll.hr_payroll_sn13" model="hr.salary.rule.category">
+            <field name="name">Salario de Navidad</field>
+            <field name="code">SN13</field>
+            <field name="parent_id" ref="hr_payroll.ALW"/>
+        </record>
+
+    </data>
+</odoo>

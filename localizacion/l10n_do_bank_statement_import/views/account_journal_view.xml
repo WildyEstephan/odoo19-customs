@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+         <!-- Inherit Form View to Modify it -->
+    <record id="do_view_account_journal_form_do" model="ir.ui.view">
+        <field name="name">view.account.journal_form.do</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bank_account_id']" position="after">
+                <field name="statement_import_type" 
+                    attributes="{'required': {'type': 'bank'}}"/>
+                <field name="is_tc" 
+                    attributes="{'required': {'type': 'bank'}}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="ln10_do_view_account_journal_form" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
+        <field name="arch" type="xml">
+            <!-- Add a new section to the bank and cash container -->
+            <xpath expr="//div[@id='bank_and_cash_container']" position="inside">
+                <div class="col-4 o_kanban_card_manage_section o_kanban_manage_new">
+                    <h5 class="o_kanban_card_manage_title">
+                        <span role="separator">Import</span>
+                    </h5>
+                <div>
+                        <a role="menuitem" type="object" name="import_account_statement" class="dropdown-item">
+                        Extracto
+                    </a>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="action_bank_statemnet" model="ir.actions.act_window">
+        <field name="name">Extractos Bancarios</field>
+        <field name="res_model">account.bank.statement</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new account Statements
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_action_statement" parent="account.menu_finance_entries" action="action_bank_statemnet" sequence="25" groups="account.group_account_user"/>
+
+</odoo>
+

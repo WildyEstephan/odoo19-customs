@@ -1,0 +1,47 @@
+<odoo>
+    <record id="view_res_config_settings_l10n_do_edi" model="ir.ui.view">
+        <field name="name">res.config.settings.view.l10n_do_edi</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="Facturación electrónica para República Dominicana" name="l10n_do_edi_setting_container">
+                    <setting id="l10n_do_edi_setting" string="Activar facturación electrónica" help="Configuración para la facturación electrónica de República Dominicana">
+                        <field name="l10n_do_ecf_activated" />
+                        <div class="content-group" invisible="not l10n_do_ecf_activated">
+                            <div class="row mt16">
+                                <label string="Firma" for="l10n_do_pkcs12_file" class="col-lg-3 o_light_label"/>
+                                <field name="l10n_do_pkcs12_file" widget="binary" />
+                            </div>
+                            <div class="row mt16">
+                                <label string="Clave" for="l10n_do_pkcs12_password" class="col-lg-3 o_light_label"/>
+                                <field name="l10n_do_pkcs12_password" password="True"/>
+                            </div>
+                            <div class="row mt16">
+                                <label string="Ambiente" for="l10n_do_ecf_environment" class="col-lg-3 o_light_label"/>
+                                <field name="l10n_do_ecf_environment" widget="radio"/>
+                            </div>
+                            <div class="row mt16">
+                                <label string="Modo de envío" for="l10n_do_ecf_send_mode" class="col-lg-3 o_light_label"/>
+                                <field name="l10n_do_ecf_send_mode" widget="radio"/>
+                            </div>
+                            <div class="row mt16">
+                                <label string="Omitir validación de licencia" for="l10n_do_ecf_skip_license" class="col-lg-3 o_light_label"/>
+                                <field name="l10n_do_ecf_skip_license"/>
+                            </div>
+                            <div class="row mt16">
+                                <div class="col-lg-3"></div>
+                                <button name="debug_company_config" type="object" string="🔍 Debug Configuración" class="btn-secondary" groups="base.group_system"/>
+                                <button name="force_manual_mode" type="object" string="🔧 Forzar Modo Manual" class="btn-warning ml8" groups="base.group_system"/>
+                            </div>
+                            <div class="row mt16">
+                                <div class="col-lg-3"></div>
+                                <button name="setup_edi_formats" type="object" string="⚙️ Configurar Formatos EDI" class="btn-primary" groups="base.group_system"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

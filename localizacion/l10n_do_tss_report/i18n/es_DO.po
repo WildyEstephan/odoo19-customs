@@ -1,0 +1,669 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_do_tss_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-18 23:57+0000\n"
+"PO-Revision-Date: 2026-03-18 23:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__PRIMER_APELLIDO
+msgid "1er. Apellido"
+msgstr "1er. Apellido"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__SEGUNDO_APELLIDO
+msgid "2do. Apellido"
+msgstr "2do. Apellido"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "<span class=\"fa fa-lightbulb-o fa-lg\" title=\"Info\" aria-label=\"Info\"/>"
+msgstr "<span class=\"fa fa-lightbulb-o fa-lg\" title=\"Info\" aria-label=\"Info\"/>"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_regenerate_wizard_form
+msgid "<span class=\"fa fa-warning fa-lg\" title=\"Warning\" aria-label=\"Warning\"/>"
+msgstr "<span class=\"fa fa-warning fa-lg\" title=\"Warning\" aria-label=\"Alerta\"/>"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report__tipo_de_archivo__am
+msgid "AM"
+msgstr "AM"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report__tipo_de_archivo__ar
+msgid "AR"
+msgstr "AR"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__APORTE_VOL
+msgid "Aporte Voluntario"
+msgstr "Aporte Voluntario"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model,name:l10n_do_tss_report.model_tss_report
+msgid "Archivo de Autodeterminacion TSS"
+msgstr "Archivo de Autodeterminacion TSS"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report_line__TIPO_INGRESO__0003
+msgid "Asalariado por hora o labora tiempo parcial"
+msgstr "Asalariado por hora o labora tiempo parcial"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.actions.act_window,name:l10n_do_tss_report.tss_report_action
+#: model:ir.ui.menu,name:l10n_do_tss_report.tss_report_menu
+msgid "Autodeterminación"
+msgstr "Autodeterminación"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_regenerate_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__CLAVE_NOMINA
+msgid "Clave Nomina"
+msgstr "Clave Nómina"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__company_id
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__company_id
+msgid "Company"
+msgstr "Compañía"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.actions.act_window,help:l10n_do_tss_report.tss_report_action
+msgid "Create your TSS Statements here."
+msgstr "Cree sus Declaraciones TSS aquí."
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__create_uid
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__create_uid
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_regenerate_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__create_date
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__create_date
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_regenerate_wizard__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+
+#. module: l10n_do_tss_report
+#. odoo-python
+#: code:addons/l10n_do_tss_report/model/tss_report.py:0
+msgid ""
+"Cédula / Pasaporte / NSS !No encontrado!\n"
+"El siguiente empleado %s no posee un No. de Cedula, Pasaporte o NSS registrado, favor corregir antes de continuar"
+msgstr ""
+"Cédula / Pasaporte / NSS !No encontrado!\n"
+"El siguiente empleado %s no posee un No. de Cedula, Pasaporte o NSS registrado, favor corregir antes de continuar"
+
+
+#. module: l10n_do_tss_report
+#. odoo-python
+#: code:addons/l10n_do_tss_report/model/tss_report.py:0
+msgid ""
+"Cédula IncorrectaVerifique el No. de Identificacion de este empleado: %s"
+msgstr "Cédula IncorrectaVerifique el No. de Identificacion de este empleado: %s"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.ui.menu,name:l10n_do_tss_report.tss_report_parent_menu
+msgid "Data Sending"
+msgstr "Envío de datos"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__display_name
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__display_name
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_regenerate_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report__state__sent
+msgid "Enviado"
+msgstr "Enviado"
+
+
+#. module: l10n_do_tss_report
+#. odoo-python
+#: code:addons/l10n_do_tss_report/model/tss_report.py:0
+msgid "Error. Date format must be MM/YYYY"
+msgstr "Error, Fecha debe ser MM/AAAA"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report_line__TIPO_INGRESO__0007
+msgid "Exento por Ley de pago al SDSS"
+msgstr "Exento por Ley de pago al SDSS"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__FECHA_NAC
+msgid "Fecha Nacimiento"
+msgstr "Fecha Nacimiento"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_search_view
+msgid "File Type"
+msgstr "Tipo de Archivo"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report__state__generated
+msgid "Generado"
+msgstr "Generado"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "Generate Statements"
+msgstr "Generar Reportes"
+
+
+#. module: l10n_do_tss_report
+#. odoo-python
+#: code:addons/l10n_do_tss_report/model/tss_report.py:0
+msgid ""
+"Genero no definido! \n"
+"El siguiente empleado %s no tiene genero definido (Masculino / Femenino ), favor corrregir antes de continuar.  "
+msgstr ""
+"Genero no definido! \n"
+"El siguiente empleado %s no tiene genero definido (Masculino / Femenino ), favor corrregir antes de continuar.  "
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__id
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__id
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_regenerate_wizard__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,help:l10n_do_tss_report.field_tss_report__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,help:l10n_do_tss_report.field_tss_report__message_has_error
+#: model:ir.model.fields,help:l10n_do_tss_report.field_tss_report__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__write_uid
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__write_uid
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_regenerate_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__write_date
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__write_date
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_regenerate_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model,name:l10n_do_tss_report.model_tss_report_line
+msgid "Linea de Tss"
+msgstr "Linea de Tss"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "MM/YYYY"
+msgstr "MM/AAAA"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+
+#. module: l10n_do_tss_report
+#. odoo-python
+#: code:addons/l10n_do_tss_report/model/tss_report.py:0
+msgid ""
+"No existen nominas registradas!\n"
+"Por favor seleccione otro periodo."
+msgstr ""
+"No existen nóminas registradas!\n"
+"Por favor seleccione otro período."
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report_line__TIPO_INGRESO__0004
+msgid "No laboró mes completo por razones varias"
+msgstr "No laboró mes completo por razones varias"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__report_name
+msgid "Nombre de Reporte"
+msgstr "Nombre de Reporte"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__NOMBRES
+msgid "Nombres"
+msgstr "Nombres"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report_line__TIPO_INGRESO__0001
+msgid "Normal"
+msgstr "Normal"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report__state__draft
+msgid "Nuevo"
+msgstr "Nuevo"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de Errores"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,help:l10n_do_tss_report.field_tss_report__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,help:l10n_do_tss_report.field_tss_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__NUMERO_DOC
+msgid "Numero Documento"
+msgstr "Numero Documento"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "OTRAS REMUNERACIONES"
+msgstr "OTRAS REMUNERACIONES"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__OTRAS_REM
+msgid "Otras Remuneraciones"
+msgstr "Otras Remuneraciones"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report_line__TIPO_INGRESO__0006
+msgid "Pensionado antes de la Ley 87-01"
+msgstr "Pensionado antes de la Ley 87-01"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__name
+msgid "Periodo"
+msgstr "Período"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__PREAVISO_CESANTIA_INDEM
+msgid ""
+"Preaviso, Cesantia, Viatico e Indemminzaciones por Accidentes Laborales"
+msgstr "Preaviso, Cesantia, Viatico e Indemminzaciones por Accidentes Laborales"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "RESUMEN SALARIAL"
+msgstr "RESUMEN SALARIAL"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__RNC_CED_AGENT_RET
+msgid "RNC/Ced. Agent. Ret"
+msgstr "RNC/Céd. Agent. Ret."
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__REGALIA_PASCUAL
+msgid "Regalia Pascual (Salario 13)"
+msgstr "Regalia Pascual (Salario 13)"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_regenerate_wizard_form
+msgid "Regenerate"
+msgstr "Regenerar"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.actions.act_window,name:l10n_do_tss_report.tss_report_regenerate_wizard_action
+msgid "Regenerate Report"
+msgstr "Regenerar Reporte"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_regenerate_wizard_form
+msgid ""
+"Regenerate this report may cause data variation. Don't do that if you want to preserve equality\n"
+"                        between the report you sent and the data in your system."
+msgstr ""
+"Regenerar este reporte puede causar variación en los datos. No haga esto si "
+"desea preservar la igualdad entre el reporte que envió y los datos en el "
+"sistema."
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__REM_OT_AGENT
+msgid "Remuneracion Otros Agentes"
+msgstr "Remuneración Otros Agentes"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_regenerate_wizard__report_id
+msgid "Report"
+msgstr "Reporte"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__report
+msgid "Reporte"
+msgstr "Reporte"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__RETENCION_PENSION_ALIMENTICIA
+msgid "Retencion Pension Alimentica"
+msgstr "Retención Pensión Alimenticia"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "SALARIO COTIZABLE"
+msgstr "SALARIO COTIZABLE"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega SMS"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__SALARIO_COT
+msgid "Salario Cotizable"
+msgstr "Salario Cotizable"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__SALARIO_ISR
+msgid "Salario ISR"
+msgstr "Salario ISR"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__SALARIO_INFOTEP
+msgid "Salario Infotep"
+msgstr "Salario Infotep"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report_line__TIPO_INGRESO__0005
+msgid "Salario prorrateado semanal/bisemanal"
+msgstr "Salario prorrateado semanal/bisemanal"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__SALDO_FAVOR_PERIODO
+msgid "Saldo a Favor del Periodo"
+msgstr "Saldo a Favor del Periodo"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "Set as sent"
+msgstr "Marcar como enviado"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__SEXO
+msgid "Sexo"
+msgstr "Sexo"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__state
+msgid "State"
+msgstr "Estado"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_search_view
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_tree_view
+msgid "Statements"
+msgstr "Extractos"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.ui.menu,name:l10n_do_tss_report.tss_menu
+msgid "TSS"
+msgstr "TSS"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_line_tree
+msgid "TSS Report Lines"
+msgstr "Líneas de Reporte TSS"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "TXT File"
+msgstr "Archivo TXT"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid ""
+"The Report will only generate statements for the same period and file type "
+"(AM / AR)."
+msgstr ""
+"El Reporte solo generará declaraciones para el mismo período y tipo de "
+"archivo (AM / AR)."
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__tipo_de_archivo
+msgid "Tipo De Archivo"
+msgstr "Tipo De Archivo"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__TIPO_DOCUMENTO
+msgid "Tipo Doc."
+msgstr "Tipo Doc."
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__TIPO_INGRESO
+msgid "Tipo Ingreso"
+msgstr "Tipo Ingreso"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__TIPO_REGISTRO
+msgid "Tipo de Registro"
+msgstr "Tipo de Registro"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_line_tree
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_tree_view
+msgid "Total"
+msgstr "Total"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__total_otras_rem
+msgid "Total Otros Remuneraciones"
+msgstr "Total Otros Remuneraciones"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__total_salario_cot
+msgid "Total Salario Cotizable"
+msgstr "Total Salario Cotizable"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__line_count
+msgid "Total de registros"
+msgstr "Total de registros"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report_line__TIPO_INGRESO__0008
+msgid "Trabajador con salario sectorizado"
+msgstr "Trabajador con salario sectorizado"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields.selection,name:l10n_do_tss_report.selection__tss_report_line__TIPO_INGRESO__0002
+msgid "Trabajador ocasional (no fijo)"
+msgstr "Trabajador ocasional (no fijo)"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report_line__tss_report_id
+msgid "Tss Report"
+msgstr "Autodeterminacion TSS"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model,name:l10n_do_tss_report.model_tss_report_regenerate_wizard
+msgid "Tss Report Regenerate Wizard"
+msgstr "Regenerar Autodeterminacion TSS"
+
+
+#. module: l10n_do_tss_report
+#: model_terms:ir.ui.view,arch_db:l10n_do_tss_report.tss_report_form_view
+msgid "View Details"
+msgstr "Ver Detalles"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,field_description:l10n_do_tss_report.field_tss_report__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.fields,help:l10n_do_tss_report.field_tss_report__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+
+#. module: l10n_do_tss_report
+#: model:ir.model.constraint,message:l10n_do_tss_report.constraint_tss_report_name_unique
+msgid "You cannot have more than one report by period."
+msgstr "No puede tener el mismo reporte en el mismo periodo"
+
+
+#. module: l10n_do_tss_report
+#. odoo-python
+#: code:addons/l10n_do_tss_report/model/tss_report.py:0
+msgid "u\"Debe configurar el RNC de la empresa!\"!\n"
+msgstr "u\"Debe configurar el RNC de la empresa!\"!\n"

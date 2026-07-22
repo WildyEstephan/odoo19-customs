@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- VISTA CAMPOS ESPECIALES DESHABILITADA - 2025-09-14 -->
+    <!-- <record id="view_l10n_do_custom_fields_tree" model="ir.ui.view">
+        <field name="name">l10n_do.custom.fields.tree</field>
+        <field name="model">l10n_do.custom.fields</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="section" />
+                <field name="move_line_id" readonly="section not in ('Item', 'ItemRetencion', 'ItemDescuento', 'ItemRecargo')" domain="[('move_id', '=', parent.id),('display_type', '=', 'product')]"/>
+                <field name="name" />
+                <field name="value" />
+                <field name="delete" />
+            </list>
+        </field>
+    </record> -->
+
+    <record id="view_move_form_dgii_edi" model="ir.ui.view">
+        <field name="name">account.move.form.dgii.edi</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Agregar campos necesarios para condiciones -->
+            <xpath expr="//field[@name='narration']" position="after">
+                <field name="l10n_do_dgii_commercial_approval" invisible="1"/>
+                <field name="country_code" invisible="1"/>
+                <field name="edi_state" invisible="1"/>
+                <field name="edi_document_ids" invisible="1"/>
+                <!-- Campos computados para condiciones de botones -->
+                <field name="l10n_do_ecf_send_mode_computed" invisible="1"/>
+                <field name="l10n_do_ecf_activated_computed" invisible="1"/>
+                <!-- Campos para QR y código de seguridad -->
+                <field name="l10n_latam_document_number" invisible="1"/>
+                <field name="l10n_do_ecf_security_code" invisible="1"/>
+                <field name="l10n_do_electronic_stamp" invisible="1"/>
+                <field name="qr_code" invisible="1"/>
+            </xpath>
+            
+            <!-- Botones personalizados y estándar EDI -->
+            <xpath expr="//button[@name='button_cancel']" position="after">
+                <!-- Aprobación comercial - DESHABILITADO 2026-01-10
+                <button name="action_send_to_approval"
+                    id="account_invoice_send_to_approval_btn"
+                    type="object"
+                    class="oe_highlight"
+                    invisible="state != 'draft' or move_type != 'in_invoice' or l10n_do_dgii_commercial_approval"
+                    string="Aprobación comercial"
+                    groups="account.group_account_invoice"
+                    /> -->
+                
+                <!-- Botón manual de envío a DGII (para modo manual) -->
+                <button name="action_send_dgii" 
+                    type="object" 
+                    class="btn-primary" 
+                    invisible="state not in ('posted') or move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund') or country_code != 'DO' or l10n_do_ecf_send_mode_computed != 'manual' or not l10n_do_ecf_activated_computed" 
+                    string="📤 Enviar a DGII"
+                    />
+                
+                <!-- Botón estándar de reenvío EDI - DESHABILITADO 2026-01-10
+                <button name="button_process_edi_web_services"
+                    string="Procesar EDI"
+                    type="object"
+                    class="btn-secondary"
+                    invisible="not edi_document_ids or edi_state not in ('to_send', 'to_cancel')"
+                    groups="base.group_system"/> -->
+                    
+                <!-- Botón regenerar QR - DESHABILITADO 2026-01-10
+                <button name="action_regenerate_qr"
+                    type="object"
+                    class="btn-secondary"
+                    invisible="state not in ('posted') or move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund') or country_code != 'DO' or not l10n_do_ecf_security_code or not l10n_latam_document_number"
+                    string="🔄 Regenerar QR"
+                    groups="account.group_account_invoice"
+                    /> -->
+
+                <!-- Debug button - DESHABILITADO 2026-01-10
+                <button name="debug_dgii_button_conditions"
+                    type="object"
+                    class="btn-secondary"
+                    string="🔍 Debug DGII"
+                    groups="base.group_system"
+                    /> -->
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="QR e-CF" name="qr_code" invisible="not qr_code or country_code != 'DO'">
+                    <group>
+                        <group>
+                            <field name="qr_code" widget="image" nolabel="1" options="{'size': [120, 120]}"/>
+                        </group>
+                        <group>
+                            <field name="l10n_do_ecf_security_code" string="Código de Seguridad"/>
+                            <field name="l10n_do_ecf_sign_date" string="Fecha de Firma"/>
+                            <field name="l10n_do_electronic_stamp" string="URL de Validación" widget="CopyClipboardText"/>
+                        </group>
+                    </group>
+                </page>
+                <!-- CAMPOS ESPECIALES DESHABILITADOS - 2025-09-14 -->
+                <!-- <page string="Campos especiales" name="custom_fields">
+                    <field name="l10n_do_custom_fields_ids" nolabel="1" context="{'tree_view_ref': 'l10n_do_edi.view_l10n_do_custom_fields_tree'}" />
+                </page> -->
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

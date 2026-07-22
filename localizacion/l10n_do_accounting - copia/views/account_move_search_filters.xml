@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Mejorar filtros de búsqueda para separar mejor los tipos de documentos -->
+    <record id="view_account_move_filter_inherited" model="ir.ui.view">
+        <field name="name">account.move.filter.inherited</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_move_filter"/>
+        <field name="arch" type="xml">
+            <!-- Agregar filtros específicos para notas de débito y crédito -->
+            <filter name="to_check" position="after">
+                <filter string="Notas de Crédito" name="credit_notes" 
+                        domain="[('move_type', 'in', ['out_refund', 'in_refund'])]"
+                        help="Mostrar solo notas de crédito"/>
+                <filter string="Notas de Débito" name="debit_notes" 
+                        domain="[('move_type', 'in', ['out_debit', 'in_debit'])]"
+                        help="Mostrar solo notas de débito"/>
+            </filter>
+            
+            <!-- Mejorar agrupación -->
+            <filter name="journal" position="after">
+                <filter string="Tipo de Documento" name="group_by_move_type" 
+                        domain="[]" context="{'group_by':'move_type'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <!-- Agregar filtros específicos a la vista de facturas -->
+    <record id="view_account_invoice_filter_inherited" model="ir.ui.view">
+        <field name="name">account.invoice.filter.inherited</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <!-- Agregar filtros específicos para notas de débito y crédito -->
+            <filter name="to_check" position="after">
+                <filter string="Notas de Crédito" name="credit_notes" 
+                        domain="[('move_type', 'in', ['out_refund', 'in_refund'])]"
+                        help="Mostrar solo notas de crédito"/>
+                <filter string="Notas de Débito" name="debit_notes" 
+                        domain="[('move_type', 'in', ['out_debit', 'in_debit'])]"
+                        help="Mostrar solo notas de débito"/>
+            </filter>
+        </field>
+    </record>
+
+    <!-- Modificar acción de facturas de clientes para que NO incluya notas de débito -->
+    <record id="account.action_move_out_invoice_type" model="ir.actions.act_window">
+        <field name="domain">[('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
+    </record>
+
+    <!-- Modificar acción de facturas de proveedores para que NO incluya notas de débito -->
+    <record id="account.action_move_in_invoice_type" model="ir.actions.act_window">
+        <field name="domain">[('move_type', 'in', ['in_invoice', 'in_refund'])]</field>
+    </record>
+
+</odoo>

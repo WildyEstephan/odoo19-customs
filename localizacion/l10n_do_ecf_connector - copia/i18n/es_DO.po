@@ -1,0 +1,1150 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_do_ecf_connector
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-19 19:00+0000\n"
+"PO-Revision-Date: 2024-05-19 19:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.l10n_do_ecf_report_invoice_document
+msgid "<strong>Código de Seguridad: </strong>"
+msgstr "<strong>Código de Seguridad: </strong>"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.l10n_do_ecf_report_invoice_document
+msgid "<strong>Fecha Firma Digital: </strong>"
+msgstr "<strong>Fecha Firma Digital: </strong>"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__access_warning
+msgid "Access warning"
+msgstr "Advertencia de acceso"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_account_move_reversal
+msgid "Account Move Reversal"
+msgstr "Reversión de movimiento en cuenta"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de excepción de actividad"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_state
+msgid "Activity State"
+msgstr "Estado de actividad"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de tipo de actividad"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_amount_total
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_tree_view
+msgid "Amount Total"
+msgstr "Importe total"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_amount_tax
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_tree_view
+msgid "Amount Total Tax"
+msgstr "Impuesto"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_amount_untaxed_signed
+msgid "Amount Untaxed Signed"
+msgstr "Importe sin impuestos firmado"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_detail_dgii
+msgid "Archivo XML Text"
+msgstr "Texto archivo XML"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_settings_version__publication_date
+msgid "As it comes from the Resolution"
+msgstr "Tal como viene de la Resolución"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de adjuntos"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_barr
+msgid "Barril"
+msgstr "Barril"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_bol
+msgid "Bolsa"
+msgstr "Bolsa"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_bot
+msgid "Bote"
+msgstr "Bote"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_botella
+msgid "Botella"
+msgstr "Botella"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_bulto
+msgid "Bultos"
+msgstr "Bultos"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_CAJ
+msgid "Caja/Cajón"
+msgstr "Caja/Cajón"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_CAJETILLA
+msgid "Cajetilla"
+msgstr "Cajetilla"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_settings.py:0
+#, python-format
+msgid "Check you connection"
+msgstr "Verifique su conexión"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_CIL
+msgid "Cilindro"
+msgstr "Cilindro"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__ecf_code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_bank_statement_line__QR_code
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_move__QR_code
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_payment__QR_code
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__QR_code
+msgid "Code QR"
+msgstr "Código QR"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_company__commercial_name
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.view_company_form_inherit
+msgid "Commercial Name"
+msgstr "Nombre comercial"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__company_currency_id
+msgid "Company Currency"
+msgstr "Moneda de la compañía"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Conditionally accepted"
+msgstr "Aceptado condicional"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_CONJ
+msgid "Conjunto"
+msgstr "Conjunto"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.view_move_form_inherit
+msgid "Consultar estado a NETVUX ahora"
+msgstr "Consultar estado a NETVUX ahora"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_CONT
+msgid "Contenedor"
+msgstr "Contenedor"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Contingency"
+msgstr "Contingencia"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Could not exist origin document"
+msgstr "No puede existir documento origen"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Could not found origin document "
+msgstr "No se encontró documento origen "
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Could not found origin document: "
+msgstr "No se encontró documento origen: "
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Could not send the e-CF"
+msgstr "No se pudo enviar el e-CF"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__country_id
+msgid "Country"
+msgstr "País"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_res_country_state
+msgid "Country state"
+msgstr "Provincia"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__create_uid
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__create_uid
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__create_uid
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__create_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__create_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__create_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__access_url
+msgid "Customer Portal URL"
+msgstr "URL del portal del cliente"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.ui.menu,name:l10n_do_ecf_connector.ecf_documents_root
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.view_move_form_inherit
+msgid "DGII"
+msgstr "DGII"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_uom_uom__ecf_code
+msgid "DGII Code"
+msgstr "Código DGII"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_form_view
+msgid "DGII Logo"
+msgstr "Logo DGII"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_bank_statement_line__l10n_do_ecf_send_state
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_move__l10n_do_ecf_send_state
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_payment__l10n_do_ecf_send_state
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.view_account_invoice_filter_inherit
+msgid "DGII State"
+msgstr "DGII Estado"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__publication_date
+msgid "Date of Publication"
+msgstr "Fecha de publicación"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Delivered and accepted"
+msgstr "Aceptado"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Delivered and pending"
+msgstr "En Proceso"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Delivered and refused"
+msgstr "Rechazado"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__display_name
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__display_name
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__display_name
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_view_search
+msgid "Document"
+msgstr "Documento"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_view_search
+msgid "Document Type"
+msgstr "Tipo de documento"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_bank_statement_line__ecf_id
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_move__ecf_id
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_payment__ecf_id
+msgid "ECF Document"
+msgstr "ECF Documento"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_country_state__ecf_code
+msgid "ECF code"
+msgstr "Código ECF"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.actions.server,name:l10n_do_ecf_connector.ecf_cron_invoices_delivered_pending_ir_actions_server
+msgid "ECF: Send Invoice Pending to DGII"
+msgstr "ECF: Enviar facturas pendientes a DGII"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.view_move_form_inherit
+msgid "El comprobante aun no ha sido validado"
+msgstr "El comprobante aun no ha sido validado"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_res_municipality__ecf_code
+msgid "El código del municipio"
+msgstr "El código del municipio"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_ecf_document
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_form_view
+msgid "Electronic Document"
+msgstr "Documento electrónico"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.actions.act_window,name:l10n_do_ecf_connector.action_ecf_document_action
+#: model:ir.ui.menu,name:l10n_do_ecf_connector.ecf_documents_menu
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_form_view
+msgid "Electronic Documents"
+msgstr "Documentos electrónico"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_bank_statement_line__l10n_do_electronic_stamp
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_move__l10n_do_electronic_stamp
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_payment__l10n_do_electronic_stamp
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__l10n_do_electronic_stamp
+msgid "Electronic Stamp"
+msgstr "Sello Electrónico"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_company__ecf_config
+msgid "Electronic Voucher Setting"
+msgstr "Interfaz"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.ui.menu,name:l10n_do_ecf_connector.ecf_documents_main
+msgid "Electronic Vouchers"
+msgstr "Comprobantes electrónicos"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_ecf_settings
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_configuration_view
+msgid "Electronic Vouchers Configuration"
+msgstr "Configuración de Comprobantes Electrónicos"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_ecf_settings_version
+msgid "Electronic Vouchers Configuration Version"
+msgstr "Versión de Configuración de Comprobantes Electrónicos"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.actions.act_window,name:l10n_do_ecf_connector.ecf_configuration_action
+#: model:ir.ui.menu,name:l10n_do_ecf_connector.ecf_settings_menu
+msgid "Electronic Vouchers Settings"
+msgstr "Interfaces"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_EA
+msgid "Elemento"
+msgstr "Elemento"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Asistente de redacción de correo electrónico."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__environment
+msgid "Environment"
+msgstr "Entorno"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.constraint,message:l10n_do_ecf_connector.constraint_ecf_settings_environment_unique
+msgid "Environment must be unique"
+msgstr "El entorno debe ser único"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Error XML file already generated and cannot be modified"
+msgstr "Error: el archivo XML ya fue generado y no puede ser modificado"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_FARD
+msgid "Fardo"
+msgstr "Fardo"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono Font Awesome ej. fa-tasks"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "For amount >= 2500 must be specific a RNC"
+msgstr "Para montos >= 2500 debe especificar un RNC"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "For amount >= 2500 must be specific a Razon Social o Name"
+msgstr "Para montos >= 2500 debe especificar una Razón Social o Nombre"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_configuration_view
+msgid "General"
+msgstr "General"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Go to Companies"
+msgstr "Ir a Compañías"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Go to Setting"
+msgstr "Ir a Configuración"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_GRAD
+msgid "Grado"
+msgstr "Grado"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_GR
+msgid "Gramo"
+msgstr "Gramo"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_GRAN
+msgid "Granel"
+msgstr "Granel"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_view_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.actions.act_window,help:l10n_do_ecf_connector.action_ecf_document_action
+msgid "Haga clic para agregar un documento."
+msgstr "Haga clic para agregar un documento."
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.actions.act_window,help:l10n_do_ecf_connector.ecf_configuration_action
+msgid "Haga clic para agregar un registro."
+msgstr "Haga clic para agregar un registro."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_HUAC
+msgid "Huacal"
+msgstr "Huacal"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__id
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__id
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__id
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, nuevos mensajes requieren su atención."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__message_has_error
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen error de entrega."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__invoice_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_bank_statement_line__is_rfce
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_move__is_rfce
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_payment__is_rfce
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__is_rfce
+msgid "Is RFCE"
+msgstr "Es RFCE"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_company__l10n_do_ecf_issuer
+msgid "Is e-CF issuer"
+msgstr "Es Emisor Electrónico"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__key
+msgid "Key"
+msgstr "Clave"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_kWh
+msgid "Kilovatio Hora"
+msgstr "Kilovatio Hora"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__write_uid
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__write_uid
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__write_uid
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__write_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__write_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__write_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_LAT
+msgid "Lata"
+msgstr "Lata"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_LITRO
+msgid "Litro"
+msgstr "Litro"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_LOT
+msgid "Lote"
+msgstr "Lote"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_form_view
+msgid "Message DGII"
+msgstr "Mensajes DGII"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de entrega de mensaje"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_MILLAR
+msgid "Millar"
+msgstr "Millar"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_MMBTU
+msgid "Millones de Unidades Térmicas"
+msgstr "Millones de Unidades Térmicas"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_res_municipality
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_partner__res_municipality_id
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_users__res_municipality_id
+msgid "Municipality"
+msgstr "Municipio"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.view_form_partner_inherit
+msgid "Municipality..."
+msgstr "Municipio..."
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/account_move.py:0
+#: code:addons/l10n_do_ecf_connector/models/account_move.py:0
+#, python-format
+msgid "Must be a xml file."
+msgstr "Debe ser un archivo XML."
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Must be selected an Environment in a Company."
+msgstr "Debe seleccionar un Entorno en la Compañía."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha límite de mi actividad"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__name
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_file_name
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_netvux_file_name
+msgid "Name of XML file"
+msgstr "Nombre del archivo XML"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__ncf_type
+msgid "Ncf Type"
+msgstr "Tipo NCF"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha límite próxima actividad"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen próxima actividad"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de próxima actividad"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_account_bank_statement_line__l10n_do_ecf_send_state
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_account_move__l10n_do_ecf_send_state
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_account_payment__l10n_do_ecf_send_state
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__l10n_do_ecf_send_state
+msgid ""
+"No enviado(Estado por defecto): ECF en borrador. En este punto aun no se ha construido el xml.\n"
+" Firmado y pendiente: ECF firmado y pendiente de enviar a la DGII.\n"
+" Error al enviar a DGII: Odoo no tine conexion.\n"
+" Aceptado: ECF recepcionado y procesado de forma exitosa por la FGII.\n"
+" Aceptado Condicional: ECF recepcionado y procesado, no cumplió en algún punto pero que no ameritó el rechazo.\n"
+" Pendiente: ECF recepcionado y procesado, corresponde a que el comprobante aún no ha sido validado y por ende se debe esperar un tiempo prudencial antes de volver a consultar.\n"
+" Rechazado: ECF recepcionado y procesado, implica la nulidad del comprobante para fines tributario debido a que en algún punto no cumplió."
+msgstr ""
+"No enviado(Estado por defecto): ECF en borrador. En este punto aun no se ha construido el xml.\n"
+" Firmado y pendiente: ECF firmado y pendiente de enviar a la DGII.\n"
+" Error al enviar a DGII: Odoo no tiene conexión.\n"
+" Aceptado: ECF recepcionado y procesado de forma exitosa por la DGII.\n"
+" Aceptado Condicional: ECF recepcionado y procesado, no cumplió en algún punto pero que no ameritó el rechazo.\n"
+" Pendiente: ECF recepcionado y procesado, corresponde a que el comprobante aún no ha sido validado y por ende se debe esperar un tiempo prudencial antes de volver a consultar.\n"
+" Rechazado: ECF recepcionado y procesado, implica la nulidad del comprobante para fines tributarios debido a que en algún punto no cumplió."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_dgii_file_name
+msgid "Nombre Archivo XML"
+msgstr "Nombre Archivo XML"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Not Found"
+msgstr "No encontrado"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "To sent"
+msgstr "Para enviar"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__number
+msgid "Number"
+msgstr "Número"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren acción"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_configuration_view
+msgid "PROBAR CONEXIÓN"
+msgstr "PROBAR CONEXIÓN"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_PAQ
+msgid "Paquete"
+msgstr "Paquete"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_PAR
+msgid "Par"
+msgstr "Par"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_PIE
+msgid "Pie"
+msgstr "Pie"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_PZA
+msgid "Pieza"
+msgstr "Pieza"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__access_url
+msgid "Portal Access URL"
+msgstr "URL de acceso al portal"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields.selection,name:l10n_do_ecf_connector.selection__ecf_settings__environment__testecf
+msgid "Pre-certification"
+msgstr "Pre-certificación"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model,name:l10n_do_ecf_connector.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr "Unidad de medida del producto"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields.selection,name:l10n_do_ecf_connector.selection__ecf_settings__environment__ecf
+msgid "Production"
+msgstr "Producción"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_form_view
+msgid "QR"
+msgstr "QR"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_Q
+msgid "Quintal"
+msgstr "Quintal"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_RAC
+msgid "Ración"
+msgstr "Ración"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_form_view
+msgid "Request State NETVUX"
+msgstr "Solicitar estado a NETVUX"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__resolution
+msgid "Resolution"
+msgstr "Resolución"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__url
+msgid "Resolution URL"
+msgstr "URL de Resolución"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.view_move_form_inherit
+msgid "Resumen Factura de Consumo Electrónica (RD$250,000) (RFCE)"
+msgstr "Resumen Factura de Consumo Electrónica (RD$250,000) (RFCE)"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_ROL
+msgid "Rollo"
+msgstr "Rollo"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_SAC
+msgid "Saco"
+msgstr "Saco"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__access_token
+msgid "Security Token"
+msgstr "Token de seguridad"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_SEG
+msgid "Segundo"
+msgstr "Segundo"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__send_dgii
+msgid "Send Dgii"
+msgstr "Enviar a DGII"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Signed and pending"
+msgstr "Firmado y pendiente"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_SOBR
+msgid "Sobre"
+msgstr "Sobre"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_res_municipality__state_id
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_document_view_search
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencido: La fecha límite ya pasó\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_TANQUE
+msgid "Tanque"
+msgstr "Tanque"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "The partner has not defined an NIF"
+msgstr "El contacto no tiene definido un RNC/Cédula"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__xml_file
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__xml_netvux_file
+msgid "This field holds the XML file generated and signed by system"
+msgstr "Este campo contiene el archivo XML generado y firmado por el sistema"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "This service is not available in this environment (%s)"
+msgstr "Este servicio no está disponible en este entorno (%s)"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_TONE
+msgid "Tonelada"
+msgstr "Tonelada"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_TUB
+msgid "Tubo"
+msgstr "Tubo"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción en el registro."
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.actions.act_window,help:l10n_do_ecf_connector.action_ecf_document_action
+msgid ""
+"Una documento es un registro de la compañia a la DGII que genera la "
+"facturacion electrónica."
+msgstr ""
+"Un documento es un registro de la compañía a la DGII que genera la "
+"facturación electrónica."
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.actions.act_window,help:l10n_do_ecf_connector.ecf_configuration_action
+msgid ""
+"Una registro de Configuración de Comprobantes Electrónicos permite añadir "
+"toda la información necesaria para el envio de documentos a DGII."
+msgstr ""
+"Un registro de Configuración de Comprobantes Electrónicos permite añadir "
+"toda la información necesaria para el envío de documentos a DGII."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__user
+msgid "User"
+msgstr "Usuario"
+
+#. module: l10n_do_ecf_connector
+#: model_terms:ir.ui.view,arch_db:l10n_do_ecf_connector.ecf_configuration_view
+msgid "User info"
+msgstr "Información del usuario"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings__ce_version
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_settings_version__name
+msgid "Version"
+msgstr "Versión"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__l10n_latam_document_type_id
+msgid "Voucher Type"
+msgstr "Tipo de comprobante"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_ecf_document__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,help:l10n_do_ecf_connector.field_res_company__l10n_do_ecf_issuer
+msgid "When activating this field, NCF issuance is disabled."
+msgstr "Cuando este campo es activado, la emisión de NCF es deshabilitada."
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#: code:addons/l10n_do_ecf_connector/models/ecf_settings.py:0
+#, python-format
+msgid "Wrong external service URL"
+msgstr "URL del servicio externo incorrecta"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_dgii_file
+msgid "XML DGII File"
+msgstr "Archivo XML DGII"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_file
+msgid "XML File"
+msgstr "Archivo XML"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__xml_netvux_file
+msgid "XML NETVUX File"
+msgstr "Archivo XML NETVUX"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_YD
+msgid "Yarda"
+msgstr "Yarda"
+
+#. module: l10n_do_ecf_connector
+#: model:uom.uom,name:l10n_do_ecf_connector.product_uom_SQUARE_YD
+msgid "Yarda cuadrada"
+msgstr "Yarda cuadrada"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/res_company.py:0
+#, python-format
+msgid ""
+"You cannot change company ECF Environment since there are invoices sent to "
+"%s"
+msgstr ""
+"No puede cambiar el entorno ECF de la compañía porque hay facturas enviadas a "
+"%s"
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Your company has not defined a street."
+msgstr "Su compañía no tiene definida una dirección."
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Your company has not defined an NIF."
+msgstr "Su compañía no tiene definido un RNC."
+
+#. module: l10n_do_ecf_connector
+#. odoo-python
+#: code:addons/l10n_do_ecf_connector/models/ecf_document.py:0
+#, python-format
+msgid "Your company has not defined an Name."
+msgstr "Su compañía no tiene definido un Nombre."
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_uom_uom__ecf_code
+msgid "e-CF Code"
+msgstr "Código e-CF"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_bank_statement_line__l10n_do_ecf_security_code
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_move__l10n_do_ecf_security_code
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_payment__l10n_do_ecf_security_code
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__l10n_do_ecf_security_code
+msgid "e-CF Security Code"
+msgstr "Código Seguridad e-CF"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__l10n_do_ecf_send_state
+msgid "e-CF Send State"
+msgstr "Estado e-CF"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_bank_statement_line__l10n_do_ecf_sign_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_move__l10n_do_ecf_sign_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_account_payment__l10n_do_ecf_sign_date
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__l10n_do_ecf_sign_date
+msgid "e-CF Sign Date"
+msgstr "Fecha de firma e-CF"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.fields,field_description:l10n_do_ecf_connector.field_ecf_document__name
+msgid "e-NCF"
+msgstr "e-NCF"
+
+#. module: l10n_do_ecf_connector
+#: model:ir.model.constraint,message:l10n_do_ecf_connector.constraint_res_municipality_name_code_uniq
+msgid "¡El código del municipio debe ser único por provincia!"
+msgstr "¡El código del municipio debe ser único por provincia!"

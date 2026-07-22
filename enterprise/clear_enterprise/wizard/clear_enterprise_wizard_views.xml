@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="clear_enterprise_wizard_form" model="ir.ui.view">
+        <field name="name">clear.enterprise.wizard.form</field>
+        <field name="model">clear.enterprise.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Limpiar Licencia Enterprise">
+                <group>
+                    <div class="alert alert-warning" role="alert" colspan="2">
+                        <p>
+                            <strong>Atención (Odoo 19):</strong> al confirmar y pulsar «Limpiar licencia»
+                            se eliminan de <code>ir.config_parameter</code> estos registros si existen:
+                        </p>
+                        <ul class="mb-0">
+                            <li><code>database.enterprise_code</code></li>
+                            <li><code>database.expiration_date</code></li>
+                            <li><code>database.expiration_reason</code></li>
+                            <li><code>database.already_linked_subscription_url</code></li>
+                            <li><code>database.already_linked_email</code></li>
+                            <li><code>database.already_linked_send_mail_url</code></li>
+                        </ul>
+                        <p class="mb-0 mt-2">
+                            Tras limpiar, se escribe un estado local «trial vencido» (fecha en el pasado),
+                            porque el cliente web de Odoo 19 asume 30 días válidos si no hay fecha.
+                            Además se pausa la sincronización con odoo.com (parámetro
+                            <code>clear_enterprise.block_remote_license_sync</code>): si no se hiciera,
+                            el aviso «Publisher: Update Notification» volvería a poner la fecha de su
+                            contrato (p. ej. abril de 2027). Esa pausa se quita automáticamente al guardar
+                            un nuevo código de suscripción en el formulario de registro.
+                        </p>
+                    </div>
+                    <group string="Licencia Actual">
+                        <field name="current_code"/>
+                        <field name="current_expiration"/>
+                    </group>
+                    <group string="Confirmación">
+                        <field name="confirm"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_clear_license"
+                            string="Limpiar Licencia"
+                            type="object"
+                            class="btn-primary"
+                            icon="fa-trash"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_clear_enterprise_wizard" model="ir.actions.act_window">
+        <field name="name">Limpiar Licencia Enterprise</field>
+        <field name="res_model">clear.enterprise.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,790 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_do_partner_autocomplete
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-18 23:57+0000\n"
+"PO-Revision-Date: 2026-03-18 23:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+msgid "<span class=\"fa fa-info-circle me-2\" title=\"Información DGII\"/>"
+msgstr "<span class=\"fa fa-info-circle me-2\" title=\"Información DGII\"/>"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+msgid "<strong>Datos DGII:</strong>"
+msgstr "<strong>Datos DGII:</strong>"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_preview_activity
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_preview_activity
+msgid "Actividad (DGII)"
+msgstr "Actividad (DGII)"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__l10n_do_dgii_activity
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_activity
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_activity
+msgid "Actividad Económica"
+msgstr "Actividad Economica"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_preview_activity
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_preview_activity
+msgid "Actividad económica del contribuyente"
+msgstr "Actividad economica del contribuyente"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_activity
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_activity
+msgid "Actividad económica registrada en la DGII"
+msgstr "Actividad economica registrada en la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+msgid "Actividad:"
+msgstr "Actividad:"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_form_dgii_info
+msgid "Actualizar DGII"
+msgstr "Actualizar DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_temp_local_admin
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_temp_local_admin
+msgid "Admin Local Temp"
+msgstr "Admin Local Temp"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__l10n_do_dgii_local_admin
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_local_admin
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_local_admin
+msgid "Administración Local"
+msgstr "Administracion Local"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_local_admin
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_local_admin
+msgid "Administración local de la DGII"
+msgstr "Administracion local de la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_search
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_search
+msgid "Buscar RNC/Cédula"
+msgstr "Buscar RNC/Cedula"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+msgid "Buscar por RNC/Cédula..."
+msgstr "Buscar por RNC/Cedula..."
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Cancelar"
+msgstr "Cancelar"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__l10n_do_dgii_category
+msgid "Categoría"
+msgstr "Categoria"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_category
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_category
+msgid "Categoría (DGII)"
+msgstr "Categoria (DGII)"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_temp_category
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_temp_category
+msgid "Categoría Temp"
+msgstr "Categoría Temp"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_category
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_category
+msgid "Categoría del contribuyente en la DGII"
+msgstr "Categoria del contribuyente en la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__city
+msgid "Ciudad"
+msgstr "Ciudad"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "Consulta DGII"
+msgstr "Consulta DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model,name:l10n_do_partner_autocomplete.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+#: code:addons/l10n_do_partner_autocomplete/wizard/partner_from_rnc_wizard.py:0
+msgid "Contacto Creado"
+msgstr "Contacto Creado"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "Contacto Encontrado"
+msgstr "Contacto Encontrado"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid "Contacto Existente"
+msgstr "Contacto Existente"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__l10n_do_dgii_tax_payer_type__taxpayer
+msgid "Contribuyente"
+msgstr "Contribuyente"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid ""
+"Contribuyente: %s\n"
+"Estado: %s"
+msgstr "Contribuyente: %s\nEstado: %s"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid ""
+"Contribuyente: %s\n"
+"Estado: %s\n"
+"Actividad: %s\n"
+"\n"
+"Use los botones para crear el contacto."
+msgstr ""
+"Contribuyente: %s\n"
+"Estado: %s\n"
+"Actividad: %s\n"
+"\n"
+"Use los botones para crear el contacto."
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__email
+msgid "Correo Electrónico"
+msgstr "Correo Electronico"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Crear"
+msgstr "Crear"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+#: model:ir.actions.act_window,name:l10n_do_partner_autocomplete.action_partner_from_rnc_wizard
+#: model:ir.model,name:l10n_do_partner_autocomplete.model_l10n_do_partner_from_rnc_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Crear Contacto desde RNC"
+msgstr "Crear Contacto desde RNC"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+msgid "Crear contacto con datos de DGII"
+msgstr "Crear contacto con datos de DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+msgid "Crear contacto y abrir formulario para editar"
+msgstr "Crear contacto y abrir formulario para editar"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Crear y Editar"
+msgstr "Crear y Editar"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+msgid "Crear y editar"
+msgstr "Crear y editar"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__vat_type__cedula
+msgid "Cédula (Persona)"
+msgstr "Cedula (Persona)"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid "Datos DGII Cargados"
+msgstr "Datos DGII Cargados"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_data_ready
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_data_ready
+msgid "Datos DGII Listos"
+msgstr "Datos DGII Listos"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid "Datos actualizados"
+msgstr "Datos actualizados"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Datos de Contacto (Opcional)"
+msgstr "Datos de Contacto (Opcional)"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_form_dgii_info
+msgid "Datos del Contribuyente"
+msgstr "Datos del Contribuyente"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Datos del RNC"
+msgstr "Datos del RNC"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__street
+msgid "Dirección"
+msgstr "Direccion"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Nombre en pantalla"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+#: code:addons/l10n_do_partner_autocomplete/wizard/partner_from_rnc_wizard.py:0
+msgid "Editar Contacto"
+msgstr "Editar Contacto"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "El RNC/Cédula ingresado no tiene un formato válido."
+msgstr "El RNC/Cédula ingresado no tiene un formato válido."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid ""
+"El RNC/Cédula ingresado no tiene un formato válido. Debe ser un RNC de 9 "
+"dígitos o una Cédula de 11 dígitos."
+msgstr "El RNC/Cedula ingresado no tiene un formato valido. Debe ser un RNC de 9 digitos o una Cedula de 11 digitos."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/wizard/partner_from_rnc_wizard.py:0
+msgid "El contacto \"%s\" ha sido creado y asignado a la factura."
+msgstr "El contacto \"%s\" ha sido creado y asignado a la factura."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "El contacto \"%s\" ha sido creado y asignado."
+msgstr "El contacto \"%s\" ha sido creado y asignado."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "El contacto \"%s\" ya existe y ha sido seleccionado."
+msgstr "El contacto \"%s\" ya existe y ha sido seleccionado."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid "El contacto no tiene RNC/Cédula configurado."
+msgstr "El contacto no tiene RNC/Cedula configurado."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid ""
+"El formato del RNC/Cédula no es válido. Debe ser un RNC de 9 dígitos o una "
+"Cédula de 11 dígitos. No debe contener guiones ni otros caracteres "
+"especiales."
+msgstr "El formato del RNC/Cedula no es valido. Debe ser un RNC de 9 digitos o una Cedula de 11 digitos. No debe contener guiones ni otros caracteres especiales."
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__company_type__company
+msgid "Empresa"
+msgstr "Empresa"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid "Esta acción solo está disponible para contactos dominicanos."
+msgstr "Esta accion solo esta disponible para contactos dominicanos."
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_preview_status
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_preview_status
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__l10n_do_dgii_status
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_status
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_status
+msgid "Estado (DGII)"
+msgstr "Estado (DGII)"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_preview_status
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_preview_status
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_status
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_status
+msgid "Estado del contribuyente en la DGII"
+msgstr "Estado del contribuyente en la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__l10n_do_dgii_tax_payer_type__foreigner
+msgid "Extranjero"
+msgstr "Extranjero"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__move_id
+msgid "Factura"
+msgstr "Factura"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_last_update
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_last_update
+msgid "Fecha y hora de la última consulta a la DGII"
+msgstr "Fecha y hora de la ultima consulta a la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "Formato Inválido"
+msgstr "Formato Invalido"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__l10n_do_dgii_tax_payer_type__governmental
+msgid "Gubernamental"
+msgstr "Gubernamental"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__id
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_data_ready
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_data_ready
+msgid "Indica si hay datos de la DGII listos para crear un contacto"
+msgstr "Indica si hay datos de la DGII listos para crear un contacto"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Información Adicional"
+msgstr "Informacion Adicional"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_form_dgii_info
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Información DGII"
+msgstr "Informacion DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_form_dgii_info
+msgid "Información Fiscal"
+msgstr "Informacion Fiscal"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_search
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_search
+msgid "Ingrese el RNC o Cédula para buscar el contribuyente en la DGII"
+msgstr "Ingrese el RNC o Cedula para buscar el contribuyente en la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model,name:l10n_do_partner_autocomplete.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Último Actualizado por"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización en"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid "Los datos de la DGII han sido actualizados correctamente."
+msgstr "Los datos de la DGII han sido actualizados correctamente."
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__mobile
+msgid "Móvil"
+msgstr "Movil"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__l10n_do_dgii_tax_payer_type__non_payer
+msgid "No Contribuyente"
+msgstr "No Contribuyente"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid ""
+"No se encontró información en la DGII para el RNC/Cédula: %s. Verifique que "
+"el número sea correcto."
+msgstr "No se encontro informacion en la DGII para el RNC/Cedula: %s. Verifique que el numero sea correcto."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid ""
+"No se pudieron obtener datos de la DGII para el RNC/Cédula: %s. Por favor, "
+"verifique que el número sea correcto e intente nuevamente."
+msgstr "No se pudieron obtener datos de la DGII para el RNC/Cedula: %s. Por favor, verifique que el numero sea correcto e intente nuevamente."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid ""
+"No se pudo obtener información de la DGII para el RNC/Cédula: %s. Puede "
+"crear el contacto manualmente."
+msgstr "No se pudo obtener informacion de la DGII para el RNC/Cedula: %s. Puede crear el contacto manualmente."
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__name
+msgid "Nombre"
+msgstr "Nombre"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_preview_name
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_preview_name
+msgid "Nombre (DGII)"
+msgstr "Nombre (DGII)"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__l10n_do_dgii_commercial_name
+msgid "Nombre Comercial"
+msgstr "Nombre Comercial"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_commercial_name
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_commercial_name
+msgid "Nombre Comercial (DGII)"
+msgstr "Nombre Comercial (DGII)"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_temp_commercial_name
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_temp_commercial_name
+msgid "Nombre Comercial Temp"
+msgstr "Nombre Comercial Temp"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_commercial_name
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_commercial_name
+msgid "Nombre comercial registrado en la DGII"
+msgstr "Nombre comercial registrado en la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_from_rnc_wizard_form
+msgid "Nombre del Contacto"
+msgstr "Nombre del Contacto"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_preview_name
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_preview_name
+msgid "Nombre del contribuyente según la DGII"
+msgstr "Nombre del contribuyente segun la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_name
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_name
+msgid "Nombre o Razón Social según registros de la DGII"
+msgstr "Nombre o Razon Social segun registros de la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__l10n_do_dgii_name
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_name
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_name
+msgid "Nombre/Razón Social (DGII)"
+msgstr "Nombre/Razon Social (DGII)"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__company_type__person
+msgid "Persona"
+msgstr "Persona"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "Primero debe buscar un RNC/Cédula válido."
+msgstr "Primero debe buscar un RNC/Cédula válido."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "Primero debe ingresar un RNC/Cédula en el campo de búsqueda."
+msgstr "Primero debe ingresar un RNC/Cedula en el campo de busqueda."
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__vat_type__rnc
+msgid "RNC (Empresa)"
+msgstr "RNC (Empresa)"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_search_dgii
+msgid "RNC Activo"
+msgstr "RNC Activo"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "RNC Encontrado en DGII"
+msgstr "RNC Encontrado en DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_partner_search_dgii
+msgid "RNC Inactivo"
+msgstr "RNC Inactivo"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid "RNC No Encontrado"
+msgstr "RNC No Encontrado"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__vat
+msgid "RNC/Cédula"
+msgstr "RNC/Cedula"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__l10n_do_dgii_tax_payer_type__special
+msgid "Régimen Especial"
+msgstr "Regimen Especial"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_temp_payment_regime
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_temp_payment_regime
+msgid "Régimen Pagos Temp"
+msgstr "Régimen Pagos Temp"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__l10n_do_dgii_payment_regime
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_payment_regime
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_payment_regime
+msgid "Régimen de Pagos"
+msgstr "Regimen de Pagos"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_payment_regime
+#: model:ir.model.fields,help:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_payment_regime
+msgid "Régimen de pagos según la DGII"
+msgstr "Regimen de pagos segun la DGII"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/account_move.py:0
+msgid ""
+"Se encontró el contacto \"%s\" con RNC %s. Ha sido seleccionado "
+"automáticamente."
+msgstr "Se encontro el contacto \"%s\" con RNC %s. Ha sido seleccionado automaticamente."
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid ""
+"Se encontró el contribuyente: %s\n"
+"Estado: %s\n"
+"Actividad: %s"
+msgstr "Se encontró el contribuyente: %s\nEstado: %s\nActividad: %s"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields.selection,name:l10n_do_partner_autocomplete.selection__l10n_do_partner_from_rnc_wizard__l10n_do_dgii_tax_payer_type__nonprofit
+msgid "Sin fines de lucro"
+msgstr "Sin fines de lucro"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__phone
+msgid "Teléfono"
+msgstr "Telefono"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__vat_type
+msgid "Tipo"
+msgstr "Tipo"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_bank_statement_line__l10n_do_rnc_temp_vat_type
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_account_move__l10n_do_rnc_temp_vat_type
+msgid "Tipo VAT Temp"
+msgstr "Tipo VAT Temp"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__company_type
+msgid "Tipo de Contacto"
+msgstr "Tipo de Contacto"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_l10n_do_partner_from_rnc_wizard__l10n_do_dgii_tax_payer_type
+msgid "Tipo de Contribuyente"
+msgstr "Tipo de Contribuyente"
+
+
+#. module: l10n_do_partner_autocomplete
+#. odoo-python
+#: code:addons/l10n_do_partner_autocomplete/models/res_partner.py:0
+msgid "Ya existe un contacto con este RNC/Cédula: %s"
+msgstr "Ya existe un contacto con este RNC/Cédula: %s"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model_terms:ir.ui.view,arch_db:l10n_do_partner_autocomplete.view_move_form_dgii_rnc_search
+msgid "| Estado:"
+msgstr "| Estado:"
+
+
+#. module: l10n_do_partner_autocomplete
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_partner__l10n_do_dgii_last_update
+#: model:ir.model.fields,field_description:l10n_do_partner_autocomplete.field_res_users__l10n_do_dgii_last_update
+msgid "Última Consulta DGII"
+msgstr "Ultima Consulta DGII"

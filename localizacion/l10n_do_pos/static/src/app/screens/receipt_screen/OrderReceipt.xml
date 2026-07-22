@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!-- Template dominicano para Odoo 19 - usa getters del componente -->
+    <!-- Autor: Arturo Diaz Lora - 2026-01-10 -->
+    <t t-name="point_of_sale.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-receipt')]" position="replace">
+            <div class="pos-receipt dominican-receipt p-2">
+                <!-- Logo de la empresa -->
+                <div t-if="pos and pos.config and pos.config.show_receipt_logo and companyData.id" class="text-center" style="margin-bottom: 10px;">
+                    <img t-attf-src="/web/image?model=res.company&amp;id={{companyData.id}}&amp;field=logo"
+                         alt="Logo" class="pos-receipt-logo"/>
+                </div>
+
+                <!-- Información de la empresa -->
+                <div class="d-flex flex-column align-items-center" style="margin-bottom: 15px;">
+                    <div class="pos-receipt-contact" style="text-align: center; line-height: 1.4;">
+                        <div class="pos-receipt-title" style="margin-bottom: 8px;">
+                            <t t-esc="companyData.name"/>
+                        </div>
+                        <div t-if="companyData.street" style="margin-bottom: 5px;">
+                            <t t-esc="companyData.street"/>
+                            <t t-if="companyData.city">, <t t-esc="companyData.city"/></t>
+                        </div>
+                        <div t-if="companyData.vat" style="margin-bottom: 3px;">
+                            RNC: <t t-esc="companyData.vat"/>
+                        </div>
+                        <div t-if="companyData.phone" style="margin-bottom: 3px;">
+                            Tel: <t t-esc="companyData.phone"/>
+                        </div>
+                        <div t-if="companyData.email" style="margin-bottom: 3px;">
+                            <t t-esc="companyData.email"/>
+                        </div>
+                        <div t-if="companyData.website" style="margin-bottom: 3px;">
+                            <t t-esc="companyData.website"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Línea separadora -->
+                <div class="text-center" style="margin: 15px 0; font-weight: bold;">
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                </div>
+
+                <!-- Información fiscal -->
+                <div class="pos-receipt-order-data" style="margin-bottom: 15px;">
+                    <!-- Tipo de documento fiscal -->
+                    <div class="pos-receipt-header text-center" style="font-weight: bold; margin: 8px 0; text-decoration: underline;">
+                        <t t-esc="documentTypeName"/>
+                    </div>
+
+                    <!-- NCF -->
+                    <div t-if="dominicanFiscalData.to_invoice" class="text-center" style="font-weight: bold; margin: 6px 0;">
+                        <t t-if="dominicanFiscalData.ncf">
+                            <t t-if="isElectronicInvoice">e-NCF: </t>
+                            <t t-else="">NCF: </t>
+                            <span style="color: #28a745;"><t t-esc="dominicanFiscalData.ncf"/></span>
+                        </t>
+                        <t t-else="">
+                            <span style="color: #ffc107;">NCF: PROCESANDO...</span>
+                        </t>
+                    </div>
+
+                    <!-- Vencimiento NCF -->
+                    <div t-if="dominicanFiscalData.l10n_do_ncf_expiration_date" class="text-center" style="font-weight: bold; margin: 4px 0; font-size: 90%;">
+                        Vencimiento <t t-if="isElectronicInvoice">e-</t>NCF: <t t-esc="dominicanFiscalData.l10n_do_ncf_expiration_date"/>
+                    </div>
+
+                    <!-- NCF Modificado (para notas de crédito) -->
+                    <div t-if="dominicanFiscalData.origin_ncf" class="text-center" style="font-weight: bold; margin: 4px 0;">
+                        <t t-if="isElectronicInvoice">e-</t>NCF Modificado: <t t-esc="dominicanFiscalData.origin_ncf"/>
+                    </div>
+
+                    <!-- Orden y fecha -->
+                    <div style="margin: 12px 0; text-align: center; line-height: 1.3;">
+                        <div style="margin-bottom: 4px;">
+                            Pedido: <strong><t t-esc="orderName"/></strong>
+                        </div>
+                        <div style="margin-bottom: 4px;">
+                            FECHA: <t t-esc="formattedDate"/>
+                        </div>
+                    </div>
+
+                    <!-- Cliente -->
+                    <div style="margin: 10px 0; text-align: center; line-height: 1.3;">
+                        <t t-if="partnerData.name">
+                            <div style="margin-bottom: 4px;">
+                                <strong>CLIENTE:</strong> <t t-esc="partnerData.name"/>
+                            </div>
+                            <div t-if="partnerData.vat" style="margin-bottom: 4px;">
+                                <strong>RNC/CED.:</strong> <t t-esc="partnerData.vat"/>
+                            </div>
+                            <div t-if="partnerData.email" style="margin-bottom: 4px;">
+                                <strong>EMAIL:</strong> <t t-esc="partnerData.email"/>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div style="margin-bottom: 4px;">
+                                <strong>CLIENTE:</strong> Consumidor Final
+                            </div>
+                        </t>
+                    </div>
+
+                    <!-- Cajero -->
+                    <div t-if="cashierName" style="text-align: center; margin: 6px 0;">
+                        <strong>CAJER@:</strong> <t t-esc="cashierName"/>
+                    </div>
+                </div>
+
+                <!-- Línea separadora -->
+                <div class="text-center" style="margin: 15px 0; font-weight: bold;">
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                </div>
+
+                <!-- Productos -->
+                <div class="orderlines" t-if="orderlines.length" style="margin: 15px 0;">
+                    <table style="width: 100%; font-size: 87%; border-collapse: collapse;">
+                        <tr style="border-bottom: 2px dashed black; font-weight: bold; background-color: #f8f9fa;">
+                            <th width="40%" style="text-align: left; padding: 6px 4px;">Producto</th>
+                            <th width="12%" style="text-align: center; padding: 6px 4px;">Ctd</th>
+                            <th width="24%" style="text-align: center; padding: 6px 4px;">Precio</th>
+                            <th width="24%" style="text-align: center; padding: 6px 4px;">Total</th>
+                        </tr>
+                        <t t-foreach="orderlines" t-as="line" t-key="line.id || line_index">
+                            <tr style="border-bottom: 1px dashed #ddd;">
+                                <td style="text-align: left; padding: 8px 4px; vertical-align: top;">
+                                    <div style="line-height: 1.3;">
+                                        <strong><t t-esc="line.productName"/></strong>
+                                        <t t-if="line.discount and line.discount != 0">
+                                            <br/><small style="color: #e74c3c; font-size: 80%; font-style: italic;">
+                                                <t t-esc="line.discount"/>% Descuento
+                                            </small>
+                                        </t>
+                                        <t t-if="line.customerNote">
+                                            <br/><small style="font-style: italic; color: #6c757d; font-size: 80%;">
+                                                *<t t-esc="line.customerNote"/>
+                                            </small>
+                                        </t>
+                                    </div>
+                                </td>
+                                <td style="text-align: center; padding: 8px 4px; vertical-align: middle;">
+                                    <strong><t t-esc="line.qty"/></strong>
+                                </td>
+                                <td style="text-align: center; padding: 8px 4px; vertical-align: middle;">
+                                    <strong><t t-esc="line.unitPrice"/></strong>
+                                </td>
+                                <td style="text-align: center; padding: 8px 4px; vertical-align: middle;">
+                                    <strong><t t-esc="line.price"/></strong>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+
+                <!-- Línea separadora -->
+                <div class="text-center" style="margin: 15px 0; font-weight: bold;">
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                </div>
+
+                <!-- Totales -->
+                <div t-if="orderlines.length" style="margin: 15px 0;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 90%;">
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 6px 0; font-weight: 500;">Subtotal:</td>
+                            <td class="pos-receipt-right-align" style="padding: 6px 0; font-weight: bold;">
+                                RD$ <t t-esc="totals.subtotal"/>
+                            </td>
+                        </tr>
+                        <t t-foreach="taxDetails" t-as="tax" t-key="tax.name || tax_index">
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 6px 0; font-weight: 500;">
+                                    <t t-esc="tax.name"/>
+                                </td>
+                                <td class="pos-receipt-right-align" style="padding: 6px 0; font-weight: bold;">
+                                    RD$ <t t-esc="tax.amount"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr t-if="totals.discount and totals.discount !== '0.00'" style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 6px 0; font-weight: 500; color: #e74c3c;">Descuento:</td>
+                            <td class="pos-receipt-right-align" style="padding: 6px 0; font-weight: bold; color: #e74c3c;">
+                                - RD$ <t t-esc="totals.discount"/>
+                            </td>
+                        </tr>
+                        <tr style="border-top: 2px solid #333; border-bottom: 2px solid #333; background-color: #f8f9fa;">
+                            <td style="padding: 10px 0; font-weight: bold; font-size: 110%;">TOTAL:</td>
+                            <td class="pos-receipt-right-align" style="padding: 10px 0; font-weight: bold; font-size: 110%;">
+                                RD$ <t t-esc="totals.total"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Línea separadora -->
+                <div class="text-center" style="margin: 15px 0; font-weight: bold;">
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                </div>
+
+                <!-- Métodos de pago -->
+                <div style="margin: 15px 0;">
+                    <div class="text-center" style="font-weight: bold; margin-bottom: 10px; text-decoration: underline;">
+                        MÉTODO DE PAGO
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 90%;">
+                        <t t-foreach="paymentlines" t-as="payment" t-key="'payment_' + payment_index">
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 8px 0; font-weight: 500;">
+                                    <t t-esc="payment.name"/>
+                                </td>
+                                <td class="pos-receipt-right-align" style="padding: 8px 0; font-weight: bold;">
+                                    RD$ <t t-esc="payment.amount"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr style="border-top: 1px solid #333;">
+                            <td style="padding: 8px 0; font-weight: 500;">Cambio:</td>
+                            <td class="pos-receipt-right-align" style="padding: 8px 0; font-weight: bold;">
+                                RD$ <t t-esc="totals.change"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Información ECF (Comprobante Fiscal Electrónico) -->
+                <div t-if="isElectronicInvoice and dominicanFiscalData.to_invoice and (dominicanFiscalData.ncf or dominicanFiscalData.qr_code_img or dominicanFiscalData.l10n_do_ecf_security_code)"
+                     style="margin: 20px 0; text-align: center; border-top: 2px dashed #333; padding-top: 15px;">
+                    <div style="font-weight: bold; margin-bottom: 10px; text-decoration: underline;">
+                        COMPROBANTE FISCAL ELECTRÓNICO
+                    </div>
+
+                    <!-- QR Code -->
+                    <div t-if="dominicanFiscalData.qr_code_img" style="margin: 15px 0;">
+                        <img t-att-src="dominicanFiscalData.qr_code_img"
+                             alt="QR Code ECF"
+                             style="width: 100px; height: 100px; display: block; margin: 0 auto; border: 1px solid #ddd;"/>
+                    </div>
+
+                    <!-- Código de Seguridad -->
+                    <div t-if="dominicanFiscalData.l10n_do_ecf_security_code" style="font-weight: bold; margin: 8px 0;">
+                        <strong>Código de Seguridad:</strong><br/>
+                        <span style="font-family: monospace; font-size: 90%;"><t t-esc="dominicanFiscalData.l10n_do_ecf_security_code"/></span>
+                    </div>
+
+                    <!-- Fecha Firma Digital -->
+                    <div t-if="dominicanFiscalData.l10n_do_ecf_sign_date" style="margin: 8px 0; font-size: 90%;">
+                        <strong>Fecha Firma Digital:</strong><br/>
+                        <t t-esc="dominicanFiscalData.l10n_do_ecf_sign_date"/>
+                    </div>
+                </div>
+
+                <!-- Línea separadora final -->
+                <div class="text-center" style="margin: 20px 0; font-weight: bold;">
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                </div>
+
+                <!-- Mensaje final -->
+                <div style="margin: 20px 0; text-align: center; font-style: italic; font-weight: bold; font-size: 110%; color: #28a745;">
+                    ¡Gracias por su compra!
+                </div>
+
+                <div style="margin-bottom: 30px;"></div>
+            </div>
+        </xpath>
+    </t>
+</templates>

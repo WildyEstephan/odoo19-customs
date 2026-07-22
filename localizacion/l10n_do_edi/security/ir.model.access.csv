@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_edi_format_dgii,access.account.edi.format.dgii,model_account_edi_format,,1,1,1,1
+access_res_company_edi,access.res.company.edi,model_res_company,,1,1,1,1
+access_res_config_settings_edi,access.res.config.settings.edi,model_res_config_settings,,1,1,1,1
+l10n_do_custom_fields,access.l10n_do_custom_fields,model_l10n_do_custom_fields,,1,1,1,1
+access_commercial_approval_wizard,access.l10n.do.commercial.approval.wizard,model_l10n_do_commercial_approval_wizard,,1,1,1,1
+access_ecf_excel_to_xml_wizard,access.ecf.excel.to.xml.wizard,model_ecf_excel_to_xml,,1,1,1,1
+access_ecf_case,access.ecf.case,model_ecf_case,,1,1,1,1
+access_dgii_result_wizard,access.dgii.result.wizard,model_dgii_result_wizard,,1,1,1,1

@@ -1,0 +1,1055 @@
+/** @odoo-module */
+
+import { PosOrder } from "@point_of_sale/app/models/pos_order";
+import { PosPayment } from "@point_of_sale/app/models/pos_payment";
+import { PosStore } from "@point_of_sale/app/store/pos_store";
+import { patch } from "@web/core/utils/patch";
+
+console.log('[L10N_DO_POS] models.js loaded - starting patches');
+
+patch(PosStore.prototype, {
+    async setup() {
+        console.log('[L10N_DO_POS] PosStore setup() called - BEGIN');
+        console.log('[L10N_DO_POS] Arguments received:', arguments.length);
+        try {
+            await super.setup(...arguments);
+            console.log('[L10N_DO_POS] super.setup() completed successfully');
+            console.log('[L10N_DO_POS] this.config exists:', !!this.config);
+            
+            this.payer_types_selection = {
+                'taxpayer': 'Contribuyente',
+                'non_payer': 'Cliente de Consumo',
+                'nonprofit': 'Sin fines de lucro',
+                'special': 'Exento',
+                'governmental': 'Gubernamental',
+                'foreigner': 'Extranjero',
+            }
+            console.log('[L10N_DO_POS] payer_types_selection initialized');
+            
+            // Verificar integración con l10n_do_accounting
+            this.check_l10n_do_accounting_integration();
+            
+            // Aplicar configuración dominicana al orden actual
+            this.apply_l10n_do_configuration();
+            
+        } catch(e) {
+            console.error('[L10N_DO_POS] Error in PosStore setup():', e);
+            throw e;
+        }
+        console.log('[L10N_DO_POS] PosStore setup() - END');
+    },
+    
+    // Verificar integración con l10n_do_accounting
+    check_l10n_do_accounting_integration() {
+        console.log('[L10N_DO_POS] Checking l10n_do_accounting integration...');
+        
+        if (this.config && this.config.l10n_do_ncf_journal_id) {
+            console.log('[L10N_DO_POS] ✅ l10n_do_accounting integration detected');
+            console.log('[L10N_DO_POS] NCF Journal ID:', this.config.l10n_do_ncf_journal_id);
+        } else {
+            console.warn('[L10N_DO_POS] ⚠️ l10n_do_accounting integration may not be configured');
+            console.warn('[L10N_DO_POS] Check if l10n_do_accounting module is installed and configured');
+        }
+        
+        // Verificar otros campos relevantes
+        const dominicanFields = [
+            'l10n_do_ncf_sequence_id',
+            'l10n_latam_use_documents',
+            'l10n_do_only_invoice'
+        ];
+        
+        dominicanFields.forEach(field => {
+            if (this.config && this.config[field] !== undefined) {
+                console.log(`[L10N_DO_POS] ${field}:`, this.config[field]);
+            }
+        });
+    },
+    
+    // Aplicar configuración dominicana cuando se complete la carga del POS
+    apply_l10n_do_configuration() {
+        console.log('[L10N_DO_POS] Applying Dominican Republic configuration to current order');
+        
+        // Aplicar a la orden actual si existe
+        let currentOrder = this.get_order();
+        if (currentOrder && currentOrder.apply_l10n_do_config) {
+            currentOrder.apply_l10n_do_config(this);
+        }
+    },
+    
+    // Override createNewOrder para aplicar configuración automáticamente
+    createNewOrder() {
+        console.log('[L10N_DO_POS] Creating new order with Dominican Republic configuration');
+        let order = super.createNewOrder(...arguments);
+        
+        // Aplicar configuración dominicana a la nueva orden
+        if (order && order.apply_l10n_do_config) {
+            order.apply_l10n_do_config(this);
+        }
+        
+        return order;
+    },
+    // Override syncAllOrders para capturar datos fiscales después de sincronización
+    async syncAllOrders(options = {}) {
+        console.log('[L10N_DO_POS] syncAllOrders called - Odoo 18 approach');
+
+        try {
+            // Llamar al método original de syncAllOrders
+            const result = await super.syncAllOrders(options);
+
+            // Procesar órdenes sincronizadas para obtener datos fiscales dominicanos
+            await this.processSyncedOrdersForDominicanData();
+
+            return result;
+
+        } catch (error) {
+            console.error('[L10N_DO_POS] Error in syncAllOrders:', error);
+            throw error;
+        }
+    },
+
+    // Procesar órdenes sincronizadas para obtener datos fiscales dominicanos
+    async processSyncedOrdersForDominicanData() {
+        console.log('[L10N_DO_POS] Processing synced orders for Dominican fiscal data...');
+
+        const currentOrder = this.get_order();
+        if (!currentOrder || !currentOrder.finalized) {
+            console.log('[L10N_DO_POS] No finalized order to process');
+            return;
+        }
+
+        console.log('[L10N_DO_POS] Processing finalized order:', currentOrder.name);
+
+        try {
+            // USAR EL CONTEXTO CORRECTO DEL POS STORE PARA RPC
+            console.log('[L10N_DO_POS] 🔍 Verificando contexto POS Store para RPC...');
+            console.log('[L10N_DO_POS] - this.data exists:', !!this.data);
+            console.log('[L10N_DO_POS] - this.data.call exists:', !!(this.data && this.data.call));
+            
+            if (this.data && this.data.call) {
+                console.log('[L10N_DO_POS] ✅ Usando this.data.call para obtener datos fiscales');
+                
+                // OPCIÓN 1: Consultar datos optimizados
+                let fiscalData;
+                try {
+                    fiscalData = await this.data.call(
+                        'pos.order',
+                        'get_fiscal_data_for_receipt',
+                        [currentOrder.name]
+                    );
+                    console.log('[L10N_DO_POS] ✅ get_fiscal_data_for_receipt result:', fiscalData);
+                } catch (e) {
+                    console.log('[L10N_DO_POS] ⚠️ get_fiscal_data_for_receipt failed, trying search_read:', e.message);
+                }
+                
+                // OPCIÓN 2: Si no hay datos optimizados, búsqueda directa
+                if (!fiscalData || Object.keys(fiscalData).length === 0) {
+                    console.log('[L10N_DO_POS] ⚠️ Intentando búsqueda directa en pos.order...');
+                    
+                    const orderData = await this.data.call(
+                        'pos.order',
+                        'search_read',
+                        [[['pos_reference', '=', currentOrder.name]]],
+                        {
+                            fields: [
+                                'l10n_latam_document_number',
+                                'l10n_latam_document_type_id',
+                                'l10n_do_ncf_expiration_date',
+                                'origin_ncf',
+                                'l10n_do_ecf_security_code',
+                                'l10n_do_ecf_sign_date',
+                                'QR_code',
+                                'l10n_do_dgii_commercial_approval'
+                            ]
+                        }
+                    );
+                    
+                    if (orderData && orderData.length > 0) {
+                        fiscalData = orderData[0];
+                        console.log('[L10N_DO_POS] ✅ Datos fiscales obtenidos via search_read:', fiscalData);
+                    }
+                }
+                
+                // APLICAR DATOS FISCALES Y EDI A LA ORDEN
+                if (fiscalData && (fiscalData.ncf || fiscalData.l10n_latam_document_number)) {
+                    console.log('[L10N_DO_POS] ✅ Aplicando datos fiscales y EDI a la orden...');
+
+                    // Actualizar datos fiscales básicos
+                    if (fiscalData.ncf || fiscalData.l10n_latam_document_number) {
+                        currentOrder.ncf = fiscalData.ncf || fiscalData.l10n_latam_document_number;
+                        currentOrder.l10n_latam_document_number = fiscalData.l10n_latam_document_number || fiscalData.ncf;
+                        console.log('[L10N_DO_POS] ✅ NCF aplicado:', currentOrder.ncf);
+                    }
+                    
+                    if (fiscalData.l10n_latam_document_type_id) {
+                        currentOrder.l10n_latam_document_type_id = fiscalData.l10n_latam_document_type_id;
+                    }
+                    
+                    if (fiscalData.l10n_do_ncf_expiration_date) {
+                        currentOrder.l10n_do_ncf_expiration_date = fiscalData.l10n_do_ncf_expiration_date;
+                    }
+                    
+                    if (fiscalData.origin_ncf) {
+                        currentOrder.l10n_do_origin_ncf = fiscalData.origin_ncf;
+                    }
+
+                    // **DATOS EDI CRUCIALES - QR CODE Y SEGURIDAD**
+                    if (fiscalData.l10n_do_ecf_security_code) {
+                        currentOrder.l10n_do_ecf_security_code = fiscalData.l10n_do_ecf_security_code;
+                        console.log('[L10N_DO_POS] ✅ Código de seguridad EDI aplicado:', fiscalData.l10n_do_ecf_security_code);
+                    }
+                    
+                    if (fiscalData.l10n_do_ecf_sign_date) {
+                        currentOrder.l10n_do_ecf_sign_date = fiscalData.l10n_do_ecf_sign_date;
+                        console.log('[L10N_DO_POS] ✅ Fecha firma EDI aplicada:', fiscalData.l10n_do_ecf_sign_date);
+                    }
+                    
+                    if (fiscalData.QR_code) {
+                        currentOrder.QR_code = fiscalData.QR_code;
+                        console.log('[L10N_DO_POS] ✅ QR Code EDI aplicado - tamaño:', (fiscalData.QR_code || '').length);
+                    }
+                    
+                    if (fiscalData.l10n_do_dgii_commercial_approval !== undefined) {
+                        currentOrder.l10n_do_dgii_commercial_approval = fiscalData.l10n_do_dgii_commercial_approval;
+                        console.log('[L10N_DO_POS] ✅ Estado DGII aplicado:', fiscalData.l10n_do_dgii_commercial_approval);
+                    }
+                    
+                    // Marcar como orden con datos EDI cargados
+                    currentOrder._edi_data_loaded = true;
+
+                    console.log('[L10N_DO_POS] ✅ Orden actualizada completamente con datos fiscales y EDI');
+                } else {
+                    console.log('[L10N_DO_POS] ⚠️ No se encontraron datos fiscales para la orden');
+                }
+                
+            } else {
+                console.log('[L10N_DO_POS] ❌ No hay acceso a this.data.call en PosStore');
+            }
+        } catch (error) {
+            console.error('[L10N_DO_POS] Error processing Dominican fiscal data:', error);
+        }
+    },
+
+    // Método para consultar datos fiscales dominicanos (Odoo 18 optimizado)
+    async queryDominicanFiscalData(orderName) {
+        console.log('[L10N_DO_POS] Querying Dominican fiscal data for order:', orderName);
+
+        try {
+            // OPCIÓN 1: Usar método optimizado específico
+            const fiscalData = await this.data.call(
+                'pos.order',
+                'get_fiscal_data_for_receipt',
+                [orderName]
+            );
+            
+            if (fiscalData && Object.keys(fiscalData).length > 0) {
+                console.log('[L10N_DO_POS] ✅ Fiscal data obtained via optimized method:', fiscalData);
+                console.log('[L10N_DO_POS] 🔍 QR Code debug - QR_code:', !!fiscalData.QR_code, typeof fiscalData.QR_code);
+                console.log('[L10N_DO_POS] 🔍 QR Code debug - qr_code_img:', !!fiscalData.qr_code_img);
+                console.log('[L10N_DO_POS] 🔍 QR Code debug - l10n_do_ecf_qr_code:', !!fiscalData.l10n_do_ecf_qr_code);
+                
+                return {
+                    ncf: fiscalData.ncf,
+                    l10n_latam_document_number: fiscalData.l10n_latam_document_number,
+                    l10n_latam_document_type_id: this.cleanDocumentType(fiscalData.l10n_latam_document_type_id),
+                    l10n_do_ncf_expiration_date: fiscalData.l10n_do_ncf_expiration_date,
+                    l10n_do_origin_ncf: fiscalData.l10n_do_origin_ncf,
+                    l10n_do_ecf_security_code: fiscalData.l10n_do_ecf_security_code,
+                    l10n_do_ecf_sign_date: fiscalData.l10n_do_ecf_sign_date,
+                    QR_code: fiscalData.QR_code,
+                    qr_code_img: fiscalData.qr_code_img,
+                    l10n_do_dgii_commercial_approval: fiscalData.l10n_do_dgii_commercial_approval,
+                    is_ecf_invoice: fiscalData.is_ecf_invoice
+                };
+            }
+            
+            console.log('[L10N_DO_POS] ⚠️ Optimized method returned empty, falling back to search_read');
+            
+            // OPCIÓN 2: Fallback al método original
+            const orders = await this.data.call(
+                'pos.order',
+                'search_read',
+                [[['pos_reference', '=', orderName]]],
+                {
+                    fields: [
+                        'id',
+                        'l10n_latam_document_number',
+                        'l10n_latam_document_type_id',
+                        'l10n_do_ncf_expiration_date',
+                        'origin_ncf',  // Campo correcto en pos.order
+                        'account_move',
+                        // Campos EDI para facturación electrónica
+                        'l10n_do_ecf_security_code',
+                        'l10n_do_ecf_sign_date',
+                        'QR_code',
+                        'l10n_do_dgii_commercial_approval'
+                    ]
+                }
+            );
+
+            if (orders.length > 0) {
+                const order = orders[0];
+                console.log('[L10N_DO_POS] Order found in backend:', order);
+
+                // Si hay NCF directamente en pos.order
+                if (order.l10n_latam_document_number) {
+                    return {
+                        ncf: order.l10n_latam_document_number,
+                        l10n_latam_document_number: order.l10n_latam_document_number,
+                        l10n_latam_document_type_id: this.cleanDocumentType(order.l10n_latam_document_type_id),
+                        l10n_do_ncf_expiration_date: order.l10n_do_ncf_expiration_date,
+                        l10n_do_origin_ncf: order.origin_ncf,  // Mapear del campo correcto
+                        // Incluir campos EDI si están disponibles
+                        l10n_do_ecf_security_code: order.l10n_do_ecf_security_code,
+                        l10n_do_ecf_sign_date: order.l10n_do_ecf_sign_date,
+                        QR_code: order.QR_code,
+                        l10n_do_dgii_commercial_approval: order.l10n_do_dgii_commercial_approval
+                    };
+                }
+
+                // Si no hay NCF en pos.order, consultar account.move
+                if (order.account_move && order.account_move[0]) {
+                    const invoiceData = await this.data.call(
+                        'account.move',
+                        'search_read',
+                        [[['id', '=', order.account_move[0]]]],
+                        {
+                            fields: [
+                                'l10n_latam_document_number',
+                                'l10n_latam_document_type_id',
+                                'l10n_do_ncf_expiration_date',
+                                'l10n_do_origin_ncf',
+                                // Campos EDI para facturación electrónica
+                                'l10n_do_ecf_security_code',
+                                'l10n_do_ecf_sign_date',
+                                'QR_code',
+                                'l10n_do_dgii_commercial_approval'
+                            ]
+                        }
+                    );
+
+                    if (invoiceData.length > 0 && invoiceData[0].l10n_latam_document_number) {
+                        return {
+                            ncf: invoiceData[0].l10n_latam_document_number,
+                            l10n_latam_document_number: invoiceData[0].l10n_latam_document_number,
+                            l10n_latam_document_type_id: this.cleanDocumentType(invoiceData[0].l10n_latam_document_type_id),
+                            l10n_do_ncf_expiration_date: invoiceData[0].l10n_do_ncf_expiration_date,
+                            l10n_do_origin_ncf: invoiceData[0].l10n_do_origin_ncf,
+                            // Incluir campos EDI desde account.move
+                            l10n_do_ecf_security_code: invoiceData[0].l10n_do_ecf_security_code,
+                            l10n_do_ecf_sign_date: invoiceData[0].l10n_do_ecf_sign_date,
+                            QR_code: invoiceData[0].QR_code,
+                            l10n_do_dgii_commercial_approval: invoiceData[0].l10n_do_dgii_commercial_approval
+                        };
+                    }
+                }
+            }
+
+            return null;
+
+        } catch (error) {
+            console.error('[L10N_DO_POS] Error querying Dominican fiscal data:', error);
+            return null;
+        }
+    },
+
+    // Método para limpiar el tipo de documento
+    cleanDocumentType(documentType) {
+        if (!documentType) return '';
+
+        // Si es un array con nombre, extraer el nombre
+        if (Array.isArray(documentType) && documentType.length > 1) {
+            documentType = documentType[1];
+        }
+
+        // Convertir a string y limpiar
+        const docTypeStr = String(documentType).trim();
+
+        // Mapear tipos comunes a formatos más limpios
+        const typeMap = {
+            'Factura de Consumo': 'DE CONSUMO',
+            'Factura con valor fiscal de Consumo': 'DE CONSUMO',
+            'Factura de Crédito Fiscal': 'DE CRÉDITO FISCAL',
+            'Factura con valor fiscal de Crédito': 'DE CRÉDITO FISCAL',
+            'Nota de Débito': 'NOTA DE DÉBITO',
+            'Nota de Crédito': 'NOTA DE CRÉDITO'
+        };
+
+        // Buscar mapeo exacto
+        if (typeMap[docTypeStr]) {
+            return typeMap[docTypeStr];
+        }
+
+        // Limpiar automáticamente patrones comunes
+        return docTypeStr
+            .replace(/^Factura\s+(de\s+|con valor fiscal de\s+)?/i, '')
+            .replace(/^Nota\s+de\s+/i, 'NOTA DE ')
+            .toUpperCase()
+            .trim();
+    }
+});
+
+patch(PosOrder.prototype, {
+    setup(_defaultObj, options) {
+        super.setup(...arguments);
+        console.log('[L10N_DO_POS] PosOrder setup() called, this.pos exists:', !!this.pos);
+        
+        // Verificar que this.pos y this.pos.config estén disponibles
+        if (this.pos && this.pos.config) {
+            this.apply_l10n_do_config();
+        } else {
+            console.log('[L10N_DO_POS] PosOrder setup() - pos.config not available yet, skipping config-dependent logic');
+        }
+    },
+    
+    // Nueva función para aplicar configuración dominicana
+    apply_l10n_do_config(pos = null) {
+        console.log('[L10N_DO_POS] Applying Dominican Republic POS configuration');
+        
+        // Use passed pos parameter or this.pos
+        let posStore = pos || this.pos;
+        
+        if (!posStore || !posStore.config) {
+            console.log('[L10N_DO_POS] POS config not available, skipping Dominican configuration');
+            return;
+        }
+        
+        // 1. Solo facturación: Force to_invoice = true
+        if (posStore.config.only_invoice) {
+            this.to_invoice = true;
+            console.log('[L10N_DO_POS] Only invoicing enabled - to_invoice set to true');
+        }
+
+        // 2. Cliente por defecto: Set default partner if no partner selected
+        if (!this.get_partner()) {
+            let pos_default_partner = posStore.config.default_partner_id;
+
+            if (pos_default_partner && posStore.models && posStore.models["res.partner"]) {
+                let client = posStore.models["res.partner"].get(pos_default_partner[0]);
+                if (client) {
+                    this.set_partner(client);
+                    console.log('[L10N_DO_POS] Default partner set:', client.name);
+                }
+            }
+        }
+    },
+    init_from_JSON(json) {
+        super.init_from_JSON(...arguments);
+        this.ncf = json.ncf;
+        this.l10n_latam_document_type_id = json.l10n_latam_document_type_id;
+        this.origin_ncf = json.origin_ncf;
+        this.to_invoice = json.to_invoice;
+    },
+    export_as_JSON() {
+        const json = super.export_as_JSON(...arguments);
+        json.ncf = this.ncf;
+        json.l10n_latam_document_type_id = this.l10n_latam_document_type_id;
+        json.origin_ncf = this.origin_ncf;
+        json.to_invoice = this.is_to_invoice();
+        json.l10n_do_ecf_modification_code = this.l10n_do_ecf_modification_code;
+        return json;
+    },
+    async export_for_printing() {
+        let self = this;
+        console.log('[L10N_DO_POS] ═══════════════════════════════════════════════════');
+        console.log('[L10N_DO_POS] EXPORT_FOR_PRINTING INICIADO - CONSULTA FISCAL EN TIEMPO REAL');
+        console.log('[L10N_DO_POS] ═══════════════════════════════════════════════════');
+        console.log('[L10N_DO_POS] Order name:', self.name);
+        console.log('[L10N_DO_POS] Order finalized:', self.finalized);
+        console.log('[L10N_DO_POS] Order to_invoice:', self.to_invoice);
+
+        let result = super.export_for_printing(...arguments);
+
+        console.log('[L10N_DO_POS] ✅ SUPER export_for_printing resultado inicial:', result);
+
+        // DEBUG HEADER DATA INICIAL
+        console.log('[L10N_DO_POS] 🏢 HeaderData en result:', !!result.headerData);
+        if (result.headerData) {
+            console.log('[L10N_DO_POS] 🏢 Company en headerData:', !!result.headerData.company);
+            if (result.headerData.company) {
+                console.log('[L10N_DO_POS] 🏢 Company name inicial:', result.headerData.company.name);
+            }
+        }
+
+        // 📅 FORMATEAR FECHA Y HORA SEGÚN DGII
+        const now = new Date();
+        const day = now.getDate().toString().padStart(2, '0');
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const year = now.getFullYear();
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+
+        // Formato 12 horas con AM/PM dominicano
+        const ampm = hours >= 12 ? 'p. m.' : 'a. m.';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // la hora '0' debe ser '12'
+        const hoursFormatted = hours.toString().padStart(2, '0');
+
+        // Formato DGII: "14/09/2025 05:27:11 a. m."
+        result.date = `${day}/${month}/${year} ${hoursFormatted}:${minutes}:${seconds} ${ampm}`;
+        console.log('[L10N_DO_POS] 📅 Fecha DGII formateada:', result.date);
+
+        // ⚡ TRANSFERENCIA INMEDIATA DE DATOS DISPONIBLES
+        console.log('[L10N_DO_POS] 📋 DATOS NCF ANTES DE PROCESAR:');
+        console.log('[L10N_DO_POS] - result.ncf:', result.ncf);
+        console.log('[L10N_DO_POS] - result.l10n_latam_document_number:', result.l10n_latam_document_number);
+        console.log('[L10N_DO_POS] - result.l10n_latam_document_type_id:', result.l10n_latam_document_type_id);
+        console.log('[L10N_DO_POS] - self.l10n_latam_document_number:', self.l10n_latam_document_number);
+        console.log('[L10N_DO_POS] - self.ncf:', self.ncf);
+        
+        // 🔥 TRANSFERIR DATOS DISPONIBLES INMEDIATAMENTE
+        if (self.l10n_latam_document_number) {
+            result.l10n_latam_document_number = self.l10n_latam_document_number;
+            result.ncf = self.l10n_latam_document_number;
+            console.log('[L10N_DO_POS] ⚡ NCF transferido inmediatamente:', self.l10n_latam_document_number);
+        }
+        
+        if (self.l10n_latam_document_type_id) {
+            result.l10n_latam_document_type_id = Array.isArray(self.l10n_latam_document_type_id) ? 
+                self.l10n_latam_document_type_id[1] : self.l10n_latam_document_type_id;
+            console.log('[L10N_DO_POS] ⚡ Tipo documento transferido:', result.l10n_latam_document_type_id);
+        }
+        
+        // Transferir otros campos disponibles
+        if (self.l10n_do_ncf_expiration_date) {
+            // Formatear fecha para mostrar
+            try {
+                const expirationDate = new Date(self.l10n_do_ncf_expiration_date);
+                result.l10n_do_ncf_expiration_date = expirationDate.toLocaleDateString('es-DO', {
+                    day: '2-digit',
+                    month: '2-digit', 
+                    year: 'numeric'
+                });
+                console.log('[L10N_DO_POS] ⚡ Vencimiento NCF transferido y formateado:', result.l10n_do_ncf_expiration_date);
+            } catch (e) {
+                result.l10n_do_ncf_expiration_date = self.l10n_do_ncf_expiration_date;
+                console.log('[L10N_DO_POS] ⚡ Vencimiento NCF transferido sin formatear:', result.l10n_do_ncf_expiration_date);
+            }
+        } else {
+            console.log('[L10N_DO_POS] ⚠️ Vencimiento NCF no disponible en self');
+        }
+        
+        if (self.l10n_do_ecf_security_code) {
+            result.l10n_do_ecf_security_code = self.l10n_do_ecf_security_code;
+        }
+        
+        if (self.l10n_do_ecf_sign_date) {
+            result.l10n_do_ecf_sign_date = self.l10n_do_ecf_sign_date;
+        }
+        
+        if (self.QR_code) {
+            result.QR_code = self.QR_code;
+            if (typeof self.QR_code === 'string') {
+                result.qr_code_img = `data:image/png;base64,${self.QR_code}`;
+                console.log('[L10N_DO_POS] ⚡ QR Code transferido desde self (string):', self.QR_code.substring(0, 50) + '...');
+            } else {
+                console.log('[L10N_DO_POS] ⚡ QR Code transferido desde self (binary):', typeof self.QR_code);
+            }
+        } else {
+            console.log('[L10N_DO_POS] ⚠️ QR Code no disponible en self');
+        }
+        
+        if (self.l10n_do_dgii_commercial_approval !== undefined) {
+            result.l10n_do_dgii_commercial_approval = self.l10n_do_dgii_commercial_approval;
+        }
+
+        // ⚡ CONSULTA ACTIVA DE DATOS FISCALES EN TIEMPO REAL
+        if (self.to_invoice && self.name) {
+            console.log('[L10N_DO_POS] 🔥 CONSULTANDO DATOS FISCALES EN TIEMPO REAL...');
+
+            try {
+                // VERIFICAR SI YA TENEMOS DATOS EDI PRE-CARGADOS
+                console.log('[L10N_DO_POS] 🔍 Verificando datos EDI pre-cargados en la orden...');
+                console.log('[L10N_DO_POS] - self._edi_data_loaded:', !!self._edi_data_loaded);
+                console.log('[L10N_DO_POS] - self.QR_code exists:', !!self.QR_code);
+                console.log('[L10N_DO_POS] - self.l10n_do_ecf_security_code:', !!self.l10n_do_ecf_security_code);
+                console.log('[L10N_DO_POS] - self.l10n_do_ecf_sign_date:', !!self.l10n_do_ecf_sign_date);
+                
+                // SI YA TENEMOS DATOS EDI PRE-CARGADOS, USARLOS DIRECTAMENTE
+                if (self._edi_data_loaded) {
+                    console.log('[L10N_DO_POS] ✅ Usando datos EDI pre-cargados desde sincronización');
+                    
+                    // Transferir datos EDI ya cargados
+                    if (self.QR_code) {
+                        result.QR_code = self.QR_code;
+                        result.qr_code_img = `data:image/png;base64,${self.QR_code}`;
+                        console.log('[L10N_DO_POS] ✅ QR Code transferido desde datos pre-cargados');
+                    }
+                    
+                    if (self.l10n_do_ecf_security_code) {
+                        result.l10n_do_ecf_security_code = self.l10n_do_ecf_security_code;
+                    }
+                    
+                    if (self.l10n_do_ecf_sign_date) {
+                        result.l10n_do_ecf_sign_date = self.l10n_do_ecf_sign_date;
+                    }
+                    
+                    if (self.l10n_do_dgii_commercial_approval !== undefined) {
+                        result.l10n_do_dgii_commercial_approval = self.l10n_do_dgii_commercial_approval;
+                    }
+                    
+                    console.log('[L10N_DO_POS] ✅ Todos los datos EDI pre-cargados aplicados exitosamente');
+                } else {
+                    console.log('[L10N_DO_POS] ⚠️ No hay datos EDI pre-cargados, intentando consulta en tiempo real (modo fallback)...');
+                    
+                    // FALLBACK: Intentar obtener datos en tiempo real (probablemente fallará por contexto)
+                    console.log('[L10N_DO_POS] - this.pos exists:', !!this.pos);
+                    console.log('[L10N_DO_POS] - this.env exists:', !!this.env);
+                    
+                    // Solo intentar si tenemos contexto disponible (raro en export_for_printing)
+                    if (this.pos && typeof this.pos.queryDominicanFiscalData === 'function') {
+                        console.log('[L10N_DO_POS] ✅ queryDominicanFiscalData disponible como fallback...');
+                        const fiscalData = await this.pos.queryDominicanFiscalData(self.name);
+
+                if (fiscalData) {
+                    console.log('[L10N_DO_POS] 🎯 DATOS FISCALES OBTENIDOS:', fiscalData);
+
+                    // Aplicar todos los datos fiscales al resultado
+                    if (fiscalData.ncf || fiscalData.l10n_latam_document_number) {
+                        const ncf = fiscalData.ncf || fiscalData.l10n_latam_document_number;
+                        result.l10n_latam_document_number = ncf;
+                        result.ncf = ncf;
+                        console.log('[L10N_DO_POS] ✅ NCF aplicado:', ncf);
+                    }
+
+                    if (fiscalData.l10n_latam_document_type_id) {
+                        result.l10n_latam_document_type_id = fiscalData.l10n_latam_document_type_id;
+                        console.log('[L10N_DO_POS] ✅ Tipo documento aplicado:', fiscalData.l10n_latam_document_type_id);
+                    }
+
+                    if (fiscalData.l10n_do_ncf_expiration_date) {
+                        // Formatear fecha de vencimiento
+                        try {
+                            const expirationDate = new Date(fiscalData.l10n_do_ncf_expiration_date);
+                            result.l10n_do_ncf_expiration_date = expirationDate.toLocaleDateString('es-DO', {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric'
+                            });
+                            console.log('[L10N_DO_POS] ✅ Vencimiento NCF aplicado y formateado:', result.l10n_do_ncf_expiration_date);
+                        } catch (e) {
+                            result.l10n_do_ncf_expiration_date = fiscalData.l10n_do_ncf_expiration_date;
+                            console.log('[L10N_DO_POS] ✅ Vencimiento NCF aplicado sin formatear:', fiscalData.l10n_do_ncf_expiration_date);
+                        }
+                    } else {
+                        console.log('[L10N_DO_POS] ⚠️ Vencimiento NCF no disponible en fiscalData');
+                    }
+
+                    if (fiscalData.l10n_do_origin_ncf) {
+                        result.l10n_do_origin_ncf = fiscalData.l10n_do_origin_ncf;
+                        result.origin_ncf = fiscalData.l10n_do_origin_ncf;
+                        console.log('[L10N_DO_POS] ✅ NCF Modificado aplicado:', fiscalData.l10n_do_origin_ncf);
+                    }
+
+                    // Datos EDI - QR Code con debug mejorado
+                    if (fiscalData.QR_code) {
+                        result.QR_code = fiscalData.QR_code;
+                        // Asegurar formato correcto del QR Code
+                        if (typeof fiscalData.QR_code === 'string') {
+                            result.qr_code_img = `data:image/png;base64,${fiscalData.QR_code}`;
+                        } else if (fiscalData.qr_code_img) {
+                            result.qr_code_img = fiscalData.qr_code_img;
+                        }
+                        console.log('[L10N_DO_POS] ✅ QR Code aplicado - Tipo:', typeof fiscalData.QR_code);
+                        console.log('[L10N_DO_POS] ✅ qr_code_img set:', !!result.qr_code_img);
+                    } else {
+                        console.log('[L10N_DO_POS] ⚠️ QR Code no disponible en fiscalData');
+                    }
+
+                    if (fiscalData.l10n_do_ecf_security_code) {
+                        result.l10n_do_ecf_security_code = fiscalData.l10n_do_ecf_security_code;
+                        console.log('[L10N_DO_POS] ✅ Código seguridad aplicado:', fiscalData.l10n_do_ecf_security_code);
+                    }
+
+                    if (fiscalData.l10n_do_ecf_sign_date) {
+                        result.l10n_do_ecf_sign_date = fiscalData.l10n_do_ecf_sign_date;
+                        console.log('[L10N_DO_POS] ✅ Fecha firma aplicada:', fiscalData.l10n_do_ecf_sign_date);
+                    }
+
+                } else {
+                    console.log('[L10N_DO_POS] ⚠️ No se encontraron datos fiscales para la orden');
+                }
+                    } else {
+                        console.log('[L10N_DO_POS] ❌ Sin contexto para consulta en tiempo real');
+                    }
+                }
+                
+                // Si no hay datos EDI pre-cargados ni se pudieron obtener en tiempo real,
+                // simplemente continuar sin ellos (el recibo mostrará placeholder)
+                if (!result.QR_code && !result.l10n_do_ecf_security_code) {
+                    console.log('[L10N_DO_POS] ⚠️ Sin datos EDI disponibles - mostrando placeholders');
+                }
+                            const rpcOrder = rpcResult[0];
+                            console.log('[L10N_DO_POS] ✅ Datos fiscales obtenidos via RPC:', rpcOrder);
+                            
+                            if (rpcOrder.l10n_latam_document_number) {
+                                result.l10n_latam_document_number = rpcOrder.l10n_latam_document_number;
+                                result.ncf = rpcOrder.l10n_latam_document_number;
+                            }
+                            
+                            if (rpcOrder.l10n_do_ecf_security_code) {
+                                result.l10n_do_ecf_security_code = rpcOrder.l10n_do_ecf_security_code;
+                            }
+                            
+                            if (rpcOrder.l10n_do_ecf_sign_date) {
+                                result.l10n_do_ecf_sign_date = rpcOrder.l10n_do_ecf_sign_date;
+                            }
+                            
+                            if (rpcOrder.QR_code) {
+                                result.QR_code = rpcOrder.QR_code;
+                                result.qr_code_img = `data:image/png;base64,${rpcOrder.QR_code}`;
+                            }
+                            
+                            if (rpcOrder.l10n_do_dgii_commercial_approval !== undefined) {
+                                result.l10n_do_dgii_commercial_approval = rpcOrder.l10n_do_dgii_commercial_approval;
+                            }
+                            
+                            if (rpcOrder.l10n_do_ncf_expiration_date) {
+                                // Formatear fecha de vencimiento desde RPC
+                                try {
+                                    const expirationDate = new Date(rpcOrder.l10n_do_ncf_expiration_date);
+                                    result.l10n_do_ncf_expiration_date = expirationDate.toLocaleDateString('es-DO', {
+                                        day: '2-digit',
+                                        month: '2-digit',
+                                        year: 'numeric'
+                                    });
+                                    console.log('[L10N_DO_POS] 📅 Vencimiento NCF via RPC formateado:', result.l10n_do_ncf_expiration_date);
+                                } catch (e) {
+                                    result.l10n_do_ncf_expiration_date = rpcOrder.l10n_do_ncf_expiration_date;
+                                    console.log('[L10N_DO_POS] 📅 Vencimiento NCF via RPC sin formato:', result.l10n_do_ncf_expiration_date);
+                                }
+                            }
+                            
+                            console.log('[L10N_DO_POS] ✅ Datos fiscales aplicados via RPC');
+                        }
+                        
+                    } catch (rpcError) {
+                        console.error('[L10N_DO_POS] ❌ Error en consulta RPC:', rpcError);
+                        console.log('[L10N_DO_POS] 🔍 RPC Error details:');
+                        console.log('[L10N_DO_POS] - Error type:', typeof rpcError);
+                        console.log('[L10N_DO_POS] - Error name:', rpcError?.name);
+                        console.log('[L10N_DO_POS] - Error message:', rpcError?.message);
+                        console.log('[L10N_DO_POS] - Error stack (first 200 chars):', rpcError?.stack?.substring(0, 200));
+                        
+                        // FALLBACK: SOLO SIMULAR SI NO HAY DATOS REALES
+                        if (self.to_invoice && !result.l10n_latam_document_number && !result.ncf) {
+                            console.log('[L10N_DO_POS] 🧪 Usando datos ECF simulados como Último fallback');
+                            result.l10n_do_ecf_security_code = result.l10n_do_ecf_security_code || 'SEC123';
+                            result.l10n_do_ecf_sign_date = result.l10n_do_ecf_sign_date || new Date().toLocaleString('es-DO');
+                            result.is_ecf_invoice = true;
+                            if (!result.QR_code && !result.qr_code_img) {
+                                result.qr_code_img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF5SURBVHhe7ZvhScMwEIfv3aq7iOgkurq7iOgkurq7SDiKYVxIm7Rl7+4H/0fTJtfcl1ySa9PEGGOMMcYYY4wxE8YZOGOcgTPGGThjnIEzxhk4Y5yBM8YZOGOMMUZZ9cNJwhlqjNJ4wzSNVxYvKtLkRUVF1ddfffWGGKOsMcYYY4wx4xYUFBQUFBQUFIIZY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDGiZRaHKUU0I6EwqC8o5dPYSoiUFxUVhehYlleMKCIUUOLpEq8VHOstLCMkZHWMsKh00yt6whjj2DMvXF4DAZR5IZz+jO93Hh4eNUJIeRkw7PHx0b1//96tra1Z8IREJsWl0+lYvMGKOp1OxRcVkVJsUlRUVFRUVFTULqqqqqqqqqqqqurmZ7e3t3Zra8vt7Oy4kpISd/78ecv5DIhLSrRlZ7a2tlxJSYmbm5tz39/fbm1tzWt+f3+Pkx8lOyoqKioqKioqzpgz5owxSuOM+b+IMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhgLgj+bH9bRLqGZzgAAAABJRU5ErkJggg==';
+                            }
+                            console.log('[L10N_DO_POS] ✅ Datos ECF simulados agregados como último fallback');
+                        } else if (result.l10n_latam_document_number || result.ncf) {
+                            console.log('[L10N_DO_POS] ✅ Usando datos fiscales REALES, no simulados');
+                        }
+                    }
+                }
+
+            } catch (error) {
+                console.error('[L10N_DO_POS] ❌ Error consultando datos fiscales:', error);
+
+                // Fallback: usar datos del modelo si existen
+                if (self.ncf) {
+                    result.l10n_latam_document_number = self.ncf;
+                    result.ncf = self.ncf;
+                    console.log('[L10N_DO_POS] 🎯 Usando NCF desde modelo:', self.ncf);
+                }
+            }
+        }
+
+        // Datos básicos de fallback
+        if (self.l10n_latam_document_type_id) {
+            result.l10n_latam_document_type_id = self.l10n_latam_document_type_id;
+            console.log('[L10N_DO_POS] Including document type:', self.l10n_latam_document_type_id);
+        } else {
+            result.l10n_latam_document_type_id = 'Consumo';
+        }
+        
+        // Asegurar fecha de vencimiento si aún no está procesada
+        if (self.l10n_do_ncf_expiration_date && !result.l10n_do_ncf_expiration_date) {
+            try {
+                const expirationDate = new Date(self.l10n_do_ncf_expiration_date);
+                result.l10n_do_ncf_expiration_date = expirationDate.toLocaleDateString('es-DO', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                console.log('[L10N_DO_POS] 📅 Vencimiento NCF (fallback):', result.l10n_do_ncf_expiration_date);
+            } catch (e) {
+                result.l10n_do_ncf_expiration_date = self.l10n_do_ncf_expiration_date;
+                console.log('[L10N_DO_POS] 📅 Vencimiento NCF (fallback sin formato):', result.l10n_do_ncf_expiration_date);
+            }
+        }
+        
+        // Datos básicos dominicanos
+        result.partner = self.get_partner();
+
+        // NCF modificado (usar campo correcto)
+        if (self.origin_ncf) {
+            result.l10n_do_origin_ncf = self.origin_ncf;
+            result.origin_ncf = self.origin_ncf;
+            console.log('[L10N_DO_POS] Including origin NCF:', self.origin_ncf);
+        }
+        result.to_invoice = self.to_invoice;
+        result.l10n_do_ecf_modification_code = self.l10n_do_ecf_modification_code;
+
+        // Datos EDI para facturación electrónica
+        if (self.l10n_do_ecf_security_code) {
+            result.l10n_do_ecf_security_code = self.l10n_do_ecf_security_code;
+            console.log('[L10N_DO_POS] Including EDI security code:', self.l10n_do_ecf_security_code);
+        }
+
+        if (self.l10n_do_ecf_sign_date) {
+            result.l10n_do_ecf_sign_date = self.l10n_do_ecf_sign_date;
+            console.log('[L10N_DO_POS] Including EDI sign date:', self.l10n_do_ecf_sign_date);
+        }
+
+        if (self.QR_code) {
+            result.QR_code = self.QR_code;
+            result.l10n_do_ecf_qr_code = `data:image/png;base64,${self.QR_code}`;
+            console.log('[L10N_DO_POS] Including EDI QR code');
+        }
+
+        if (self.l10n_do_dgii_commercial_approval !== undefined) {
+            result.l10n_do_dgii_commercial_approval = self.l10n_do_dgii_commercial_approval;
+        }
+
+        // ⚡ CORREGIR NOMBRES DE IMPUESTOS FALTANTES
+        console.log('[L10N_DO_POS] 🔧 Corrigiendo tax_details...');
+        console.log('[L10N_DO_POS] tax_details original:', result.tax_details);
+
+        if (result.tax_details && Array.isArray(result.tax_details)) {
+            result.tax_details = result.tax_details.map((tax, index) => {
+                // Si no tiene nombre, asignar uno basado en el porcentaje/monto
+                if (!tax.name || tax.name === '') {
+                    const amount = parseFloat(tax.amount || 0);
+                    const base = parseFloat(tax.base || result.total_without_tax || 0);
+
+                    if (amount > 0 && base > 0) {
+                        const percentage = Math.round((amount / base) * 100);
+                        tax.name = `${percentage}% ITBIS Incl:`;  // Formato DGII oficial
+                        console.log('[L10N_DO_POS] ✅ Asignado nombre impuesto:', tax.name);
+                    } else if (amount > 0) {
+                        tax.name = 'ITBIS';
+                        console.log('[L10N_DO_POS] ✅ Asignado nombre genérico:', tax.name);
+                    } else {
+                        tax.name = `Impuesto ${index + 1}`;
+                        console.log('[L10N_DO_POS] ✅ Asignado nombre fallback:', tax.name);
+                    }
+                }
+                return tax;
+            });
+
+            console.log('[L10N_DO_POS] tax_details corregido:', result.tax_details);
+        } else {
+            console.log('[L10N_DO_POS] ⚠️ tax_details no es array válido, creando desde totales...');
+
+            // Crear tax_details desde los totales si no existe
+            const totalWithTax = parseFloat(result.amount_total || result.total_with_tax || 0);
+            const totalWithoutTax = parseFloat(result.total_without_tax || 0);
+            const taxAmount = totalWithTax - totalWithoutTax;
+
+            if (taxAmount > 0) {
+                const percentage = Math.round((taxAmount / totalWithoutTax) * 100);
+                result.tax_details = [{
+                    name: `${percentage}% ITBIS Incl:`,  // Formato DGII oficial
+                    amount: taxAmount,
+                    base: totalWithoutTax,
+                    tax_percentage: percentage
+                }];
+                console.log('[L10N_DO_POS] ✅ tax_details creado desde totales:', result.tax_details);
+            }
+        }
+
+        // Indicar si es un documento de facturación electrónica válido
+        result.is_ecf_invoice = !!(result.QR_code || result.l10n_do_ecf_security_code || result.qr_code_img);
+
+        // Para compatibilidad con template existente
+        result.ncf = result.l10n_latam_document_number;
+        
+        // ASEGURAR DATOS MÍNIMOS PARA RECIBO FISCAL
+        if (self.to_invoice) {
+            // Verificar si hay NCF disponible (desde cualquier fuente)
+            const availableNCF = result.l10n_latam_document_number || result.ncf || self.l10n_latam_document_number;
+            
+            if (availableNCF && availableNCF !== 'PROCESANDO...') {
+                result.ncf_status = 'CONFIRMADO';
+                result.l10n_latam_document_number = availableNCF;
+                result.ncf = availableNCF;
+                console.log('[L10N_DO_POS] ✅ NCF confirmado:', availableNCF);
+            } else {
+                result.ncf_status = 'PROCESANDO...';
+                result.l10n_latam_document_number = 'PROCESANDO...';
+                console.log('[L10N_DO_POS] ⚠️ NCF en procesamiento');
+            }
+            
+            // Determinar tipo de documento dinámico basado en NCF y contexto
+            const currentNCF = result.l10n_latam_document_number || result.ncf;
+            const partnerType = result.partner?.l10n_do_dgii_tax_payer_type || 'non_payer';
+            
+            if (currentNCF && currentNCF.startsWith('E')) {
+                // Determinar tipo base sin duplicar "Electrónica"
+                if (currentNCF.startsWith('E32')) {
+                    // Factura de Consumo Electrónica
+                    result.l10n_latam_document_type_id = 'Consumo';
+                    result.clean_document_type = 'CONSUMO';
+                } else if (currentNCF.startsWith('E33')) {
+                    // Factura de Crédito Fiscal Electrónica
+                    result.l10n_latam_document_type_id = 'Crédito Fiscal';
+                    result.clean_document_type = 'CRÉDITO FISCAL';
+                } else if (currentNCF.startsWith('E34')) {
+                    // Nota de Crédito Electrónica
+                    result.l10n_latam_document_type_id = 'Nota de Crédito';
+                    result.clean_document_type = 'NOTA DE CRÉDITO';
+                } else if (currentNCF.startsWith('E43')) {
+                    // Régimen Especial Electrónica
+                    result.l10n_latam_document_type_id = 'Régimen Especial';
+                    result.clean_document_type = 'RÉGIMEN ESPECIAL';
+                } else if (currentNCF.startsWith('E44')) {
+                    // Gubernamental Electrónica
+                    result.l10n_latam_document_type_id = 'Gubernamental';
+                    result.clean_document_type = 'GUBERNAMENTAL';
+                } else if (currentNCF.startsWith('E45')) {
+                    // Exportación Electrónica
+                    result.l10n_latam_document_type_id = 'Exportación';
+                    result.clean_document_type = 'EXPORTACIÓN';
+                } else {
+                    // Electrónica genérica
+                    result.l10n_latam_document_type_id = result.l10n_latam_document_type_id || 'Consumo';
+                    result.clean_document_type = this.pos ? this.pos.cleanDocumentType(result.l10n_latam_document_type_id) : 'CONSUMO';
+                }
+                
+                // Ajustar según tipo de cliente para E32
+                if (currentNCF.startsWith('E32') && partnerType === 'taxpayer') {
+                    result.clean_document_type = 'CRÉDITO FISCAL';
+                    console.log('[L10N_DO_POS] 📋 Ajustado a CRÉDITO FISCAL por tipo de cliente taxpayer');
+                }
+                
+                console.log('[L10N_DO_POS] 📋 Tipo documento determinado por NCF:', result.clean_document_type);
+            } else {
+                // Fallback para documentos no electrónicos
+                if (!result.l10n_latam_document_type_id) {
+                    result.l10n_latam_document_type_id = 'Consumo';
+                    console.log('[L10N_DO_POS] 📋 Tipo documento por defecto asignado');
+                }
+                result.clean_document_type = this.pos ? this.pos.cleanDocumentType(result.l10n_latam_document_type_id) : 'CONSUMO';
+            }
+        }
+
+        // Usar nombre de factura del servidor si está disponible
+        if (self.to_invoice && !result.name) {
+            result.name = self.name || 'PROCESANDO...';
+        }
+        
+        // Datos adicionales para el template dominicano
+        if (self.is_copy) {
+            result.is_copy = self.is_copy;
+        }
+        
+        // Asegurar información fiscal completa
+        if (result.to_invoice) {
+            // Asegurar que el partner tenga información mínima
+            if (!result.partner) {
+                result.partner = {
+                    name: 'Cliente de consumo',
+                    vat: false
+                };
+            }
+            
+            // Asegurar tipo de contribuyente
+            if (result.partner && !result.partner.l10n_do_dgii_tax_payer_type) {
+                result.partner.l10n_do_dgii_tax_payer_type = 'non_payer';
+            }
+        }
+        
+        // Asegurar que los datos de la compañía incluyan información dominicana
+        if (result.headerData && result.headerData.company) {
+            // Si no existe company_address, usar la dirección formateada
+            if (!result.headerData.company.company_address && self.pos && self.pos.company && self.pos.company.partner_id) {
+                result.headerData.company.company_address = self.pos.company.street || '';
+            }
+        }
+        
+        console.log('[L10N_DO_POS] Complete Dominican receipt data:', {
+            ncf: result.ncf,
+            ncf_status: result.ncf_status,
+            l10n_latam_document_number: result.l10n_latam_document_number,
+            l10n_latam_document_type_id: result.l10n_latam_document_type_id,
+            clean_document_type: result.clean_document_type,
+            partner: result.partner?.name,
+            to_invoice: result.to_invoice,
+            is_ecf_invoice: result.is_ecf_invoice,
+            l10n_do_ecf_security_code: result.l10n_do_ecf_security_code,
+            l10n_do_ecf_sign_date: result.l10n_do_ecf_sign_date,
+            l10n_do_dgii_commercial_approval: result.l10n_do_dgii_commercial_approval,
+            has_qr: !!result.qr_code_img,
+            has_ecf_data: !!(result.QR_code || result.l10n_do_ecf_security_code)
+        });
+
+        console.log('[L10N_DO_POS] ═══════════════════════════════════════════════════');
+        console.log('[L10N_DO_POS] EXPORT_FOR_PRINTING RESULTADO FINAL (PosOrder):');
+        console.log('[L10N_DO_POS] ═══════════════════════════════════════════════════');
+        console.log('[L10N_DO_POS] result.headerData final:', result.headerData);
+        console.log('[L10N_DO_POS] result.headerData?.company:', result.headerData?.company);
+        console.log('[L10N_DO_POS] result.company final:', result.company);
+        console.log('[L10N_DO_POS] result keys:', Object.keys(result));
+        console.log('[L10N_DO_POS] ═══════════════════════════════════════════════════');
+
+        return result;
+    }
+});
+
+patch(PosPayment.prototype, {
+    setup(_defaultObj, options) {
+        super.setup(...arguments);
+        this.credit_note_id = '';
+        this.note = '';
+    },
+    init_from_JSON(json) {
+        super.init_from_JSON(...arguments);
+        this.credit_note_id = json.credit_note_id;
+        this.note = json.note;
+    },
+    set_credit_note_id(credit_note_id){
+        if(this.credit_note_id !== credit_note_id){
+            this.credit_note_id = credit_note_id;
+        }
+    },
+    get_credit_note_id(){
+        return this.credit_note_id;
+    },
+    set_note(note){
+        if(this.note !== note){
+            this.note = note;
+        }
+    },
+    get_note(){
+        return this.note;
+    },
+    export_as_JSON() {
+        const json = super.export_as_JSON(...arguments);
+        json.credit_note_id = this.credit_note_id;
+        json.note = this.note;
+        return json;
+    },
+    export_for_printing() {
+        console.log('[L10N_DO_POS] ═══════════════════════════════════════════════════');
+        console.log('[L10N_DO_POS] EXPORT_FOR_PRINTING LLAMADO (PosPayment)');
+        console.log('[L10N_DO_POS] ═══════════════════════════════════════════════════');
+
+        const result = super.export_for_printing(...arguments);
+
+        console.log('[L10N_DO_POS] PosPayment super result:', result);
+
+        result.credit_note_id = this.credit_note_id;
+        result.note = this.note;
+
+        console.log('[L10N_DO_POS] PosPayment final result:', result);
+        console.log('[L10N_DO_POS] ═══════════════════════════════════════════════════');
+
+        return result;
+    }
+});
+

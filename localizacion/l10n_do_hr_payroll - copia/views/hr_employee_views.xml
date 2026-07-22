@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menú de Reportes -->
+        <menuitem id="employee_report_menu" name="Reports" parent="hr.menu_hr_root" sequence="30"
+                  groups="hr.group_hr_manager,hr.group_hr_user"/>
+        <menuitem id="menu_hr_management" name="HR Management" parent="hr.menu_hr_root" sequence="5"
+                  groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+        <!-- Vista de Formulario de Empleados -->
+        <record model="ir.ui.view" id="hr_employee_inherit_form_view">
+            <field name="name">hr.employee.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+
+                <!-- Información de Contacto de Emergencia -->
+                <xpath expr="//page[@name='personal_information']/group" position="after">
+                    <group name="emergency_contact" colspan="4" string="Emergency Contact">
+                        <field name="emergency_contacts">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <field name="number"/>
+                            </list>
+                        </field>
+                    </group>
+                </xpath>
+
+                <!-- Código de Empleado -->
+                <xpath expr="//group" position="before">
+                    <group>
+                        <field name="employee_code"/>
+                    </group>
+                </xpath>
+
+                <!-- Página de Préstamos -->
+                <xpath expr="//page[last()]" position="after">
+                    <page name="loans" string="Préstamos" groups="hr.group_hr_manager,hr_payroll.group_hr_payroll_manager">
+                        <field name="loan_ids" readonly="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="rate_id"/>
+                                <field name="amount"/>
+                                <field name="next_fee"/>
+                                <field name="fee_count"/>
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+
+                <!-- Identificación -->
+                <xpath expr="//div[hasclass('oe_title')]" position="after">
+                    <label for="identification_id"/>
+                    <h4>
+                        <field name="identification_id" placeholder="000-0000000-0" style="width:30%"/>
+                        <field name="is_dominica" invisible="1"/>
+                    </h4>
+                </xpath>
+
+                <!-- Pasaporte es opcional para todos los empleados -->
+
+                <!-- Información Familiar -->
+                <page name="personal_information" position="after">
+                    <page name="family_info" string="Family Information" groups="hr.group_hr_user">
+                        <field name="family_ids" colspan="4" nolabel="1">
+                            <form string="Family">
+                                <group colspan="4" col="4">
+                                    <field name="family_name"/>
+                                    <field name="cedula"/>
+                                    <field name="birthdate"/>
+                                    <field name="family_contact"/>
+                                    <field name="relation"/>
+                                    <field name="is_capita"/>
+                                    <field name="amount_capita" invisible="not is_capita" required="is_capita"/>
+                                </group>
+                            </form>
+                            <list>
+                                <field name="family_name"/>
+                                <field name="relation"/>
+                                <field name="amount_capita" invisible="not is_capita"/>
+                                <field name="is_capita"/>
+                            </list>
+                        </field>
+                    </page>
+
+                    <!-- Información de TSS -->
+                    <page name="tss_info" string="TSS" groups="hr.group_hr_user">
+                        <group col="2">
+                            <group>
+                                <field name="tss_names"/>
+                                <field name="tss_first_lastname"/>
+                                <field name="tss_second_lastname"/>
+                            </group>
+                        </group>
+                    </page>
+
+                    <!-- Página de Contabilidad Analítica -->
+                    <page name="analytic_info" string="Contabilidad Analítica" groups="hr.group_hr_user,hr_payroll.group_hr_payroll_manager">
+                        <group>
+                            <group>
+                                <field name="analytic_account_id"
+                                       options="{'no_create': True}"
+                                       help="Cuenta analítica para este empleado. Si el lote de nómina tiene cuenta analítica configurada, esta será ignorada."/>
+                            </group>
+                        </group>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Nota:</strong> Si el lote de nómina tiene activada la opción "Usar cuenta analítica por lote",
+                            la cuenta analítica configurada aquí será ignorada y se usará la del lote.
+                        </div>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <!-- Vista de Árbol de Empleados -->
+        <record id="hr_do_view_employee_tree" model="ir.ui.view">
+            <field name="name">hr.employee.list.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="identification_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Filtro de Empleados -->
+        <record id="hr_do_view_employee_filter" model="ir.ui.view">
+            <field name="name">Employees</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="identification_id"/>
+                </field>
+            </field>
+        </record>
+
+    <record id="hr_do_kanban_view_employees" model="ir.ui.view">
+        <field name="name">HR - Employees Kanban</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <field name="arch" type="xml">
+            <!-- Insertar después del nombre del empleado -->
+            <xpath expr="//main" position="inside">
+                <div t-if="record.identification_id.value" class="o_kanban_employee_id">
+                    <strong>ID: <field name="identification_id"/></strong>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    </data>
+</odoo>

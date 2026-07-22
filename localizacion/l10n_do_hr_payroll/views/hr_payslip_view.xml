@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_hr_payslip_form_inherited_v2" model="ir.ui.view">
+        <field name="name">view.hr.payslip.form.inherited.v2</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <!-- Modificado: 2026-03-18 — Arturo Diaz Lora — Ocultar campos Días trabajados parciales y Vacaciones -->
+            <xpath expr="//field[@name='struct_id']" position="after">
+                <field name="partial_worked_days" invisible="1"/>
+                <field name="last_payslip_vacation" invisible="1"/>
+                <field name="pay_vacation" invisible="1"/>
+                <field name="vacation_type" invisible="1"/>
+            </xpath>
+
+            <!-- MODIFICADO: Arturo Diaz Lora - 2026-04-03 -->
+            <!-- Razón: Ocultar botón "Crear reporte de pago" - no funcional en nómina individual -->
+            <xpath expr="//button[@name='action_payslip_payment_report']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- MODIFICADO: Arturo Diaz Lora - 2026-04-04 -->
+            <!-- Razón: Agregar botón "Reporte de Pago" al lado de "Confirmar" para generar reporte del lote -->
+            <xpath expr="//button[@name='action_payslip_done']" position="after">
+                <button string="Reporte de Pago"
+                        name="action_run_payment_report"
+                        type="object"
+                        class="btn btn-secondary"
+                        invisible="state != 'validated' or not payslip_run_id"
+                        help="Generar reporte de pago del lote de nómina asociado"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_payslip_tree_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.list.inherit</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list//field[@name='date_from']" position="before">
+                <field name="real_worked_hours" string="Horas trabajadas"/>
+                <field name="total_to_pay" string="Total a Pagar"/>
+            </xpath>
+
+            <!-- MODIFICADO: Arturo Diaz Lora - 2026-04-04 -->
+            <!-- Razón: Agregar botón "Reporte de Pago" en la vista lista al lado de Confirmar -->
+            <xpath expr="//header/button[@name='action_payslip_done']" position="after">
+                <button string="Reporte de Pago"
+                        name="action_run_payment_report"
+                        type="object"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Temporalmente comentado para evitar conflictos -->
+    <!--
+    <record id="view_hr_payslip_form_edit_journal" model="ir.ui.view">
+        <field name="name">hr.payslip.form.edit.journal</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll_account.hr_payslip_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+    -->
+
+    <!-- <record id="view_hr_payslip_form_inherit_add_amount" model="ir.ui.view">
+        <field name="name">view.hr.payslip.form.inherit.add.amount</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='worked_days_line_ids']//list" position="inside">
+                <field name="amount" string="Importe (RD$)" sum="Total Importe" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='worked_days_line_ids']/form//group" position="inside">
+                <field name="amount" string="Importe (RD$)"/>
+            </xpath>
+        </field>
+    </record> -->
+
+    <!-- Temporalmente comentado para evitar conflictos -->
+    <!--
+    <record id="view_hr_payslip_form_inherit_button_text" model="ir.ui.view">
+        <field name="name">view.hr.payslip.form.inherit.button.text</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll_account.hr_payslip_view_form"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_payslip_done']" position="attributes">
+                <attribute name="string">Confirmar</attribute>
+            </xpath>
+        </field>
+    </record>
+    -->
+
+    <!-- Agregar botón para enviar nómina por correo -->
+    <record id="view_hr_payslip_form_inherit_email_button" model="ir.ui.view">
+        <field name="name">view.hr.payslip.form.inherit.email.button</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_payslip_done']" position="before">
+                <button
+                    string="Enviar por correo"
+                    name="payslip_send_mail"
+                    type="object"
+                    class="oe_highlight"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Configuración de templates de correo -->
+    <!-- MODIFICADO: Arturo Diaz Lora - 2026-03-27 19:30 -->
+    <!-- Razón: Agregar bloque de configuración de correo para nóminas con servidor específico -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.hr.payroll.do</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="50" />
+        <field name="inherit_id" ref="hr_payroll.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <!-- Insertar después del bloque principal de Payroll -->
+            <xpath expr="//block[@id='hr_payroll_settings']" position="after">
+                <block title="Configuración de Correo RD" id="hr_payroll_mail_settings_do">
+                    <setting string="Plantilla de Correo" help="Plantilla para envío de recibos de nómina">
+                        <div class="content-group">
+                            <div class="row">
+                                <label for="choose_mail_template" class="col-lg-3 o_light_label"/>
+                                <field name="choose_mail_template" domain="[('model_id.model','=', 'hr.payslip')]"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Servidor de Correo para Nóminas" help="Servidor SMTP específico para envío de nóminas. Si no se selecciona, se usa el de mayor prioridad.">
+                        <div class="content-group">
+                            <div class="row">
+                                <label for="hr_payroll_mail_server_id" class="col-lg-3 o_light_label"/>
+                                <field name="hr_payroll_mail_server_id" options="{'no_create': True, 'no_open': True}"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Acción de servidor para enviar nóminas por correo -->
+    <record id="action_send_payslip_by_email" model="ir.actions.server">
+        <field name="name">Enviar nomina por correo</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip" />
+        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip" />
+        <field name="code">
+            action = records.send_payslip_by_email_action()
+        </field>
+    </record>
+
+
+
+</odoo>

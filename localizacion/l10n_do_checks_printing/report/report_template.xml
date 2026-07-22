@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="check_print_report_document">
+        <t t-set="bank_cheque_id" t-value="o.journal_id.check_layout"/>
+        <t t-set="cheque_date" t-value="o.date"/>
+        <t t-set="pay_line1" t-value="o.partner_id.name"/>
+        <t t-if="o.check_name">
+            <t t-set="pay_line1" t-value="o.check_name.name"/>
+                    </t>
+        <t t-set="amount_line_1" t-value="o.amont_in_word"/>
+        <t t-set="amount_box" t-value="o.amount"/>
+        <t t-set="account_number" t-value="o.journal_id.bank_account_id.acc_number"/>
+        <t t-set="currency_id" t-value="o.currency_id"/>
+        <t t-set="ref" t-value="o.payment_reference or o.name"/>
+        <div style="margin: 0px -15px 0px -15px;">
+            <div>
+                <t t-foreach="bank_cheque_id.cheque_attribute_line_ids" t-as="bank_cheque_line_obj">
+                    <div t-attf-style='
+                                    position: absolute;
+                                    top: #{str(bank_cheque_line_obj.top_displacement-6 + 2 if bank_cheque_line_obj.name.attribute in ["cheque_date"] else bank_cheque_line_obj.top_displacement-6) + "pt"};
+                                    left: #{str(bank_cheque_line_obj.left_displacement-8 - 2 if bank_cheque_line_obj.name.attribute in ["cheque_date"] else bank_cheque_line_obj.left_displacement-8)  + "pt"};
+                                    height: #{str(bank_cheque_line_obj.height) + "pt"};
+                                    width: #{str(bank_cheque_line_obj.width) + "pt"};
+                                    font-size: #{str(bank_cheque_line_obj.font_size) + "px" if bank_cheque_line_obj.font_size else "20px"};
+                                    margin-top:00pt;
+                                    text-transform: uppercase;
+                                    letter-spacing: #{str(bank_cheque_line_obj.letter_spacing) + "px"};'>
+                        <span t-if="bank_cheque_line_obj.name.attribute == 'cheque_date' and bank_cheque_line_obj.name.date_format == 'ddMMyyyy'" t-field="o.date" t-options='{"format": "ddMMyyyy"}'></span>
+                        <span t-if="bank_cheque_line_obj.name.attribute == 'cheque_date' and bank_cheque_line_obj.name.date_format == 'MMddyyyy'" t-field="o.date" t-options='{"format": "MMddyyyy"}'></span>
+                        <t t-if="bank_cheque_line_obj.name.attribute == 'pay_line1'" t-esc="pay_line1"/>
+                        <t t-if="bank_cheque_line_obj.name.attribute == 'amount_line_1'" t-esc="amount_line_1"/>
+                        <t t-if="bank_cheque_line_obj.name.attribute == 'ref'" t-esc="ref"/>
+                        <strong>
+                            <span t-if="bank_cheque_line_obj.name.attribute == 'amount_box'" t-esc="'{0:,.2f}'.format(amount_box)"/>
+                        </strong>
+                        <t t-if="bank_cheque_line_obj.name.attribute == 'account_number'" t-esc="account_number"/>
+                    </div>
+                    <t t-if="bank_cheque_line_obj.name.attribute == 'ac_pay'">
+                        <div t-if="not (bank_cheque_line_obj.top_displacement and bank_cheque_line_obj.left_displacement and bank_cheque_line_obj.height and bank_cheque_line_obj.width)" t-attf-style="position: absolute;top: 0px;    left: -20px;width: 125px;margin-top: 14pt;letter-spacing:#{str(bank_cheque_line_obj.letter_spacing) + 'px'};border-top: 1px solid black;border-bottom: 1px solid black;-webkit-backface-visibility: hidden;-webkit-transform: rotate(-40deg);text-align: center;">A/C Pay</div>
+                        <div t-else="" t-attf-style='position: absolute;
+                                        top: #{str(bank_cheque_line_obj.top_displacement-6) + "pt"}; 
+                                        left: #{str(bank_cheque_line_obj.left_displacement-8) + "pt"};
+                                        font-size: #{str(bank_cheque_line_obj.font_size) + "px" if bank_cheque_line_obj.font_size else "20px"};
+                                        margin-top:00pt;
+                                        text-transform: uppercase;
+                                        border-top: 1px solid black;
+                                        border-bottom: 1px solid black;
+                                        letter-spacing: #{str(bank_cheque_line_obj.letter_spacing) + "px"};
+                                        padding: 5px;'>A/C Pay
+                                    </div>
+                    </t>
+                </t>
+            </div>
+        </div>
+    </template>
+    <template id="check_print_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div t-att-data-oe-model="o._name" t-att-data-oe-id="o.id" t-foreach="o._check_get_pages()" t-as="page" class="page article">
+                    <t t-call="l10n_do_checks_printing.check_print_report_document" />
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
