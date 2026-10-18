@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="group_discount_per_so_line" model="res.groups">
-        <field name="name">Discount on Invoice Lines</field>
-        <field name="implied_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
-        <field name="comment">Users who can apply multiple discounts on invoice lines</field>
-    </record>
-</odoo>

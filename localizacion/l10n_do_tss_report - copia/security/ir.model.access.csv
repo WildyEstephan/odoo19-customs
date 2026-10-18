@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_tss_report,access_tss_report,model_tss_report,hr_payroll.group_hr_payroll_manager,1,1,1,0
-access_tss_report_line,access_tss_report_line,model_tss_report_line,hr_payroll.group_hr_payroll_manager,1,1,1,1
-access_tss_report_regenerate_wizard,access_tss_report_regenerate_wizard,model_tss_report_regenerate_wizard,hr_payroll.group_hr_payroll_manager,1,1,1,1
